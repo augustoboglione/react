@@ -3,6 +3,7 @@ import CartWidget from "./CartWidget.jsx"
 const NavBar = () => {
     return (
         <header>
+            <img src="" alt="" />
             <nav>
                 <ul>
                     <li>A</li>

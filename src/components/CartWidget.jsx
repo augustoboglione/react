@@ -1,4 +1,4 @@
-import cart from '../assets/cart2.jpg'
+import cart from '../assets/cart.png'
 import {useState} from 'react'
 
 const CartWidget = () => {
@@ -6,7 +6,7 @@ const CartWidget = () => {
 
     return (
         <div className="cart">
-            <img src={cart} alt="Cart" />
+            <img src={cart} alt="Cart"/>
             <p>{qty}</p>
         </div>
     )

@@ -1,9 +1,8 @@
 import NavBar from './components/NavBar'
 import ItemListContainer from './components/ItemListContainer.jsx'
-import { useState } from 'react'
 import './App.css'
 
-function App() {
+const App = () => {
   return (
     <>
       <NavBar/>
