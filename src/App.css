@@ -1,0 +1,28 @@
+body {
+  margin: 0;
+}
+
+header img {
+  height: 50px;
+}
+
+header {
+  height: 100px;
+  display: flex;
+  justify-content: space-around;
+  background-color: red;
+}
+
+nav {
+  width: 70%;
+}
+
+ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+}
+
+.items {
+  text-align: center;
+}
