@@ -69,10 +69,10 @@ nav ul a {
   z-index: 1;
 }
 
-.overflow p {
+/* .overflow p {
   font-size: 20px;
   padding-bottom: 15px;
-}
+} */
 
 .logo:hover {
   filter: invert(100%) drop-shadow(0 0 10px white) drop-shadow(0 0 10px white);

@@ -2,9 +2,9 @@ import cart from '../assets/cart.png'
 import {useState} from 'react'
 
 const CartWidget = () => {
-    const [qty, setQty] = useState(0)
+    const [qty, setQty] = useState(5)
     return (
-        <div className={"cart" + (qty > 9 ? " overflow" : "")} onClick={() => qty < 99 ? setQty(qty + 1) : setQty(0)}>
+        <div className="cart">
             <img src={cart} alt="Cart"/>
             <p>{qty}</p>
         </div>
