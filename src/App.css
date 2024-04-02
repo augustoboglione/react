@@ -12,10 +12,11 @@ body {
   margin: 0;
 }
 
-.header {
+nav {
   color: white;
   background-color: #202020;
   height: 100px;
+  width: 100%;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -30,22 +31,15 @@ body {
   height: 100%;
 }
 
-nav {
-  height: 100%;
-  width: 70%;
-  display: flex;
-}
-
 nav ul {
   list-style: none;
-  width: 100%;
+  width: 70%;
   padding: 0;
-  align-self: center;
   display: flex;
   justify-content: space-around;
 }
 
-nav a {
+nav ul a {
   font-size: 20px;
   color: white;
   transition: filter 0.3s;
