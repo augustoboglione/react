@@ -1,22 +1,21 @@
+import {Link, NavLink} from 'react-router-dom'
 import CartWidget from './CartWidget.jsx'
 import logo from '../assets/logo.png'
 
-const NavBar = () => {
+const NavBar = (props) => {
     return (
         <nav>
-            <a className="logo" href="index.html">
+            <Link  className="logo" to='/'>
                 <img src={logo} alt=""/>
-            </a>
+            </Link>
             <ul>
-                <li><a href="index.html">Mac</a></li>
-                <li><a href="index.html">iPad</a></li>
-                <li><a href="index.html">iPhone</a></li>
-                <li><a href="index.html">Watch</a></li>
-                <li><a href="index.html">Vision</a></li>
-                <li><a href="index.html">Airpods</a></li>
-                <li><a href="index.html">TV & Home</a></li>
-                <li><a href="index.html">Entertainment</a></li>
-                <li><a href="index.html">Accessories</a></li>
+                <li><NavLink to="/category/mac">Mac</NavLink></li>
+                <li><NavLink to="/category/ipad">iPad</NavLink></li>
+                <li><NavLink to="/category/iphone">iPhone</NavLink></li>
+                <li><NavLink to="/category/watch">Watch</NavLink></li>
+                <li><NavLink to="/category/vision">Vision</NavLink></li>
+                <li><NavLink to="/category/airpods">Airpods</NavLink></li>
+                <li><NavLink to="/category/tvhome">TV & Home</NavLink></li>
             </ul>
             <CartWidget/>
         </nav>
