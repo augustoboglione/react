@@ -12,8 +12,8 @@ const ItemList = (props) => {
 
     useEffect(() => {
         const width = 346
-        const n = Math.floor(window.innerWidth / width + 1 / 3)
-
+        const n = Math.floor(document.querySelector('.container').offsetWidth / width + 1 / 3)
+        console.log(n)
         if (map) setClassMap(map.map((item, i) => {
             console.log(n)
             if ((i + 1) % (2 * n - 1) == 0) return React.cloneElement(item, {className: ' end long'})

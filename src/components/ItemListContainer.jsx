@@ -19,8 +19,10 @@ const ItemListContainer = (props) => {
     }, [filtered])
 
     return (
-        <div className='container'>
-            {content}
+        <div className='body'>
+            <div className='container'>
+                {content}
+            </div>
         </div>
     )
 }

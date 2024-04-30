@@ -27,8 +27,8 @@ const ItemDetailContainer = (props) => {
                         <img src={img} alt={product.name}/>
                     </div>
                     <div>
-                        <p>{product.description}</p>
-                        <p>${product.price}</p>
+                        <p className='description'>{product.description}</p>
+                        <p className='price'>${product.price}</p>
                         <Button>Add to Cart</Button>
                     </div>
                 </div>
@@ -37,8 +37,10 @@ const ItemDetailContainer = (props) => {
     }, [product, img])
 
     return (
-        <div className='detail'>
-            {content}
+        <div className='body'>
+            <div className='detail'>
+                {content}
+            </div>
         </div>
     )
 }
