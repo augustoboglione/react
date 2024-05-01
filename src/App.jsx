@@ -7,21 +7,21 @@ import {getProducts} from './api/api.js'
 import './styles.css'
 
 const App = () => {
-  const [products, setProducts] = useState()
+    const [products, setProducts] = useState()
 
-  useEffect(() => {getProducts().then(setProducts)}, [])
+    useEffect(() => {getProducts().then(setProducts)}, [])
 
-  return (
-    <BrowserRouter>
-      <NavBar/>
-      <Routes>
-        <Route path='/' element={<ItemListContainer products={products}/>}/>
-        <Route path='/category/:id' element={<ItemListContainer products={products}/>}/>
-        <Route path='/item/:id' element={<ItemDetailContainer products={products}/>}/>
-        <Route path='*' element={<h1>Page not found</h1>}/>
-      </Routes>
-    </BrowserRouter>
-  )
+    return (
+        <BrowserRouter>
+            <NavBar/>
+            <Routes>
+                <Route path='/' element={<ItemListContainer products={products}/>}/>
+                <Route path='/category/:id' element={<ItemListContainer products={products}/>}/>
+                <Route path='/item/:id' element={<ItemDetailContainer products={products}/>}/>
+                <Route path='*' element={<h1>Page not found</h1>}/>
+            </Routes>
+        </BrowserRouter>
+    )
 }
 
 export default App
