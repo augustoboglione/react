@@ -1,26 +1,25 @@
 import {useState, useEffect} from 'react'
 import {useParams} from 'react-router-dom'
 import ItemList from './ItemList'
+import {getProducts} from '../api/api.js'
 
-const ItemListContainer = (props) => {
-    const [content, setContent] = useState(<h1>Loading Products...</h1>)
-    const [filtered, setFiltered] = useState()
+const ItemListContainer = () => {
+    const [content, setContent] = useState(<h1 style={{marginTop: -66.5}}>Loading Products...</h1>)
+    const [products, setProducts] = useState()
+
     const category = useParams().id
 
     useEffect(() => {
-        if (props.products) {
-            if (category) setFiltered(props.products.filter(product => product.category == category))
-            else setFiltered(props.products)
-        }
-    }, [props, category])
+        getProducts(category).then(setProducts)
+    }, [category])
 
     useEffect(() => {
-        if (filtered) setContent(<ItemList products={filtered}/>)
-    }, [filtered])
+        if (products) setContent(<ItemList products={products}/>)
+    }, [products])
 
     return (
         <div className='body'>
-            <div className='container'>
+            <div className='list-container'>
                 {content}
             </div>
         </div>

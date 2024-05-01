@@ -25,9 +25,9 @@ body {
 button {
     color: white;
     background-color: #202020;
-    padding: 2px 15px;
+    padding: 2px 10px;
     border: none;
-    border-radius: 20px;
+    border-radius: 30px;
     cursor: pointer;
     transition: all 0.3s;
 }
@@ -95,18 +95,18 @@ nav ul a {
     z-index: 1;
 }
 
-/* .overflow p {
+/*.overflow p {
     font-size: 20px;
     padding-bottom: 15px;
-} */
+}*/
 
 .body {
     padding: 50px 5%;
 }
 
-/*container*/
+/*list container*/
 
-.container {
+.list-container {
     padding: 100px 0;
     display: flex;
     flex-wrap: wrap;
@@ -237,19 +237,19 @@ nav ul a {
     width: 20%;
 }
 
-/*detail*/
+/*detail container*/
 
-.detail {
+.detail-container {
     text-align: center;
 }
 
-.detail > div {
+.detail-container > div {
     width: 100%;
     display: flex;
     justify-content: space-around;
 }
 
-.detail div div {
+.detail-container > div > div {
     width: 30%;
     display: flex;
     flex-direction: column;
@@ -257,11 +257,12 @@ nav ul a {
     align-items: center;
 }
 
-.detail img {
+.detail-container img {
     width: 80%;
 }
 
-.detail div div:last-child {
+.detail {
+    padding: 20px;
     border-radius: 50px;
     box-shadow: 0 0 10px grey;
 }
@@ -272,6 +273,28 @@ nav ul a {
 
 .price {
     font-size: 30px;
+}
+
+.counter {
+    width: 60%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.counter button {
+    display: flex;
+    align-items: center;
+}
+
+.counter img {
+    width: 20px;
+    filter: invert(100%);
+    transition: all 0.3s;
+}
+
+.add {
+    height: 50px;
 }
 
 /*hover*/
@@ -301,4 +324,12 @@ nav ul li:hover a, nav ul a.active {
 
 .item:hover p {
     font-size: 22.5px;
+}
+
+.add:hover {
+    font-size: 25px;
+}
+
+.counter button:hover img {
+    width: 30px;
 }

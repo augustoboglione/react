@@ -5,7 +5,7 @@ import Item from './Item.jsx'
 const ItemList = (props) => {
     const [map, setMap] = useState()
     const [classMap, setClassMap] = useState()
-    const containerWidth = document.querySelector('.container').offsetWidth
+    const containerWidth = document.querySelector('.list-container').offsetWidth
     
     useEffect(() => {
         setMap(props.products.map(product => <Item key={product.id} product={product}></Item>))

@@ -1,9 +1,9 @@
 import {useState, useEffect} from 'react'
 import {useParams} from 'react-router-dom'
-import Button from './Button.jsx'
-import {getImg} from '../api/api.js'
+import ItemDetail from './ItemDetail.jsx'
+import {getProducts, getImg} from '../api/api.js'
 
-const ItemDetailContainer = (props) => {
+const ItemDetailContainer = () => {
     const [content, setContent] = useState(<h1>Loading Product...</h1>)
     const [product, setProduct] = useState()
     const [img, setImg] = useState()
@@ -11,12 +11,9 @@ const ItemDetailContainer = (props) => {
     const id = parseInt(useParams().id)
 
     useEffect(() => {
+        getProducts(id).then(setProduct)
         getImg(id).then(setImg)
     }, [])
-
-    useEffect(() => {
-        if (props.products) setProduct(props.products.find(product => product.id == id))
-    }, [props])
 
     useEffect(() => {
         if (product) setContent(
@@ -26,11 +23,7 @@ const ItemDetailContainer = (props) => {
                     <div>
                         <img src={img} alt={product.name}/>
                     </div>
-                    <div>
-                        <p className='description'>{product.description}</p>
-                        <p className='price'>${product.price}</p>
-                        <Button>Add to Cart</Button>
-                    </div>
+                    <ItemDetail product={product}/>
                 </div>
             </>
         )
@@ -38,7 +31,7 @@ const ItemDetailContainer = (props) => {
 
     return (
         <div className='body'>
-            <div className='detail'>
+            <div className='detail-container'>
                 {content}
             </div>
         </div>
