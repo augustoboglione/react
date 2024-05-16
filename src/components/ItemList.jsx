@@ -13,7 +13,12 @@ const ItemList = (props) => {
 
     useEffect(() => {
         const width = 346
-        const n = Math.floor(containerWidth / width + 1 / 3)
+        let n = Math.floor(containerWidth / width + 1 / 3)
+
+        if (map && Math.ceil((map.length + 2) / 3) < n) n = Math.ceil((map.length + 2) / 3)
+
+        // if (map && map.length < 2 * n - 1) n = Math.floor(map.length / 2)
+        // if (n < 2) n = 2
 
         if (map) setClassMap(map.map((item, i) => {
 

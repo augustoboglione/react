@@ -120,6 +120,7 @@ nav ul a {
     width: 346.4px;
     margin: -49.5px 0;
     display: flex;
+    z-index: 0;
 }
 
 .only {
@@ -135,7 +136,11 @@ nav ul a {
 }
 
 .ext {
-    margin-right: 100px;
+    margin-right: 300px;
+}
+
+.only.ext {
+    margin-right: 700px;
 }
 
 .item {
@@ -311,10 +316,13 @@ nav ul li:hover a, nav ul a.active {
     font-size: 30px;
 }
 
+.block:hover {
+    z-index: 1;
+}
+
 .item:hover {
     height: 300px;
     width: 346.4px;
-    z-index: 1;
     margin: -50px -57.7px;
 }
 
