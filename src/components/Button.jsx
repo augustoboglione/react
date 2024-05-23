@@ -1,10 +1,17 @@
 import {Link} from 'react-router-dom'
 
-const Button = (props) => {
-    return (
-        <Link to={props.to} onClick={props.onClick}>
-            <button className={props.className}>{props.children}</button>
+const Button = ({to, type, title, className, onClick, children}) => {
+    if (to) return (
+        <Link to={to} onClick={onClick}>
+            <button type={type} className={className} title={title}>
+                {children}
+            </button>
         </Link>
+    )
+    return (
+        <button type={type} className={className} onClick={onClick} title={title}>
+            {children}
+        </button>
     )
 }
 

@@ -1,12 +1,14 @@
+import {useContext} from 'react'
+import {CartContext} from '../context/CartContext'
 import cart from '../assets/cart.png'
-import {useState} from 'react'
 
 const CartWidget = () => {
-    const [qty, setQty] = useState(5)
+    const quantity = useContext(CartContext).totalQuantity()
+    
     return (
-        <div className="cart">
-            <img src={cart} alt="Cart"/>
-            <p>{qty}</p>
+        <div>
+            <img src={cart} alt='Cart'/>
+            <p className={quantity > 9 ? 'overflow' : ''}>{quantity}</p>
         </div>
     )
 }

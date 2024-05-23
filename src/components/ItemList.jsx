@@ -2,20 +2,19 @@ import React from 'react'
 import {useState, useEffect} from 'react'
 import Item from './Item.jsx'
 
-const ItemList = (props) => {
+const ItemList = ({products, containerWidth}) => {
     const [map, setMap] = useState()
     const [classMap, setClassMap] = useState()
-    const containerWidth = document.querySelector('.list-container').offsetWidth
     
     useEffect(() => {
-        setMap(props.products.map(product => <Item key={product.id} product={product}></Item>))
-    }, [props])
+        setMap(products.map(product => <Item key={product.id} product={product}></Item>))
+    }, [products])
 
     useEffect(() => {
         const width = 346
         let n = Math.floor(containerWidth / width + 1 / 3)
 
-        if (map && Math.ceil((map.length + 2) / 3) < n) n = Math.ceil((map.length + 2) / 3)
+        // if (map && Math.ceil((map.length + 2) / 3) < n) n = Math.ceil((map.length + 2) / 3)
 
         // if (map && map.length < 2 * n - 1) n = Math.floor(map.length / 2)
         // if (n < 2) n = 2
@@ -35,7 +34,7 @@ const ItemList = (props) => {
             if ((i + 1) % (2 * n - 1) == n) return React.cloneElement(item, {className: ' start long'})
             return React.cloneElement(item, {className: ''})
         }))
-    }, [props, map])
+    }, [containerWidth, map])
 
     return classMap
 }

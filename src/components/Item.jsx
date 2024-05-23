@@ -3,19 +3,19 @@ import {Link} from 'react-router-dom'
 import Hex from './Hex.jsx'
 import {getImg} from '../api/api.js'
 
-const Item = (props) => {
+const Item = ({product, className}) => {
     const [img, setImg] = useState()
 
     useEffect(() => {
-        if (props.product) getImg(props.product.id).then(setImg)
-    }, [props])
+        //getImg(product.id).then(setImg)
+    }, [])
 
     return (
-        <div className={'block' + props.className}>
-            <Link className='item' to={`/item/${props.product.id}`}>
-                <h2>{props.product.name}</h2>
-                <img src={img} alt={props.product.name}/>
-                <p>${props.product.price}</p>
+        <div className={'block' + className}>
+            <Link className='item' to={`/item/${product.id}`}>
+                <h2>{product.name}</h2>
+                <img src={img} alt={product.name}/>
+                <p>${product.price}</p>
                 <Hex/>
             </Link>
         </div>

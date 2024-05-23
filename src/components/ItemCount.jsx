@@ -1,27 +1,27 @@
-import {useState} from 'react'
+import {useState, useContext} from 'react'
+import {CartContext} from '../context/CartContext'
+import Counter from './Counter.jsx'
 import Button from './Button'
-import minus from '../assets/minus.svg'
-import plus from '../assets/plus.svg'
 
-const ItemCount = (props) => {
-    const [count, setCount] = useState(0)
+const ItemCount = ({product}) => {
+    const [count, setCount] = useState(1)
+
+    const context = useContext(CartContext)
 
     const down = () => {
-        if (count) setCount(count - 1)
+        if (count - 1) setCount(count - 1)
     }
 
     const up = () => {
-        if (count < props.stock) setCount(count + 1)
+        if (true) setCount(count + 1)
     }
+
+    const addToCart = () => context.add(product, count)
 
     return (
         <>
-            <div className='counter'>
-                <Button onClick={down}><img src={minus} alt='Minus'/></Button>
-                <p>{count}</p>
-                <Button onClick={up}><img src={plus} alt='Plus'/></Button>
-            </div>
-            <Button className='add'>Add to Cart</Button>
+            <Counter decrease={down} increase={up} count={count}/>
+            <Button className='add' onClick={addToCart}>Add to Cart</Button>
         </>
     )
 }

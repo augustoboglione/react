@@ -71,23 +71,28 @@ nav ul a {
     transition: all 0.3s;
 }
 
-.cart {
+.cart-widget {
     height: 50%;
+    transition: filter 0.3s;
+}
+
+.cart-widget div {
+    height: 100%;
     position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
     cursor: pointer;
-    transition: filter 0.3s;
 }
 
-.cart img {
+.cart-widget img {
     height: 100%;
 }
 
-.cart p {
+.cart-widget p {
     font-size: 25px;
     text-align: center;
+    color: white;
     width: 100%;
     margin: 0;
     padding-bottom: 20px;
@@ -95,10 +100,12 @@ nav ul a {
     z-index: 1;
 }
 
-/*.overflow p {
+p.overflow {
     font-size: 20px;
     padding-bottom: 15px;
-}*/
+}
+
+/*body*/
 
 .body {
     padding: 50px 5%;
@@ -112,7 +119,10 @@ nav ul a {
     flex-wrap: wrap;
     justify-content: flex-start;
     align-items: center;
-    transition: all 0.3s;
+}
+
+.list-container h1 {
+    margin-top: -66.5px;
 }
 
 .block {
@@ -147,13 +157,14 @@ nav ul a {
     color: black;
     height: 100%;
     width: 66.7%;
+    margin: 0;
     position: relative;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     z-index: 0;
-    transition: all 0.3s;
+    transition: height 0.3s, width 0.3s, margin 0.3s;
 }
 
 .only .item {
@@ -302,13 +313,38 @@ nav ul a {
     height: 50px;
 }
 
+/*cart*/
+
+.cart-item {
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 50px;
+    display: flex;
+    justify-content: space-between;
+    box-shadow: 0 0 10px grey;
+}
+
+/*checkout*/
+
+form {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
 /*hover*/
 
 .logo:hover {
     filter: invert(100%) drop-shadow(0 0 10px white) drop-shadow(0 0 10px white);
 }
 
-nav ul li:hover a, .cart:hover {
+nav ul li:hover a, .cart-widget:hover {
     filter: drop-shadow(0 0 10px white) drop-shadow(0 0 10px white);
 }
 
