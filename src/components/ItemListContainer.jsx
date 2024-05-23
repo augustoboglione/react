@@ -20,17 +20,16 @@ const ItemListContainer = () => {
     }, [])
 
     useEffect(() => {
-        let filtered = collection(db, 'items')
-        if (category) filtered = query(filtered, where('category', '==', category))
+        const filtered = category
+            ? query(collection(db, 'items'), where('category', '==', category))
+            : collection(db, 'items')
 
         getDocs(filtered).then(snapshot => setProducts(snapshot.docs.map(doc => ({id: doc.id, ...doc.data()}))))
     }, [category])
 
     return (
-        <div className='body'>
-            <div className='list-container'>
-                {products ? <ItemList products={products} containerWidth={width}/> : <h1>Loading Products...</h1>}
-            </div>
+        <div className='list-container'>
+            {products ? <ItemList products={products} containerWidth={width}/> : <h1>Loading Products...</h1>}
         </div>
     )
 }

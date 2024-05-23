@@ -1,12 +1,14 @@
 import Button from './Button.jsx'
 import minus from '../assets/minus.svg'
 import plus from '../assets/plus.svg'
+import bin from '../assets/bin.svg'
 
-const Counter = ({count, decrease, increase}) => (
+const Counter = ({count, decrease, increase, remove = false}) => (
     <div className='counter'>
-        <Button onClick={decrease}><img src={minus} alt='Minus'/></Button>
+        <Button className='img-button' onClick={decrease}><img src={minus} alt='Decrease'/></Button>
         <p>{count}</p>
-        <Button onClick={increase}><img src={plus} alt='Plus'/></Button>
+        <Button className='img-button' onClick={increase}><img src={plus} alt='Increase'/></Button>
+        {remove ? <Button className='img-button' onClick={remove}><img src={bin} alt='Remove' /></Button> : null}
     </div>
 )
 

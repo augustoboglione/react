@@ -4,17 +4,27 @@ import Button from './Button.jsx'
 import CartItem from './CartItem.jsx'
 
 const Cart = () => {
-    const cart = useContext(CartContext).cart
+    const context = useContext(CartContext)
+    const cart = context.cart
 
+    if (cart.length) return (
+        <div className='cart'>
+            <h1>Cart</h1>
+            {cart.map(item => <CartItem key={item.id} product={item}/>)}
+            <p className='total'>Total: ${context.totalPrice()}</p>
+            <div className='buttons'>
+                <Button className='text-button' to='/'>Back to store</Button>
+                <Button className='text-button' onClick={context.clear}>Clear cart</Button>
+                <Button className='text-button' to='/checkout'>Go to checkout</Button>
+            </div>
+        </div>
+    )
+    
     return (
-        <div className='body'>
-            <div className='checkout'>
-                {cart.length ? <h1>Cart</h1> : <h1>Your cart is empty</h1>}
-                {cart.map(item => <CartItem key={item.id} product={item}></CartItem>)}
-                <div className='buttons'>
-                    <Button to='/'>Back to store</Button>
-                    {cart.length ? <Button to='/checkout'>Go to checkout</Button> : <></>}
-                </div>
+        <div className='cart'>
+            <h1>Your cart is empty</h1>
+            <div className='buttons centered'>
+                <Button className='text-button' to='/'>Back to store</Button>
             </div>
         </div>
     )
