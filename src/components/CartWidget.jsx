@@ -1,6 +1,6 @@
 import {useContext} from 'react'
 import {CartContext} from '../context/CartContext'
-import cart from '../assets/shopping-cart-simple.svg'
+import cart from '../assets/cart.svg'
 
 const CartWidget = () => {
     const number = useContext(CartContext).totalQuantity()
