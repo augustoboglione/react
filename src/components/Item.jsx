@@ -1,24 +1,23 @@
 import {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
-import Hex from './Hex.jsx'
-import {getImg} from '../api/api.js'
+import handlePrice from '../others/price.js'
+import getImg from '../others/img.js'
 
-const Item = ({product, className}) => {
+const Item = ({product}) => {
     const [img, setImg] = useState()
 
     useEffect(() => {
-        //getImg(product.id).then(setImg)
+        getImg(product.id).then(setImg)
     }, [])
 
     return (
-        <div className={'block' + className}>
-            <Link className='item' to={`/item/${product.id}`}>
+            <Link to={`/item/${product.id}`}>
+                <div className='item shadowed'>
                 <h2>{product.name}</h2>
                 <img src={img} alt={product.name}/>
-                <p>${product.price}</p>
-                <Hex/>
+                <p>${handlePrice(product.price)}</p>
+                </div>
             </Link>
-        </div>
     )
 }
 

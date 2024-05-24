@@ -1,9 +1,9 @@
 import {Link, NavLink} from 'react-router-dom'
 import CartWidget from './CartWidget.jsx'
-import logo from '../assets/logo.png'
+import logo from '../assets/apple.svg'
 
-const NavBar = () => (
-    <nav>
+const NavBar = ({onClick}) => (
+    <nav onClick={onClick}>
         <Link  className='logo' to='/'>
             <img src={logo} alt='Apple'/>
         </Link>

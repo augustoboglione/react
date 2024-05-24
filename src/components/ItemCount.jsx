@@ -21,6 +21,13 @@ const ItemCount = ({product}) => {
         else fire('Not enough stock', `We have ${product.stock} item${product.stock == 1 ? '' : 's'} in stock.`, 'error')
     }
 
+    if (!product.stock) return (
+        <>
+            <p className='red'>Out of stock</p>
+            <Button to='/'>Back to store</Button>
+        </>
+    )
+
     if (cart.some(item => item.id == product.id)) return (
         <div className='buttons'>
             <Button to='/'>Back to store</Button>

@@ -1,4 +1,5 @@
 import ItemCount from './ItemCount'
+import handlePrice from '../others/price'
 
 const ItemDetail = ({product, img}) => (
     <>
@@ -9,7 +10,7 @@ const ItemDetail = ({product, img}) => (
             </div>
             <div className='shadowed'>
                 <p className='detail-description'>{product.description}</p>
-                <p className='detail-price'>${product.price}</p>
+                <p className='detail-price'>${handlePrice(product.price)}</p>
                 <ItemCount product={product}/>
             </div>
         </div>
