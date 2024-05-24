@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
-import handlePrice from '../others/price.js'
-import getImg from '../others/img.js'
+import handlePrice from '../others/handlePrice.js'
+import getImg from '../others/getImg.js'
 
 const Item = ({product}) => {
     const [img, setImg] = useState()
@@ -11,13 +11,11 @@ const Item = ({product}) => {
     }, [])
 
     return (
-            <Link to={`/item/${product.id}`}>
-                <div className='item shadowed'>
-                <h2>{product.name}</h2>
-                <img src={img} alt={product.name}/>
-                <p>${handlePrice(product.price)}</p>
-                </div>
-            </Link>
+        <Link className='item shadowed' to={`/item/${product.id}`}>
+            <h2>{product.name}</h2>
+            <img src={img} alt={product.name}/>
+            <p>${handlePrice(product.price)}</p>
+        </Link>
     )
 }
 

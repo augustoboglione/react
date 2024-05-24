@@ -2,8 +2,8 @@ import {useState, useEffect, useContext} from 'react'
 import {Link} from 'react-router-dom'
 import {CartContext} from '../context/CartContext.jsx'
 import Counter from './Counter.jsx'
-import handlePrice from '../others/price.js'
-import getImg from '../others/img.js'
+import handlePrice from '../others/handlePrice.js'
+import getImg from '../others/getImg.js'
 
 const CartItem = ({product}) => {
     const [img, setImg] = useState()

@@ -1,5 +1,5 @@
 import ItemCount from './ItemCount'
-import handlePrice from '../others/price'
+import handlePrice from '../others/handlePrice'
 
 const ItemDetail = ({product, img}) => (
     <>

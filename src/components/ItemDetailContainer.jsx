@@ -3,7 +3,7 @@ import {useParams, useNavigate} from 'react-router-dom'
 import ItemDetail from './ItemDetail.jsx'
 import db from '../others/firebase.js'
 import {doc, getDoc} from 'firebase/firestore'
-import getImg from '../others/img.js'
+import getImg from '../others/getImg.js'
 
 const ItemDetailContainer = () => {
     const [product, setProduct] = useState()

@@ -2,7 +2,7 @@ import {useContext} from 'react'
 import {CartContext} from '../context/CartContext.jsx'
 import Button from './Button.jsx'
 import CartItem from './CartItem.jsx'
-import handlePrice from '../others/price.js'
+import handlePrice from '../others/handlePrice.js'
 
 const Cart = () => {
     const context = useContext(CartContext)
