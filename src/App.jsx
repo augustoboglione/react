@@ -5,6 +5,7 @@ import ItemListContainer from './components/ItemListContainer.jsx'
 import ItemDetailContainer from './components/ItemDetailContainer.jsx'
 import Cart from './components/Cart.jsx'
 import Checkout from './components/Checkout.jsx'
+import PageNotFound from './components/PageNotFound.jsx'
 import './styles.css'
 
 const App = () => (
@@ -15,9 +16,10 @@ const App = () => (
                 <Route path='/' element={<ItemListContainer/>}/>
                 <Route path='/category/:id' element={<ItemListContainer/>}/>
                 <Route path='/item/:id' element={<ItemDetailContainer/>}/>
-                <Route path='/cart' element={<Cart/>}></Route>
-                <Route path='/checkout' element={<Checkout/>}></Route>
-                <Route path='*' element={<h1>Page not found</h1>}/>
+                <Route path='/cart' element={<Cart/>}/>
+                <Route path='/checkout' element={<Checkout/>}/>
+                <Route path='/notfound' element={<PageNotFound/>}/>
+                <Route path='*' element={<PageNotFound/>}/>
             </Routes>
         </CartProvider>
     </BrowserRouter>

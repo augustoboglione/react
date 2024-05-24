@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react'
-import {useParams} from 'react-router-dom'
+import {useParams, useNavigate} from 'react-router-dom'
 import ItemDetail from './ItemDetail.jsx'
 import db from '../others/firebase.js'
 import {doc, getDoc} from 'firebase/firestore'
@@ -10,10 +10,16 @@ const ItemDetailContainer = () => {
 
     const id = useParams().id
 
+    const navigate = useNavigate()
+
     useEffect(() => {
         getDoc(doc(db, 'items', id)).then(snapshot => setProduct({id: snapshot.id, ...snapshot.data()}))
         //getImg(id).then(setImg)
-    }, [])
+    }, [id])
+
+    useEffect(() => {
+        if (product && !product.name) navigate('/notfound')
+    }, [product])
 
     return (
         <div className='detail-container'>

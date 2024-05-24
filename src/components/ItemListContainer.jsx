@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react'
-import {useParams} from 'react-router-dom'
+import {useParams, useNavigate} from 'react-router-dom'
 import ItemList from './ItemList'
 import db from '../others/firebase.js'
 import {collection, getDocs, query, where} from 'firebase/firestore'
@@ -10,6 +10,8 @@ const ItemListContainer = () => {
     const [width, setWidth] = useState()
 
     const category = useParams().id
+
+    const navigate = useNavigate()
 
     const getWidth = () => document.querySelector('.list-container').offsetWidth
 
@@ -26,6 +28,10 @@ const ItemListContainer = () => {
 
         getDocs(filtered).then(snapshot => setProducts(snapshot.docs.map(doc => ({id: doc.id, ...doc.data()}))))
     }, [category])
+
+    useEffect(() => {
+        if (products && !products.length) navigate('/notfound')
+    }, [products])
 
     return (
         <div className='list-container'>

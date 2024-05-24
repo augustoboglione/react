@@ -94,7 +94,7 @@ p.overflow {
 
 /*body*/
 
-.detail-container, .cart, .checkout {
+.detail-container, .cart, .checkout, .not-found {
     padding: 50px 5%;
     display: flex;
     flex-direction: column;
