@@ -13,7 +13,7 @@ const CartItem = ({product}) => {
                 <img className='cart-img' src={product.img} alt={product.name} />
                 <p className='cart-name'>{product.name}</p>
             </Link>
-            <p>${handlePrice(product.price)}</p>
+            <p className='cart-price'>${handlePrice(product.price)}</p>
             <Counter count={product.quantity}
                 decrease={() => context.decrease(product)}
                 increase={() => context.increase(product)}

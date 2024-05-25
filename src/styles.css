@@ -166,14 +166,6 @@ button, .shadowed button.text-button {
     justify-content: space-around;
 }
 
-.detail-container .buttons {
-    margin-top: 85px;
-}
-
-.cart .buttons {
-    justify-content: space-between;
-}
-
 .buttons.centered {
     justify-content: center;
 }
@@ -189,10 +181,6 @@ button, .shadowed button.text-button {
 .detail-container .counter {
     width: 60%;
     height: 85px;
-}
-
-.cart-item .counter {
-    width: 30%;
 }
 
 .count {
@@ -286,6 +274,10 @@ button, .shadowed button.text-button {
     font-size: 30px;
 }
 
+.detail-container .buttons {
+    margin-top: 85px;
+}
+
 /*cart*/
 
 .cart-item {
@@ -314,6 +306,11 @@ button, .shadowed button.text-button {
     transition: font-size 0.3s;
 }
 
+.cart-item .counter {
+    width: 30%;
+}
+
+
 .cart-price {
     text-align: end;
     width: 10%;
@@ -325,6 +322,10 @@ button, .shadowed button.text-button {
     text-align: end;
     width: 100%;
     padding-right: 100px;
+}
+
+.cart .buttons {
+    justify-content: space-between;
 }
 
 /*checkout*/
