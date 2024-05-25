@@ -1,23 +1,16 @@
-import {useState, useEffect, useContext} from 'react'
+import {useContext} from 'react'
 import {Link} from 'react-router-dom'
 import {CartContext} from '../context/CartContext.jsx'
 import Counter from './Counter.jsx'
 import handlePrice from '../others/handlePrice.js'
-import getImg from '../others/getImg.js'
 
 const CartItem = ({product}) => {
-    const [img, setImg] = useState()
-
-    useEffect(() => {
-        getImg(product.id).then(setImg)
-    }, [])
-
     const context = useContext(CartContext)
 
     return (
         <div className='cart-item shadowed'>
             <Link to={`/item/${product.id}`}>
-                <img className='cart-img' src={img} alt={product.name} />
+                <img className='cart-img' src={product.img} alt={product.name} />
                 <p className='cart-name'>{product.name}</p>
             </Link>
             <p>${handlePrice(product.price)}</p>

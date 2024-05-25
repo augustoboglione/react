@@ -1,5 +1,6 @@
-import {useState, useEffect} from 'react'
+import {useState, useEffect, useContext} from 'react'
 import {useParams, useNavigate} from 'react-router-dom'
+import {DarkContext} from '../context/DarkContext.jsx'
 import ItemList from './ItemList'
 import db from '../others/firebase.js'
 import {collection, getDocs, query, where} from 'firebase/firestore'
@@ -9,6 +10,8 @@ const ItemListContainer = () => {
     const [products, setProducts] = useState()
 
     const category = useParams().id
+
+    const {dark} = useContext(DarkContext)
 
     const navigate = useNavigate()
 
@@ -25,7 +28,7 @@ const ItemListContainer = () => {
     }, [products])
 
     return (
-        <div className='list-container'>
+        <div className={`list-container ${dark}`}>
             {products ? <ItemList products={products}/> : <h1>Loading Products...</h1>}
         </div>
     )

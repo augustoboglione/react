@@ -1,6 +1,7 @@
 import {useState, useEffect, useContext} from 'react'
 import {useNavigate} from 'react-router-dom'
 import {CartContext} from '../context/CartContext.jsx'
+import {DarkContext} from '../context/DarkContext.jsx'
 import CheckoutForm from './CheckoutForm.jsx'
 import db from '../others/firebase.js'
 import {doc, collection, addDoc, updateDoc, Timestamp} from 'firebase/firestore'
@@ -10,6 +11,8 @@ const Checkout = () => {
     const [orderId, setOrderId] = useState()
 
     const {cart, clear, totalPrice} = useContext(CartContext)
+
+    const {dark} = useContext(DarkContext)
 
     const navigate = useNavigate()
 
@@ -48,7 +51,7 @@ const Checkout = () => {
     }
 
     return (
-        <div className='checkout'>
+        <div className={`checkout ${dark}`}>
             <h1>Checkout</h1>
             <CheckoutForm placeOrder={placeOrder}/>
         </div>

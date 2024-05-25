@@ -1,8 +1,24 @@
-# React + Vite
+## Table of Contents
+# 1.Introduction
+# 2.Features
+# 3.Usage
+# 4.License
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Introduction
+Apple is a platform designed to facilitate online sales. It includes product listings, a shopping cart, order processing, and more.
 
-Currently, two official plugins are available:
+## Features
+Product listings with filter options
+Shopping cart and checkout process
+Order management
+Frontend: React
+Database: Firestore
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Usage
+Browse Products: Explore the product listings and use the filter options to find specific items.
+Add to Cart: Select products and add them to your shopping cart.
+Checkout: Proceed to checkout, provide your details and complete payment.
+Order Confirmation: Receive an order confirmation.
+
+## License
+This project is licensed under the MIT License. See the LICENSE file for more details.

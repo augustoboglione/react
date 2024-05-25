@@ -1,12 +1,12 @@
 import ItemCount from './ItemCount'
 import handlePrice from '../others/handlePrice'
 
-const ItemDetail = ({product, img}) => (
+const ItemDetail = ({product}) => (
     <>
         <h1>{product.name}</h1>
         <div>
             <div>
-                <img className='detail-img' src={img} alt={product.name}/>
+                <img className='detail-img' src={product.img} alt={product.name}/>
             </div>
             <div className='shadowed'>
                 <p className='detail-description'>{product.description}</p>
