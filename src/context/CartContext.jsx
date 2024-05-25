@@ -20,12 +20,10 @@ const CartProvider = ({children}) => {
 
     const add = (item, quantity) => setCart(current => [...current, {...item, quantity}])
 
-    const remove = (item) => {
-        fire('Remove', `Do you wish to remove ${item.name} from your cart?`, 'question',
-            () => setCart(cart.filter(x => x.id != item.id)), true
-        )
+    const remove = item => fire('Remove', `Do you wish to remove ${item.name} from your cart?`, 'question', () => {
+        setCart(cart.filter(x => x.id != item.id))
         localStorage.removeItem(item.id)
-    }
+    }, true)
 
     const clear = (ask = true) => {
         if (ask) fire('Clear cart', 'Do you wish to clear your cart?', 'question', () => {
@@ -38,7 +36,7 @@ const CartProvider = ({children}) => {
         }
     }
 
-    const increase = (item) => {
+    const increase = item => {
         const quantity = cart.find(x => x.id == item.id).quantity
 
         if (quantity < item.stock) {
@@ -49,7 +47,7 @@ const CartProvider = ({children}) => {
         else fire('Not enough stock', `We have ${item.stock} item${item.stock == 1 ? '' : 's'} in stock.`, 'error')
     }
 
-    const decrease = (item) => {
+    const decrease = item => {
         const quantity = cart.find(x => x.id == item.id).quantity
 
         if (quantity > 1) {

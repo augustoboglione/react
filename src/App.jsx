@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react'
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import {CartProvider} from './context/CartContext.jsx'
+import {DarkProvider} from './context/DarkContext.jsx'
 import NavBar from './components/NavBar.jsx'
 import Welcome from './components/Welcome.jsx'
 import ItemListContainer from './components/ItemListContainer.jsx'
@@ -11,7 +12,6 @@ import PageNotFound from './components/PageNotFound.jsx'
 import DarkToggle from './components/DarkToggle.jsx'
 import {setStock} from './others/firebase.js'
 import './styles.css'
-import { DarkProvider } from './context/DarkContext.jsx'
 
 const App = () => {
     const [welcome, setWelcome] = useState(true)

@@ -12,7 +12,7 @@ const firebaseConfig = {
 
 const db = getFirestore(initializeApp(firebaseConfig))
 
-const setStock = (stock) => getDocs(collection(db, 'items'))
+const setStock = stock => getDocs(collection(db, 'items'))
     .then(snapshot => snapshot.docs.forEach(item => updateDoc(doc(db, 'items', item.id), {stock})))
 
 export default db

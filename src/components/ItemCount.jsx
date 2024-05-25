@@ -7,10 +7,9 @@ import fire from '../others/sweetalert.js'
 const ItemCount = ({product}) => {
     const [count, setCount] = useState(1)
 
-    const context = useContext(CartContext)
-    const cart = context.cart
+    const {cart, add} = useContext(CartContext)
 
-    const addToCart = () => context.add(product, count)
+    const addToCart = () => add(product, count)
 
     const decrease = () => {
         if (count - 1) setCount(count - 1)

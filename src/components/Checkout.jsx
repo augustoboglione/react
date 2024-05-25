@@ -25,10 +25,9 @@ const Checkout = () => {
             clear(false)
             navigate('/')
         })
-
     }, [orderId])
 
-    const placeOrder = (buyer) => {
+    const placeOrder = buyer => {
         const {firstName, lastName, email, number} = buyer
 
         if (!firstName || !lastName || !email || !number)

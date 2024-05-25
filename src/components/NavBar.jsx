@@ -9,7 +9,7 @@ const NavBar = ({onClick}) => {
 
     return (
         <nav className={dark} onClick={onClick}>
-            <Link  className='logo' to='/'>
+            <Link className='logo' to='/'>
                 <img src={logo} alt='Apple'/>
             </Link>
             <ul>

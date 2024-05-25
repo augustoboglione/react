@@ -1,6 +1,5 @@
-import {useContext} from "react"
-import {DarkContext} from "../context/DarkContext"
-
+import {useContext} from 'react'
+import {DarkContext} from '../context/DarkContext'
 
 const PageNotFound = () => {
     const {dark} = useContext(DarkContext)
@@ -11,4 +10,5 @@ const PageNotFound = () => {
         </div>
     )
 }
+
 export default PageNotFound

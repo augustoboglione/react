@@ -5,7 +5,7 @@ import Counter from './Counter.jsx'
 import handlePrice from '../others/handlePrice.js'
 
 const CartItem = ({product}) => {
-    const context = useContext(CartContext)
+    const {remove, decrease, increase} = useContext(CartContext)
 
     return (
         <div className='cart-item shadowed'>
@@ -15,9 +15,9 @@ const CartItem = ({product}) => {
             </Link>
             <p className='cart-price'>${handlePrice(product.price)}</p>
             <Counter count={product.quantity}
-                decrease={() => context.decrease(product)}
-                increase={() => context.increase(product)}
-                remove={() => context.remove(product)}
+                decrease={() => decrease(product)}
+                increase={() => increase(product)}
+                remove={() => remove(product)}
             />
             <p className='cart-price'>${handlePrice(product.quantity * product.price)}</p>
         </div>
