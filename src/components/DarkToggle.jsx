@@ -5,7 +5,7 @@ import Button from './Button'
 const DarkToggle = () => {
     const {dark, toggle} = useContext(DarkContext)
 
-    return <Button className='dark-toggle text-button' onClick={toggle}>
+    return <Button className={`dark-toggle text-button ${dark}`} onClick={toggle}>
         {dark == 'dark' ? 'Light' : 'Dark'}
     </Button>
 }
