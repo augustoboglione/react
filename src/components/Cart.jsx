@@ -1,6 +1,6 @@
 import {useContext} from 'react'
 import {CartContext} from '../context/CartContext.jsx'
-import {DarkContext} from '../context/DarkContext.jsx'
+import {ThemeContext} from '../context/ThemeContext.jsx'
 import Button from './Button.jsx'
 import CartItem from './CartItem.jsx'
 import handlePrice from '../others/handlePrice.js'
@@ -8,10 +8,10 @@ import handlePrice from '../others/handlePrice.js'
 const Cart = () => {
     const {cart, clear, totalPrice} = useContext(CartContext)
 
-    const {dark} = useContext(DarkContext)
+    const {theme} = useContext(ThemeContext)
 
     if (cart.length) return (
-        <div className={`cart ${dark}`}>
+        <div className={`cart ${theme}`}>
             <h1>Cart</h1>
             {cart.map(item => <CartItem key={item.id} product={item}/>)}
             <p className='total'>Total: ${handlePrice(totalPrice())}</p>
@@ -24,7 +24,7 @@ const Cart = () => {
     )
     
     return (
-        <div className={`cart ${dark}`}>
+        <div className={`cart ${theme}`}>
             <h1>Your cart is empty</h1>
             <div className='buttons centered'>
                 <Button to='/'>Back to store</Button>

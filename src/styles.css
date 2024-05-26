@@ -166,10 +166,6 @@ button, .shadowed button.text-button {
     justify-content: space-around;
 }
 
-.buttons.centered {
-    justify-content: center;
-}
-
 /*counter*/
 
 .counter {
@@ -310,7 +306,6 @@ button, .shadowed button.text-button {
     width: 30%;
 }
 
-
 .cart-price {
     text-align: end;
     width: 10%;
@@ -327,6 +322,11 @@ button, .shadowed button.text-button {
 .cart .buttons {
     justify-content: space-between;
 }
+
+.cart .buttons.centered {
+    justify-content: center;
+}
+
 
 /*checkout*/
 

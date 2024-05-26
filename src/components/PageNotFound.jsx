@@ -1,11 +1,11 @@
 import {useContext} from 'react'
-import {DarkContext} from '../context/DarkContext'
+import {ThemeContext} from '../context/ThemeContext'
 
 const PageNotFound = () => {
-    const {dark} = useContext(DarkContext)
+    const {theme} = useContext(ThemeContext)
 
     return (
-        <div className={`not-found ${dark}`}>
+        <div className={`not-found ${theme}`}>
             <h1>Page not found</h1>
         </div>
     )

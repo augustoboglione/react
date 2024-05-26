@@ -1,14 +1,14 @@
 import {useContext} from 'react'
-import {DarkContext} from '../context/DarkContext.jsx'
+import {ThemeContext} from '../context/ThemeContext.jsx'
 import {Link, NavLink} from 'react-router-dom'
 import CartWidget from './CartWidget.jsx'
 import logo from '../assets/apple.svg'
 
 const NavBar = ({onClick}) => {
-    const {dark} = useContext(DarkContext)
+    const {theme} = useContext(ThemeContext)
 
     return (
-        <nav className={dark} onClick={onClick}>
+        <nav className={theme} onClick={onClick}>
             <Link className='logo' to='/'>
                 <img src={logo} alt='Apple'/>
             </Link>

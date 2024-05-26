@@ -1,12 +1,12 @@
 import {useContext} from "react"
-import {DarkContext} from "../context/DarkContext"
+import {ThemeContext} from "../context/ThemeContext"
 import Button from "./Button"
 
 const Welcome = ({onClick}) => {
-    const {dark} = useContext(DarkContext)
+    const {theme} = useContext(ThemeContext)
 
     return (
-        <div className={`welcome ${dark}`}>
+        <div className={`welcome ${theme}`}>
             <h1>Welcome!</h1>
             <Button onClick={onClick}>Start buying</Button>
         </div>

@@ -1,6 +1,6 @@
 import {useState, useEffect, useContext} from 'react'
 import {useParams, useNavigate} from 'react-router-dom'
-import {DarkContext} from '../context/DarkContext.jsx'
+import {ThemeContext} from '../context/ThemeContext.jsx'
 import ItemDetail from './ItemDetail.jsx'
 import db from '../others/firebase.js'
 import {doc, getDoc} from 'firebase/firestore'
@@ -10,7 +10,7 @@ const ItemDetailContainer = () => {
 
     const id = useParams().id
 
-    const {dark} = useContext(DarkContext)
+    const {theme} = useContext(ThemeContext)
 
     const navigate = useNavigate()
 
@@ -23,7 +23,7 @@ const ItemDetailContainer = () => {
     }, [product])
 
     return (
-        <div className={`detail-container ${dark}`}>
+        <div className={`detail-container ${theme}`}>
             {product ? <ItemDetail product={product}/> : <h1>Loading Product...</h1>}
         </div>
     )
