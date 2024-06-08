@@ -11,14 +11,18 @@ const CartItem = ({product}) => {
         <div className='cart-item shadowed'>
             <Link to={`/item/${product.id}`}>
                 <img className='cart-img' src={product.img} alt={product.name} />
-                <p className='cart-name'>{product.name}</p>
             </Link>
-            <p className='cart-price'>${handlePrice(product.price)}</p>
-            <Counter count={product.quantity}
-                decrease={() => decrease(product)}
-                increase={() => increase(product)}
-                remove={() => remove(product)}
-            />
+            <div>
+                <Link className='cart-name' to={`/item/${product.id}`}>
+                    {product.name}
+                </Link>
+                <p className='cart-price'>${handlePrice(product.price)}</p>
+                <Counter count={product.quantity}
+                    decrease={() => decrease(product)}
+                    increase={() => increase(product)}
+                    remove={() => remove(product)}
+                />
+            </div>
             <p className='cart-price'>${handlePrice(product.quantity * product.price)}</p>
         </div>
     )

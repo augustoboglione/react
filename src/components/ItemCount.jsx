@@ -28,10 +28,13 @@ const ItemCount = ({product}) => {
     )
 
     if (cart.some(item => item.id == product.id)) return (
-        <div className='buttons'>
-            <Button to='/'>Back to store</Button>
-            <Button to='/cart'>Go to cart</Button>
-        </div>
+        <>
+            <p>In cart</p>
+            <div className='buttons'>
+                <Button to='/'>Back to store</Button>
+                <Button to='/cart'>Go to cart</Button>
+            </div>
+        </>
     )
     
     return (

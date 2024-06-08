@@ -7,16 +7,7 @@ const CartContext = createContext([])
 
 const CartProvider = ({children}) => {
     const [cart, setCart] = useState([])
-
-    useEffect(() => {
-        getDocs(collection(db, 'items'))
-            .then(snapshot =>  setCart(snapshot.docs.filter(doc => localStorage.getItem(doc.id))
-            .map(doc => ({id: doc.id, quantity: parseInt(localStorage.getItem(doc.id)), ...doc.data()}))))
-    }, [])
-
-    useEffect(() => {
-        cart.forEach(item => localStorage.setItem(item.id, item.quantity))
-    }, [cart])
+    const [show, setShow] = useState(false)
 
     const add = (item, quantity) => setCart(current => [...current, {...item, quantity}])
 
@@ -62,8 +53,19 @@ const CartProvider = ({children}) => {
 
     const totalPrice = () => cart.reduce((x, y) => x + y.quantity * y.price, 0)
 
+    useEffect(() => {
+        getDocs(collection(db, 'items'))
+            .then(snapshot =>  setCart(snapshot.docs.filter(doc => localStorage.getItem(doc.id))
+            .map(doc => ({id: doc.id, quantity: parseInt(localStorage.getItem(doc.id)), ...doc.data()}))))
+            .then(() => setShow(true))
+    }, [])
+
+    useEffect(() => {
+        cart.forEach(item => localStorage.setItem(item.id, item.quantity))
+    }, [cart])
+
     return (
-        <CartContext.Provider value={{cart, add, remove, clear, increase, decrease, totalQuantity, totalPrice}}>
+        <CartContext.Provider value={{cart, show, add, remove, clear, increase, decrease, totalQuantity, totalPrice}}>
             {children}
         </CartContext.Provider>
     )

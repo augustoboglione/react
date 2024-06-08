@@ -43,24 +43,37 @@ p, h1, h2 {
 
 /*navbar*/
 
-nav {
+nav, .footer {
     color: white;
     background-color: #202020;
-    height: 100px;
+    box-sizing: border-box;
     width: 100%;
+    height: 100px;
+    padding: 0 5%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     transition: background-color 0.3s;
 }
 
+.footer {
+    position: relative;
+    justify-content: center;
+    align-items: end;
+}
+
+nav img {
+    filter: invert(100%);
+}
+
 .logo {
-    height: 50%;
+    width: 40px;
 }
 
 .logo img {
-    height: 100%;
-    filter: invert(100%);
+    width: 100%;
+    display: block;
+    margin: 0 auto;
     transition: filter 0.3s;
 }
 
@@ -74,17 +87,20 @@ nav ul {
 }
 
 nav ul li {
-    margin: auto;
+    text-align: center;
+    flex-grow: 1;
 }
 
 nav ul a {
     font-size: 20px;
     color: white;
+    display: block;
+    width: 100%;
     transition: all 0.3s;
 }
 
 .cart-widget {
-    height: 50%;
+    width: 50px;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -94,8 +110,7 @@ nav ul a {
 }
 
 .cart-widget img {
-    height: 100%;
-    filter: invert(100%);
+    width: 100%;
 }
 
 .cart-widget p {
@@ -109,24 +124,48 @@ nav ul a {
     z-index: 1;
 }
 
-p.overflow {
+p.long {
     font-size: 20px;
     padding-bottom: 15px;
+}
+
+p.overlong {
+    font-size: 14px;
+}
+
+.menu {
+    width: 40px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.dropdown {
+    width: 100%;
+    height: auto;
+    padding-right: 5%;
+    position: absolute;
+    top: 100px;
+    justify-content: flex-end;
+    z-index: 1;
+}
+
+.dropdown ul {
+    height: 300px;
+    flex-direction: column;
+    align-items: flex-end;
+    z-index: 2;
 }
 
 /*body*/
 
 .welcome, .list-container, .detail-container, .cart, .checkout, .not-found {
     box-sizing: border-box;
-    min-height: calc(100% - 100px);
+    min-height: calc(100% - 200px);
     padding: 50px 5%;
     display: flex;
-    transition: background-color 0.3s;
-}
-
-.welcome, .detail-container, .cart, .checkout, .not-found {
     flex-direction: column;
     align-items: center;
+    transition: background-color 0.3s;
 }
 
 /*button*/
@@ -148,15 +187,13 @@ button, .shadowed button.text-button {
 }
 
 .img-button {
-    width: 40px;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    width: 35px;
+    height: 35px;
 }
 
 .img-button img {
     width: 100%;
+    display: block;
     filter: invert(100%);
 }
 
@@ -164,6 +201,13 @@ button, .shadowed button.text-button {
     width: 100%;
     display: flex;
     justify-content: space-around;
+}
+
+@media only screen and (min-width: 600px) {
+    .img-button {
+        width: 40px;
+        height: 40px;
+    }
 }
 
 /*counter*/
@@ -191,6 +235,48 @@ button, .shadowed button.text-button {
     box-shadow: 0 0 10px grey;
 }
 
+/*loading*/
+
+@keyframes loading {
+    12.5% {
+        rotate: 45deg
+    }
+
+    25% {
+        rotate: 90deg
+    }
+
+    37.5% {
+        rotate: 135deg
+    }
+
+    50% {
+        rotate: 180deg
+    }
+
+    62.5% {
+        rotate: 225deg
+    }
+
+    75% {
+        rotate: 270deg
+    }
+
+    87.5% {
+        rotate: 315deg
+    }
+}
+
+.loading {
+    width: 100px;
+    position: absolute;
+    top: 250px;
+    animation-name: loading;
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: step-end;
+}
+
 /*welcome*/
 
 .welcome h1 {
@@ -199,9 +285,17 @@ button, .shadowed button.text-button {
 
 /*list container*/
 
-/**/
+.list-container > input {
+    width: 70%;
+    margin: 50px 0;
+}
 
-.list-container {
+.list-container > div {
+    display: flex;
+}
+
+.list {
+    display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: flex-start;
@@ -236,7 +330,22 @@ button, .shadowed button.text-button {
     transition: all 0.3s;
 }
 
-/**/
+/*filter*/
+
+.filter {
+    position: fixed;
+    left: 10px;
+    top: 200px;
+}
+
+.open {
+    position: static;
+}
+
+.filter img {
+    width: 40px;
+    cursor: pointer;
+}
 
 /*detail container*/
 
@@ -247,11 +356,13 @@ button, .shadowed button.text-button {
 .detail-container > div {
     width: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
+    align-items: center;
 }
 
 .detail-container > div > div {
-    width: 30%;
+    width: 50%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -260,6 +371,7 @@ button, .shadowed button.text-button {
 
 .detail-img {
     width: 80%;
+    margin-bottom: 30px;
 }
 
 .detail-description {
@@ -270,8 +382,22 @@ button, .shadowed button.text-button {
     font-size: 30px;
 }
 
-.detail-container .buttons {
+/* .detail-container .buttons {
     margin-top: 85px;
+} */
+
+@media only screen and (min-width: 900px) {
+    .detail-container > div {
+        flex-direction: row;
+    }
+
+    .detail-container > div > div {
+        width: 30%;
+    }
+
+    .detail-img {
+        margin: 0;
+    }
 }
 
 /*cart*/
@@ -279,36 +405,79 @@ button, .shadowed button.text-button {
 .cart-item {
     box-sizing: border-box;
     width: 100%;
-    padding: 20px 100px;
+    padding: 20px 10%;
     margin-bottom: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.cart-item a {
-    width: 40%;
-    display: flex;
-    align-items: center;
+.cart-item > a {
+    width: 20%;
 }
 
 .cart-img {
-    width: 25%;
+    width: 100%;
+}
+
+.cart-item > div {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .cart-name {
-    text-align: center;
-    width: 75%;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     transition: font-size 0.3s;
 }
 
-.cart-item .counter {
-    width: 30%;
+.cart-item div .cart-price {
+    text-align: center;
+    width: 100%;
+    display: none;
 }
 
-.cart-price {
+.cart-item .counter {
+    width: 70%;
+    height: 50px;
+}
+
+.cart-item > .cart-price {
     text-align: end;
     width: 10%;
+}
+
+@media only screen and (min-width: 900px) {
+    .cart-item > a {
+        width: 10%;
+    }
+
+    .cart-item > div {
+        width: 78%;
+        flex-direction: row;
+    }
+
+    .cart-name {
+        width: 38.5%;
+        height: auto;
+    }
+
+    .cart-item div .cart-price {
+        width: 15.4%;
+    }
+
+    .cart-item .counter {
+        width: 46.2%;
+    }    
+
+    .cart-item > .cart-price {
+        width: 12%;
+    }
 }
 
 .total {
@@ -316,7 +485,7 @@ button, .shadowed button.text-button {
     font-size: 30px;
     text-align: end;
     width: 100%;
-    padding-right: 100px;
+    padding-right: 10%;
 }
 
 .cart .buttons {
@@ -330,7 +499,7 @@ button, .shadowed button.text-button {
 
 /*checkout*/
 
-form {
+.checkout form {
     box-sizing: border-box;
     width: 60%;
     display: flex;
@@ -339,26 +508,27 @@ form {
     align-items: center;
 }
 
-form > div {
+.checkout form > div {
     width: 90%;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
 }
 
-form div div {
-    width: 48%;
+.checkout form div div {
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-label {
+.checkout label {
     font-size: 20px;
     margin-bottom: 10px;
 }
 
-input {
+.checkout input {
     font-size: 20px;
     text-align: center;
     box-sizing: border-box;
@@ -373,9 +543,20 @@ input {
     transition: all 0.3s;
 }
 
-/*hover*/
+@media only screen and (min-width: 900px) {
+    .checkout form > div {
+        flex-direction: row;
+        justify-content: space-between;
+    }
 
-.logo:hover img {
+    .checkout form div div {
+        width: 48%;
+    }
+}
+
+/*hover click active*/
+
+.logo img:hover {
     filter: invert(0%) drop-shadow(0 0 10px white) drop-shadow(0 0 10px white);
 }
 
@@ -383,8 +564,16 @@ nav ul li:hover a, .cart-widget:hover {
     filter: drop-shadow(0 0 10px white) drop-shadow(0 0 10px white);
 }
 
+.menu:hover {
+    filter: invert(100%) drop-shadow(0 0 10px white) drop-shadow(0 0 10px white);
+}
+
 nav ul li:hover a, nav ul a.active {
     font-size: 30px;
+}
+
+.rotate {
+    rotate: -90deg;
 }
 
 .item:hover {
@@ -401,7 +590,7 @@ nav ul li:hover a, nav ul a.active {
     font-size: 30px;
 }
 
-.text-button:hover, .shadowed button.text-button:hover, .cart-item a:hover .cart-name {
+.text-button:hover, .shadowed button.text-button:hover, .cart-item .cart-name:hover, .cart-item a:hover + div .cart-name {
     font-size: 25px;
 }
 
@@ -410,21 +599,91 @@ nav ul li:hover a, nav ul a.active {
 }
 
 .img-button:hover {
-    width: 50px;
-    height: 50px;
-    margin: -5px;
+    width: 40px;
+    height: 40px;
+    margin: -2.5px;
 }
 
-input:focus, input:hover {
+.checkout input:focus, .checkout input:hover {
     width: 100%;
 }
 
+@media only screen and (min-width: 600px) {
+    .img-button:hover {
+        width: 50px;
+        height: 50px;
+        margin: -5px;
+    }
+}
+
+
 /*dark*/
 
-.theme-toggle {
-    position: fixed;
-    left: 20px;
-    bottom: 20px;
+.toggle {
+    background-color: white;
+    box-sizing: border-box;
+    width: 60px;
+    height: 30px;
+    border-radius: 15px;
+    position: absolute;
+    left: 50px;
+    top: 36px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 0 10px grey;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.toggle div {
+    background-color: white;
+    box-sizing: border-box;
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    position: relative;
+    left: 3px;
+    box-shadow: 0 0 10px grey inset;
+    transition: left 0.3s;
+}
+
+.toggle img {
+    width: 30%;
+    position: absolute;
+}
+
+.sun {
+    left: 5px;
+    opacity: 0;
+}
+
+.moon {
+    left: 37px;
+}
+
+.toggle.dark {
+    background-color: black;
+}
+
+.toggle.dark div {
+    left: 32px;
+}
+
+.toggle.dark .sun {
+    opacity: 100%;
+    transition: opacity 1s;
+}
+
+.toggle.dark .moon {
+    opacity: 0;
+}
+
+.toggle:not(.dark) .moon {
+    transition: opacity 1s;
+}
+
+nav.dark, .footer.dark {
+    background-color: black;
 }
 
 .welcome.dark, .list-container.dark, .detail-container.dark, .cart.dark, .checkout.dark, .not-found.dark {
@@ -432,18 +691,27 @@ input:focus, input:hover {
     background-color: #202020;
 }
 
-.list-container.dark .item {
-    color: white;
-}
-
-.cart.dark a p {
-    color: white;
-}
-
 .welcome.dark button, .detail-container.dark button, .cart.dark button, .checkout.dark button, button.dark {
     background-color: black;
 }
 
-nav.dark {
-    background-color: black;
+.list-container.dark .item {
+    color: white;
+}
+
+.cart.dark a {
+    color: white;
+}
+
+.dark .shadowed {
+    box-shadow: 0 0 10px white inset;
+}
+
+.checkout.dark input {
+    color: white;
+    background-color: #202020;
+}
+
+.dark .loading {
+    filter: invert(100%);
 }

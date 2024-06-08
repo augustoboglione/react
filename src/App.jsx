@@ -9,7 +9,7 @@ import ItemDetailContainer from './components/ItemDetailContainer.jsx'
 import Cart from './components/Cart.jsx'
 import Checkout from './components/Checkout.jsx'
 import PageNotFound from './components/PageNotFound.jsx'
-import ThemeToggle from './components/ThemeToggle.jsx'
+import Footer from './components/Footer.jsx'
 import {setStock} from './others/firebase.js'
 import './styles.css'
 
@@ -39,7 +39,7 @@ const App = () => {
                         <Route path='/notfound' element={<PageNotFound/>}/>
                         <Route path='*' element={<PageNotFound/>}/>
                     </Routes>
-                    <ThemeToggle/>
+                    <Footer/>
                 </ThemeProvider>
             </CartProvider>
         </BrowserRouter>

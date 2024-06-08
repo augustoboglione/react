@@ -4,6 +4,7 @@ import {ThemeContext} from '../context/ThemeContext.jsx'
 import ItemDetail from './ItemDetail.jsx'
 import db from '../others/firebase.js'
 import {doc, getDoc} from 'firebase/firestore'
+import loading from '../assets/loading2.svg'
 
 const ItemDetailContainer = () => {
     const [product, setProduct] = useState()
@@ -24,7 +25,7 @@ const ItemDetailContainer = () => {
 
     return (
         <div className={`detail-container ${theme}`}>
-            {product ? <ItemDetail product={product}/> : <h1>Loading Product...</h1>}
+            {product ? <ItemDetail product={product}/> : <img className='loading' src={loading} alt='Loading'/>}
         </div>
     )
 }

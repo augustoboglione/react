@@ -8,7 +8,7 @@ const Welcome = ({onClick}) => {
     return (
         <div className={`welcome ${theme}`}>
             <h1>Welcome!</h1>
-            <Button onClick={onClick}>Start buying</Button>
+            <Button onClick={onClick}>Start</Button>
         </div>
     )
 }

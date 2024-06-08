@@ -1,7 +1,7 @@
-const Input = ({title, label, onInput}) => (
+const Input = ({type, title, label, onInput, onClick}) => (
     <div>
         <label htmlFor={title}>{label}</label>
-        <input type='text' title={title} onInput={onInput}/>
+        <input type={type} title={title} onInput={onInput} onClick={onClick}/>
     </div>
 )
 
