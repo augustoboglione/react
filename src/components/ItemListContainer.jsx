@@ -11,12 +11,18 @@ import loading from '../assets/loading2.svg'
 
 const ItemListContainer = () => {
     const [products, setProducts] = useState()
+    const [sort, setSort] = useState('alphabetical')
+    const [search, setSearch] = useState('')
 
     const category = useParams().id
 
     const {theme} = useContext(ThemeContext)
 
     const navigate = useNavigate()
+
+    const handleSort = () => setSort(document.querySelector('input[name="sort"]:checked').id)
+
+    const handleSearch = e => setSearch(e.target.value.toLowerCase())
 
     useEffect(() => {
         const filtered = category
@@ -34,10 +40,10 @@ const ItemListContainer = () => {
         <div className={`list-container ${theme}`}>
             {products
                 ? <>
-                    <Search/>
+                    <Search onInput={handleSearch}/>
                     <div>
-                        <Filter/>
-                        <ItemList products={products}/>
+                        <Filter handleSort={handleSort} sort={sort}/>
+                        <ItemList products={products} search={search} sort={sort}/>
                     </div>
                 </>
                 : <img className='loading' src={loading} alt='Loading'/>

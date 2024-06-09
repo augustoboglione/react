@@ -25,11 +25,6 @@ const NavBar = ({onClick}) => {
 
     const toggle = () => setHidden(!hidden)
 
-    // const hide = () => setHidden(hidden => {
-    //     if (hidden != null) return true
-    //     return null
-    // })
-
     const hide = () => {
         if (ref.current == false) setHidden(true)
     }

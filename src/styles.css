@@ -347,6 +347,14 @@ button, .shadowed button.text-button {
     cursor: pointer;
 }
 
+.filter form div {
+    display: flex;
+}
+
+input[name='sort'] {
+    order: -1;
+}
+
 /*detail container*/
 
 .detail-container {
@@ -539,7 +547,7 @@ button, .shadowed button.text-button {
     border-radius: 20px;
     border: none;
     outline: none;
-    box-shadow: 0 0 10px grey inset;
+    box-shadow: 0 0 10px grey;
     transition: all 0.3s;
 }
 
@@ -703,7 +711,7 @@ nav.dark, .footer.dark {
     color: white;
 }
 
-.dark .shadowed {
+.dark .shadowed, .checkout.dark input {
     box-shadow: 0 0 10px white inset;
 }
 
@@ -712,6 +720,6 @@ nav.dark, .footer.dark {
     background-color: #202020;
 }
 
-.dark .loading {
+.dark .loading, .dark .filter img {
     filter: invert(100%);
 }

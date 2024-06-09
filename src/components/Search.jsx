@@ -1,6 +1,6 @@
-const Search = () => {
+const Search = ({onInput}) => {
     return (
-        <input className='shadowed' type='text'/>
+        <input className='shadowed' type='text' onInput={onInput}/>
     )
 }
 
