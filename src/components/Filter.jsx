@@ -3,52 +3,52 @@ import Input from './Input'
 import filter from '../assets/filter.svg'
 import x from '../assets/x.svg'
 
-const handleGrab = e => {
-    e.preventDefault()
-    const filter = document.querySelector('.filter')
-
-    const filterX = filter.getBoundingClientRect().left
-    const filterY = filter.getBoundingClientRect().top
-
-    const mouseX = e.pageX
-    const mouseY = e.pageY
-
-    const handleDrag = e => {
-        filter.style.transform = 'translate(' + (e.pageX - mouseX) + 'px, ' + (e.pageY - mouseY) + 'px)'
-    }
-
-    const stopDrag = e => {
-        filter.style.left = filterX + e.pageX - mouseX + 'px'
-        filter.style.top = filterY + e.pageY - mouseY + 'px'
-        filter.style.transform = null
-        window.onmousemove = null
-        window.onmouseup = null
-    }
-
-    window.onmousemove = handleDrag
-    window.onmouseup = stopDrag
-}
-
 const Filter = ({handleSort, handleInStock}) => {
     const [hidden, setHidden] = useState(true)
 
-    const show = e => {
-        if (Array.from(e.target.classList).includes('filter')) setHidden(false)
-    }
+    const handleGrab = e => {
+        e.preventDefault()
+        let click = true
 
-    const toggle = () => setHidden(!hidden)
+        const img = e.target.tagName == 'IMG'
+        const filter = document.querySelector('.filter')
+    
+        const filterX = filter.getBoundingClientRect().left
+        const filterY = filter.getBoundingClientRect().top
+    
+        const mouseX = e.pageX
+        const mouseY = e.pageY
+    
+        const handleDrag = e => {
+            click = false
+            filter.style.transform = `translate(${e.pageX - mouseX}px, ${e.pageY - mouseY}px)`
+        }
+    
+        const endDrag = e => {
+            if (click) {
+                if (img) setHidden(!hidden)
+                else setHidden(false) 
+            } else {
+                filter.style.left = filterX + e.pageX - mouseX + 'px'
+                filter.style.top = filterY + e.pageY - mouseY + 'px'
+                filter.style.transform = null
+            }
 
-    const handleClick = e => {
-        if (!e.target.closest('.filter')) setHidden(true)
-    }
-
-    useEffect(() => {
-        window.onclick = handleClick
-    }, [])
+            window.onmousemove = null
+            window.ontouchmove = null
+            window.onmouseup = null
+            window.ontouchend = null
+        }
+    
+        window.onmousemove = handleDrag
+        window.ontouchmove = handleDrag
+        window.onmouseup = endDrag
+        window.ontouchend = endDrag
+    }    
 
     return (
-        <div className={`filter shadowed ${hidden ? 'hidden' : ''}`} onClick={show} onMouseDown={handleGrab}>
-            <img className={hidden ? '' : 'clockwise'} src={hidden ? filter : x} alt='Filter' onClick={toggle}/>
+        <div className={`filter shadowed ${hidden ? 'hidden' : ''}`} onMouseDown={handleGrab} onTouchStart={handleGrab}>
+            <img className={hidden ? '' : 'clockwise'} src={hidden ? filter : x} alt='Filter'/>
             <div>
                 <h2>Sort by</h2>
                 <form onInput={handleSort}>

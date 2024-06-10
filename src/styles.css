@@ -416,7 +416,7 @@ button, .shadowed button.text-button {
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    transition: all 0.3s;
+    transition: width 0.3s, height 0.3s;
 }
 
 .filter img {
