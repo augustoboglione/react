@@ -4,7 +4,7 @@ import handlePrice from '../others/handlePrice'
 const ItemDetail = ({product}) => (
     <>
         <h1>{product.name}</h1>
-        <div>
+        <div className='detail'>
             <div>
                 <img className='detail-img' src={product.img} alt={product.name}/>
             </div>

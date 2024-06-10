@@ -31,8 +31,8 @@ const NavBar = ({onClick}) => {
 
     useEffect(() => {
         handleResize()
-        window.addEventListener('resize', handleResize)
-        window.addEventListener('click', handleClick)
+        window.onresize = handleResize
+        window.onclick = handleClick
     }, [])
 
     return (
@@ -46,7 +46,7 @@ const NavBar = ({onClick}) => {
                     <CartWidget/>
                 </Link>
                 {hidden == null || <img 
-                    className={(hidden ? '' : 'rotate ') + 'menu'}
+                    className={(hidden ? '' : 'counterclockwise ') + 'menu'}
                     src={hidden ? menu : x} onClick={toggle} alt='Menu'
                 />}
             </nav>

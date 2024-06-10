@@ -73,7 +73,6 @@ nav img {
 .logo img {
     width: 100%;
     display: block;
-    margin: 0 auto;
     transition: filter 0.3s;
 }
 
@@ -235,46 +234,114 @@ button, .shadowed button.text-button {
     box-shadow: 0 0 10px grey;
 }
 
+/*input*/
+
+.text-input input, .search-input input {
+    font-size: 20px;
+    box-sizing: border-box;
+    height: 50px;
+    padding: 0 20px;
+    border-radius: 25px;
+    border: none;
+    outline: none;
+}
+
+.radio-input, .checkbox-input {
+    display: flex;
+    align-items: center;
+}
+
+.radio-input label, .radio-input input {
+    cursor: pointer;
+}
+
+.radio-input input {
+    box-sizing: border-box;
+    width: 14px;
+    height: 14px;
+    padding: 0;
+    margin: 0 10px 0 0;
+    border: solid 1px;
+    outline: none;
+    border-radius: 50%;
+    flex-shrink: 0;
+    flex-grow: 0;
+    order: -1;
+    appearance: none;
+    transition: background-color 0.3s;
+}
+
+.radio-input input:checked {
+    background-color: black;
+}
+
+.checkbox-input input {
+    order: -1;
+}
+
+.range-input label {
+    display: block;
+}
+
+.range-input input {
+    background-color: red;
+}
+
 /*loading*/
 
 @keyframes loading {
-    12.5% {
-        rotate: 45deg
-    }
-
-    25% {
-        rotate: 90deg
-    }
-
-    37.5% {
-        rotate: 135deg
+    0% {
+        height: 20px;
     }
 
     50% {
-        rotate: 180deg
+        height: 100px;
     }
 
-    62.5% {
-        rotate: 225deg
-    }
-
-    75% {
-        rotate: 270deg
-    }
-
-    87.5% {
-        rotate: 315deg
+    100% {
+        height: 20px;
     }
 }
 
 .loading {
-    width: 100px;
-    position: absolute;
-    top: 250px;
-    animation-name: loading;
-    animation-duration: 3s;
-    animation-iteration-count: infinite;
-    animation-timing-function: step-end;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+}
+
+.loading div {
+    height: 100%;
+    width: 0;
+    flex: 1 1 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading img {
+    height: 20px;
+    animation: 0.6s ease-in-out infinite forwards loading;
+}
+
+.loading div:nth-child(2) img, .loading div:nth-child(8) img {
+    animation-delay: -0.5s;
+}
+
+.loading div:nth-child(3) img, .loading div:nth-child(9) img {
+    animation-delay: -0.4s;
+}
+
+.loading div:nth-child(4) img, .loading div:nth-child(10) img {
+    animation-delay: -0.3s;
+}
+
+.loading div:nth-child(5) img, .loading div:nth-child(11) img {
+    animation-delay: -0.2s;
+}
+
+.loading div:nth-child(6) img, .loading div:nth-child(12) img {
+    animation-delay: -0.1s;
 }
 
 /*welcome*/
@@ -285,8 +352,12 @@ button, .shadowed button.text-button {
 
 /*list container*/
 
-.list-container > input {
+.list-container .search-input {
     width: 70%;
+}
+
+.list-container .search-input input {
+    width: 100%;
     margin: 50px 0;
 }
 
@@ -333,26 +404,39 @@ button, .shadowed button.text-button {
 /*filter*/
 
 .filter {
+    background-color: white;
+    box-sizing: border-box;
+    width: 200px;
+    height: 350px;
+    padding: 10px;
+    border-radius: 25px;
     position: fixed;
     left: 10px;
-    top: 200px;
-}
-
-.open {
-    position: static;
+    top: 150px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: all 0.3s;
 }
 
 .filter img {
-    width: 40px;
+    width: 30px;
+    cursor: pointer;
+    transition: rotate 0.3s;
+}
+
+.filter h2, .filter label {
+    text-wrap: nowrap;
+}
+
+.hidden {
+    width: 50px;
+    height: 50px;
     cursor: pointer;
 }
 
-.filter form div {
-    display: flex;
-}
-
-input[name='sort'] {
-    order: -1;
+.hidden > div {
+    display: none;
 }
 
 /*detail container*/
@@ -361,7 +445,7 @@ input[name='sort'] {
     text-align: center;
 }
 
-.detail-container > div {
+.detail {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -369,7 +453,7 @@ input[name='sort'] {
     align-items: center;
 }
 
-.detail-container > div > div {
+.detail > div {
     width: 50%;
     display: flex;
     flex-direction: column;
@@ -395,11 +479,11 @@ input[name='sort'] {
 } */
 
 @media only screen and (min-width: 900px) {
-    .detail-container > div {
+    .detail {
         flex-direction: row;
     }
 
-    .detail-container > div > div {
+    .detail > div {
         width: 30%;
     }
 
@@ -537,17 +621,9 @@ input[name='sort'] {
 }
 
 .checkout input {
-    font-size: 20px;
     text-align: center;
-    box-sizing: border-box;
     width: 80%;
-    height: 50px;
-    padding: 0 15px;
     margin-bottom: 20px;
-    border-radius: 20px;
-    border: none;
-    outline: none;
-    box-shadow: 0 0 10px grey;
     transition: all 0.3s;
 }
 
@@ -580,7 +656,11 @@ nav ul li:hover a, nav ul a.active {
     font-size: 30px;
 }
 
-.rotate {
+.clockwise {
+    rotate: 90deg;
+}
+
+.counterclockwise {
     rotate: -90deg;
 }
 
@@ -711,13 +791,21 @@ nav.dark, .footer.dark {
     color: white;
 }
 
-.dark .shadowed, .checkout.dark input {
-    box-shadow: 0 0 10px white inset;
+.dark .shadowed {
+    box-shadow: 0 0 7px white inset;
 }
 
-.checkout.dark input {
+.dark .filter, .checkout.dark input {
     color: white;
     background-color: #202020;
+}
+
+.dark .radio-input input {
+    border-color: white;
+}
+
+.dark .radio-input input:checked {
+    background-color: white;
 }
 
 .dark .loading, .dark .filter img {

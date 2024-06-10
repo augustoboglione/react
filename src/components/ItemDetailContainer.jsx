@@ -2,9 +2,9 @@ import {useState, useEffect, useContext} from 'react'
 import {useParams, useNavigate} from 'react-router-dom'
 import {ThemeContext} from '../context/ThemeContext.jsx'
 import ItemDetail from './ItemDetail.jsx'
+import Loading from './Loading.jsx'
 import db from '../others/firebase.js'
 import {doc, getDoc} from 'firebase/firestore'
-import loading from '../assets/loading2.svg'
 
 const ItemDetailContainer = () => {
     const [product, setProduct] = useState()
@@ -25,7 +25,7 @@ const ItemDetailContainer = () => {
 
     return (
         <div className={`detail-container ${theme}`}>
-            {product ? <ItemDetail product={product}/> : <img className='loading' src={loading} alt='Loading'/>}
+            {product ? <ItemDetail product={product}/> : <Loading/>}
         </div>
     )
 }

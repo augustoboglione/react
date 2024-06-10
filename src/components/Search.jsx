@@ -1,7 +1,5 @@
-const Search = ({onInput}) => {
-    return (
-        <input className='shadowed' type='text' onInput={onInput}/>
-    )
-}
+import Input from "./Input"
+
+const Search = ({onInput}) => <Input type='search' onInput={onInput}/>
 
 export default Search
