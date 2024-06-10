@@ -15,6 +15,8 @@ const Filter = ({handleSort, handleInStock}) => {
     
         const filterX = filter.getBoundingClientRect().left
         const filterY = filter.getBoundingClientRect().top
+
+        if (e.type == 'touchstart') e = e.touches[0]
     
         const mouseX = e.pageX
         const mouseY = e.pageY

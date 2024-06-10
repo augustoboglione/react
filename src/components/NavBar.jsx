@@ -50,8 +50,8 @@ const NavBar = ({onClick}) => {
                     src={hidden ? menu : x} onClick={toggle} alt='Menu'
                 />}
             </nav>
-            {hidden == false
-                && <nav className={`dropdown ${theme}`}>
+            {hidden == null
+                || <nav className={`dropdown ${theme} ${hidden ? 'hidden' : ''}`}>
                     <Menu onClick={hide}/>
                 </nav>
             }

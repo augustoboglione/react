@@ -140,12 +140,18 @@ p.overlong {
 
 .dropdown {
     width: 100%;
-    height: auto;
+    height: 332px;
     padding-right: 5%;
     position: absolute;
     top: 100px;
     justify-content: flex-end;
     z-index: 1;
+    overflow: hidden;
+    transition: height 0.3s;
+}
+
+.dropdown.hidden {
+    height: 0;
 }
 
 .dropdown ul {
@@ -153,6 +159,11 @@ p.overlong {
     flex-direction: column;
     align-items: flex-end;
     z-index: 2;
+}
+
+.dropdown ul li {
+    display: flex;
+    align-items: center;
 }
 
 /*body*/
@@ -411,8 +422,8 @@ button, .shadowed button.text-button {
     padding: 10px;
     border-radius: 25px;
     position: fixed;
+    top: 110px;
     left: 10px;
-    top: 150px;
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -429,14 +440,10 @@ button, .shadowed button.text-button {
     text-wrap: nowrap;
 }
 
-.hidden {
+.filter.hidden {
     width: 50px;
     height: 50px;
     cursor: pointer;
-}
-
-.hidden > div {
-    display: none;
 }
 
 /*detail container*/
