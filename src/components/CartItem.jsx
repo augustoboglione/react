@@ -2,6 +2,7 @@ import {useContext} from 'react'
 import {Link} from 'react-router-dom'
 import {CartContext} from '../context/CartContext.jsx'
 import Counter from './Counter.jsx'
+import AsyncImg from './AsyncImg.jsx'
 import handlePrice from '../others/handlePrice.js'
 
 const CartItem = ({product}) => {
@@ -10,7 +11,7 @@ const CartItem = ({product}) => {
     return (
         <div className='cart-item shadowed'>
             <Link to={`/item/${product.id}`}>
-                <img className='cart-img' src={product.img} alt={product.name} />
+                <AsyncImg className='cart-img' src={product.img} alt={product.name} />
             </Link>
             <div>
                 <Link className='cart-name' to={`/item/${product.id}`}>

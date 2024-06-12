@@ -1,5 +1,6 @@
 import {useState, useContext} from 'react'
 import {CartContext} from '../context/CartContext'
+import {ThemeContext} from '../context/ThemeContext.jsx'
 import Counter from './Counter.jsx'
 import Button from './Button'
 import fire from '../others/sweetalert.js'
@@ -9,6 +10,8 @@ const ItemCount = ({product}) => {
 
     const {cart, add} = useContext(CartContext)
 
+    const {theme} = useContext(ThemeContext)
+
     const addToCart = () => add(product, count)
 
     const decrease = () => {
@@ -17,30 +20,30 @@ const ItemCount = ({product}) => {
 
     const increase = () => {
         if (count < product.stock) setCount(count + 1)
-        else fire('Not enough stock', `We have ${product.stock} item${product.stock == 1 ? '' : 's'} in stock.`, 'error')
+        else fire('Not enough stock', `We have ${product.stock} item${product.stock == 1 ? '' : 's'} in stock.`, 'error', theme)
     }
 
-    if (!product.stock) return (
-        <>
-            <p className='red'>Out of stock</p>
-            <Button to='/'>Back to store</Button>
-        </>
-    )
-
-    if (cart.some(item => item.id == product.id)) return (
-        <>
-            <p>In cart</p>
-            <div className='buttons'>
-                <Button to='/'>Back to store</Button>
-                <Button to='/cart'>Go to cart</Button>
-            </div>
-        </>
-    )
-    
     return (
         <>
-            <Counter count={count} decrease={decrease} increase={increase}/>
-            <Button onClick={addToCart}>Add to Cart</Button>
+            {!product.stock
+                ? <p className='counter-text red'>Out of stock</p>
+                :
+            cart.some(item => item.id == product.id)
+                ? <p className='counter-text'>In cart</p>
+                : <Counter count={count} decrease={decrease} increase={increase}/>
+            }
+            <div className='buttons'>
+                {!product.stock
+                    ? <div><Button to='/'>Back to store</Button></div>
+                    :
+                cart.some(item => item.id == product.id)
+                    ? <>
+                        <div><Button to='/'>Back to store</Button></div>
+                        <div><Button to='/cart'>Go to cart</Button></div>
+                    </>
+                    : <div><Button onClick={addToCart}>Add to Cart</Button></div>
+                }
+            </div>
         </>
     )
 }

@@ -18,30 +18,224 @@ body {
     height: 100%;
 }
 
-a {
-    color: black;
-    text-decoration: none;
-}
+/*text*/
 
 h1 {
-    font-size: 50px;
+    font-size: 40px;
     text-align: center;
     width: 100%;
 }
 
-p, a {
+h2, p, a {
     font-size: 20px;
 }
 
-p, h1, h2 {
-    transition: background-color 0.3s;
+@media only screen and (min-width: 500px) {
+    h1 {
+        font-size: 50px;
+    }
+
+    h2 {
+        font-size: 25px;
+    }
+}
+
+h1, h2, p, a {
+    transition: color 0.3s;
 }
 
 .red {
     color: red;
 }
 
-/*navbar*/
+a {
+    color: black;
+    text-decoration: none;
+}
+
+/*button*/
+
+button, .shadowed button.text-button {
+    color: white;
+    background-color: #202020;
+    padding: 2px 10px;
+    border: none;
+    outline: none;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.text-button, .shadowed button.text-button {
+    font-size: 13.3px;
+    height: 33.3px;
+}
+
+@media only screen and (min-width: 350px) {
+    .text-button, .shadowed button.text-button {
+        font-size: 16.7px;
+        height: 41.7px;
+    }
+}
+
+@media only screen and (min-width: 450px) {
+    .text-button, .shadowed button.text-button {
+        font-size: 20px;
+        height: 50px;
+    }
+}
+
+button img {
+    filter: invert(100%);
+}
+
+.img-button {
+    width: 35px;
+    height: 35px;
+}
+
+@media only screen and (min-width: 600px) {
+    .img-button {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+.img-button img {
+    width: 100%;
+    display: block;
+}
+
+.buttons {
+    width: 100%;
+    display: flex;
+    align-items: end;
+}
+
+.buttons div {
+    flex: 1 1 0;
+    display: flex;
+    justify-content: center;
+}
+
+.buttons.edge div:first-child {
+    justify-content: flex-start;
+}
+
+.buttons.edge div:last-child {
+    justify-content: flex-end;
+}
+
+.stacked {
+    flex-direction: column;
+    gap: 10px;
+}
+
+.stacked div {
+    flex: 0 1 auto;
+}
+
+@media only screen and (min-width: 900px) {
+    .stacked {
+        flex-direction: row;
+    }
+    
+    .stacked div {
+        flex: 1 1 0;
+    }    
+}
+
+/*counter*/
+
+.counter {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.count {
+    font-size: 25px;
+}
+
+/*shadowed box*/
+
+.shadowed {
+    padding: 20px;
+    border-radius: 50px;
+    box-shadow: 0 0 10px grey;
+}
+
+/*input*/
+
+.text-input input, .search-input input {
+    font-size: 20px;
+    box-sizing: border-box;
+    height: 50px;
+    padding: 0 20px;
+    border-radius: 25px;
+    border: none;
+    outline: none;
+}
+
+.radio-input, .checkbox-input {
+    display: flex;
+    align-items: center;
+}
+
+.radio-input label, .radio-input input {
+    cursor: pointer;
+}
+
+.radio-input input {
+    box-sizing: border-box;
+    width: 14px;
+    height: 14px;
+    padding: 0;
+    margin: 0 10px 0 0;
+    border: solid 1px;
+    outline: none;
+    border-radius: 50%;
+    flex-shrink: 0;
+    flex-grow: 0;
+    order: -1;
+    appearance: none;
+    transition: background-color 0.3s;
+}
+
+.radio-input input:checked {
+    background-color: black;
+}
+
+.checkbox-input input {
+    order: -1;
+}
+
+.range-input label {
+    display: block;
+}
+
+.range-input input {
+    background-color: red;
+}
+
+/*img*/
+
+/* img {
+    -webkit-user-drag: none;
+} */
+
+.item-img, .detail-img, .cart-img {
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.loaded {
+    opacity: 100%;
+}
+
+/*navbar and footer*/
 
 nav, .footer {
     color: white;
@@ -58,8 +252,13 @@ nav, .footer {
 
 .footer {
     position: relative;
-    justify-content: center;
-    align-items: end;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+}
+
+.footer p {
+    margin-top: 0;
 }
 
 nav img {
@@ -142,16 +341,18 @@ p.overlong {
     width: 100%;
     height: 332px;
     padding-right: 5%;
+    border-top: 4px solid white;
     position: absolute;
     top: 100px;
     justify-content: flex-end;
     z-index: 1;
     overflow: hidden;
-    transition: height 0.3s;
+    transition: all 0.3s;
 }
 
 .dropdown.hidden {
     height: 0;
+    border-width: 0;
 }
 
 .dropdown ul {
@@ -178,126 +379,6 @@ p.overlong {
     transition: background-color 0.3s;
 }
 
-/*button*/
-
-button, .shadowed button.text-button {
-    font-size: 20px;
-    color: white;
-    background-color: #202020;
-    padding: 2px 10px;
-    border: none;
-    outline: none;
-    border-radius: 30px;
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-.text-button, .shadowed button.text-button {
-    height: 50px;
-}
-
-.img-button {
-    width: 35px;
-    height: 35px;
-}
-
-.img-button img {
-    width: 100%;
-    display: block;
-    filter: invert(100%);
-}
-
-.buttons {
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-}
-
-@media only screen and (min-width: 600px) {
-    .img-button {
-        width: 40px;
-        height: 40px;
-    }
-}
-
-/*counter*/
-
-.counter {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-
-.detail-container .counter {
-    width: 60%;
-    height: 85px;
-}
-
-.count {
-    font-size: 25px;
-}
-
-/*shadowed box*/
-
-.shadowed {
-    padding: 20px;
-    border-radius: 50px;
-    box-shadow: 0 0 10px grey;
-}
-
-/*input*/
-
-.text-input input, .search-input input {
-    font-size: 20px;
-    box-sizing: border-box;
-    height: 50px;
-    padding: 0 20px;
-    border-radius: 25px;
-    border: none;
-    outline: none;
-}
-
-.radio-input, .checkbox-input {
-    display: flex;
-    align-items: center;
-}
-
-.radio-input label, .radio-input input {
-    cursor: pointer;
-}
-
-.radio-input input {
-    box-sizing: border-box;
-    width: 14px;
-    height: 14px;
-    padding: 0;
-    margin: 0 10px 0 0;
-    border: solid 1px;
-    outline: none;
-    border-radius: 50%;
-    flex-shrink: 0;
-    flex-grow: 0;
-    order: -1;
-    appearance: none;
-    transition: background-color 0.3s;
-}
-
-.radio-input input:checked {
-    background-color: black;
-}
-
-.checkbox-input input {
-    order: -1;
-}
-
-.range-input label {
-    display: block;
-}
-
-.range-input input {
-    background-color: red;
-}
-
 /*loading*/
 
 @keyframes loading {
@@ -315,13 +396,18 @@ button, .shadowed button.text-button {
 }
 
 .loading {
+    justify-content: center;
+    align-items: center;
+}
+
+.loader {
     width: 200px;
     height: 200px;
     display: flex;
     align-items: center;
 }
 
-.loading div {
+.loader div {
     height: 100%;
     width: 0;
     flex: 1 1 0;
@@ -330,28 +416,28 @@ button, .shadowed button.text-button {
     align-items: center;
 }
 
-.loading img {
+.loader img {
     height: 20px;
     animation: 0.6s ease-in-out infinite forwards loading;
 }
 
-.loading div:nth-child(2) img, .loading div:nth-child(8) img {
+.loader div:nth-child(2) img, .loader div:nth-child(8) img {
     animation-delay: -0.5s;
 }
 
-.loading div:nth-child(3) img, .loading div:nth-child(9) img {
+.loader div:nth-child(3) img, .loader div:nth-child(9) img {
     animation-delay: -0.4s;
 }
 
-.loading div:nth-child(4) img, .loading div:nth-child(10) img {
+.loader div:nth-child(4) img, .loader div:nth-child(10) img {
     animation-delay: -0.3s;
 }
 
-.loading div:nth-child(5) img, .loading div:nth-child(11) img {
+.loader div:nth-child(5) img, .loader div:nth-child(11) img {
     animation-delay: -0.2s;
 }
 
-.loading div:nth-child(6) img, .loading div:nth-child(12) img {
+.loader div:nth-child(6) img, .loader div:nth-child(12) img {
     animation-delay: -0.1s;
 }
 
@@ -361,20 +447,7 @@ button, .shadowed button.text-button {
     font-size: 100px;
 }
 
-/*list container*/
-
-.list-container .search-input {
-    width: 70%;
-}
-
-.list-container .search-input input {
-    width: 100%;
-    margin: 50px 0;
-}
-
-.list-container > div {
-    display: flex;
-}
+/*list and detail container*/
 
 .list {
     display: flex;
@@ -383,10 +456,11 @@ button, .shadowed button.text-button {
     align-items: flex-start;
 }
 
-.item {
-    width: 300px;
-    height: 300px;
-    margin: 20px;
+.square {
+    width: 200px;
+    height: 200px;
+    padding: 20px;
+    margin: 20px 0;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -394,62 +468,23 @@ button, .shadowed button.text-button {
     transition: all 0.3s;
 }
 
-.item h2 {
-    font-size: 25px;
-    line-height: 100%;
-    height: 10%;
-    margin: auto 0;
-    transition: all 0.3s;
-}
-
-.item img {
-    width: 45%;
-}
-
-.item p {
-    font-size: 25px;
-    margin: auto 0;
-    transition: all 0.3s;
-}
-
-/*filter*/
-
-.filter {
-    background-color: white;
-    box-sizing: border-box;
-    width: 200px;
-    height: 350px;
-    padding: 10px;
-    border-radius: 25px;
-    position: fixed;
-    top: 110px;
-    left: 10px;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    transition: width 0.3s, height 0.3s;
-}
-
-.filter img {
-    width: 30px;
-    cursor: pointer;
-    transition: rotate 0.3s;
-}
-
-.filter h2, .filter label {
-    text-wrap: nowrap;
-}
-
-.filter.hidden {
-    width: 50px;
-    height: 50px;
-    cursor: pointer;
-}
-
-/*detail container*/
-
-.detail-container {
+.item h2, .item p {
+    font-size: 16.7px;
     text-align: center;
+    height: 25%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s;
+}
+
+.item h2 {
+    line-height: 100%;
+}
+
+.item-img {
+    height: 45%;
 }
 
 .detail {
@@ -460,12 +495,13 @@ button, .shadowed button.text-button {
     align-items: center;
 }
 
-.detail > div {
-    width: 50%;
+.detail > div:first-child {
+    width: 300px;
+    height: 300px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 }
 
 .detail-img {
@@ -473,30 +509,137 @@ button, .shadowed button.text-button {
     margin-bottom: 30px;
 }
 
+.detail > div > p {
+    text-align: center;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .detail-description {
-    width: 70%;
+    font-size: 13.3px;
+    width: 90%;
+    height: 30%;
 }
 
 .detail-price {
-    font-size: 30px;
+    font-size: 20px;
+    height: 20%;
 }
 
-/* .detail-container .buttons {
-    margin-top: 85px;
-} */
+.detail-container .counter {
+    width: 60%;
+    height: 20%;
+}
+
+.counter-text {
+    font-size: 13.3px;
+    height: 20%;
+}
+
+.detail-container .buttons {
+    height: 16.7%;
+}
+
+@media only screen and (min-width: 350px) {
+    .square {
+        width: 250px;
+        height: 250px;
+    }
+
+    .item h2, .item p {
+        font-size: 20.8px;
+    }
+
+    .detail-description, .counter-text {
+        font-size: 16.7px;
+    }
+
+    .detail-price {
+        font-size: 25px;
+    }
+}
+
+@media only screen and (min-width: 450px) {
+    .square {
+        width: 300px;
+        height: 300px;
+        margin: 20px;
+    }
+
+    .item h2, .item p {
+        font-size: 25px;
+    }
+
+    .detail-description, .counter-text {
+        font-size: 20px;
+    }
+
+    .detail-price {
+        font-size: 30px;
+    }
+}
 
 @media only screen and (min-width: 900px) {
     .detail {
         flex-direction: row;
     }
 
-    .detail > div {
-        width: 30%;
-    }
-
     .detail-img {
         margin: 0;
     }
+}
+
+/*slide*/
+
+.slide {
+    background-color: white;
+    box-sizing: border-box;
+    border-radius: 25px;
+    position: fixed;
+    left: 10px;
+    display: flex;
+    overflow: hidden;
+    transition: width 0.3s, height 0.3s;
+}
+
+.slide img {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: rotate 0.3s;
+}
+
+.slide.hidden {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+
+.search {
+    width: 360px;
+    top: 110px;
+    padding: 0 0 0 10px;
+    align-items: center;
+}
+
+.search input {
+    background-color: transparent;
+    width: 300px;
+    margin-left: 10px;
+}
+
+.filter {
+    width: 200px;
+    height: 350px;
+    padding: 10px;
+    top: 170px;
+    flex-direction: column;
+}
+
+.filter h2, .filter label {
+    text-wrap: nowrap;
 }
 
 /*cart*/
@@ -532,7 +675,7 @@ button, .shadowed button.text-button {
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: font-size 0.3s;
+    transition: all 0.3s;
 }
 
 .cart-item div .cart-price {
@@ -587,15 +730,6 @@ button, .shadowed button.text-button {
     padding-right: 10%;
 }
 
-.cart .buttons {
-    justify-content: space-between;
-}
-
-.cart .buttons.centered {
-    justify-content: center;
-}
-
-
 /*checkout*/
 
 .checkout form {
@@ -645,7 +779,7 @@ button, .shadowed button.text-button {
     }
 }
 
-/*hover click active*/
+/*hover, click and active*/
 
 .logo img:hover {
     filter: invert(0%) drop-shadow(0 0 10px white) drop-shadow(0 0 10px white);
@@ -672,17 +806,37 @@ nav ul li:hover a, nav ul a.active {
 }
 
 .item:hover {
-    width: 360px;
-    height: 360px;
-    margin: -10px;
+    width: 240px;
+    height: 240px;
+    margin: 0;
 }
 
-.item:hover h2 {
-    font-size: 30px;
+.item:hover h2, .item:hover p {
+    font-size: 20px;
 }
 
-.item:hover p {
-    font-size: 30px;
+@media only screen and (min-width: 350px) {
+    .item:hover {
+        width: 300px;
+        height: 300px;
+        margin: -5px 0;
+    }
+    
+    .item:hover h2, .item:hover p {
+        font-size: 25px;
+    }
+}
+
+@media only screen and (min-width: 450px) {
+    .item:hover {
+        width: 360px;
+        height: 360px;
+        margin: -10px;
+    }
+    
+    .item:hover h2, .item:hover p {
+        font-size: 30px;
+    }
 }
 
 .text-button:hover, .shadowed button.text-button:hover, .cart-item .cart-name:hover, .cart-item a:hover + div .cart-name {
@@ -711,7 +865,6 @@ nav ul li:hover a, nav ul a.active {
     }
 }
 
-
 /*dark*/
 
 .toggle {
@@ -721,13 +874,21 @@ nav ul li:hover a, nav ul a.active {
     height: 30px;
     border-radius: 15px;
     position: absolute;
-    left: 50px;
-    top: 36px;
+    left: 20px;
+    top: 20px;
     display: flex;
     align-items: center;
     box-shadow: 0 0 10px grey;
     cursor: pointer;
     transition: background-color 0.3s;
+}
+
+@media only screen and (min-width: 900px) {
+    .toggle {
+        position: absolute;
+        left: 50px;
+        top: 36px;
+    }
 }
 
 .toggle div {
@@ -786,23 +947,19 @@ nav.dark, .footer.dark {
     background-color: #202020;
 }
 
-.welcome.dark button, .detail-container.dark button, .cart.dark button, .checkout.dark button, button.dark {
+.dark button, .dark .shadowed button, .dark.shadowed button.text-button, button.dark {
     background-color: black;
 }
 
-.list-container.dark .item {
+.list-container.dark .item, .dark .search input, .cart.dark a {
     color: white;
 }
 
-.cart.dark a {
-    color: white;
-}
-
-.dark .shadowed {
+.dark .shadowed, .dark.shadowed {
     box-shadow: 0 0 7px white inset;
 }
 
-.dark .filter, .checkout.dark input {
+.dark .slide, .dark .text-input input {
     color: white;
     background-color: #202020;
 }
@@ -815,6 +972,6 @@ nav.dark, .footer.dark {
     background-color: white;
 }
 
-.dark .loading, .dark .filter img {
+.dark .loader, .dark .slide img {
     filter: invert(100%);
 }

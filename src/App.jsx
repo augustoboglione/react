@@ -24,8 +24,8 @@ const App = () => {
 
     return (
         <BrowserRouter>
-            <CartProvider>
-                <ThemeProvider>
+            <ThemeProvider>
+                <CartProvider>
                     <NavBar onClick={start}/>
                     <Routes>
                         {welcome 
@@ -40,8 +40,8 @@ const App = () => {
                         <Route path='*' element={<PageNotFound/>}/>
                     </Routes>
                     <Footer/>
-                </ThemeProvider>
-            </CartProvider>
+                </CartProvider>
+            </ThemeProvider>
         </BrowserRouter>
     )
 }

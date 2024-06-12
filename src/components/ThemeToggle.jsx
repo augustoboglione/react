@@ -1,7 +1,7 @@
 import {useContext} from 'react'
 import {ThemeContext} from '../context/ThemeContext'
-import sun from '../assets/sun.svg'
-import moon from '../assets/moon.svg'
+import sun from '/assets/sun.svg'
+import moon from '/assets/moon.svg'
 
 const ThemeToggle = () => {
     const {theme, toggle} = useContext(ThemeContext)

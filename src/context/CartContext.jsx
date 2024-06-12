@@ -1,4 +1,5 @@
-import {useState, useEffect, createContext} from 'react'
+import {useState, useEffect, useContext, createContext} from 'react'
+import {ThemeContext} from './ThemeContext.jsx'
 import db from '../others/firebase.js'
 import {collection, getDocs} from 'firebase/firestore'
 import fire from '../others/sweetalert.js'
@@ -7,17 +8,19 @@ const CartContext = createContext([])
 
 const CartProvider = ({children}) => {
     const [cart, setCart] = useState([])
-    const [show, setShow] = useState(false)
+    const [loaded, setLoaded] = useState(false)
+
+    const {theme} = useContext(ThemeContext)
 
     const add = (item, quantity) => setCart(current => [...current, {...item, quantity}])
 
-    const remove = item => fire('Remove', `Do you wish to remove ${item.name} from your cart?`, 'question', () => {
+    const remove = item => fire('Remove', `Do you wish to remove ${item.name} from your cart?`, 'question', theme, () => {
         setCart(cart.filter(x => x.id != item.id))
         localStorage.removeItem(item.id)
     }, true)
 
     const clear = (ask = true) => {
-        if (ask) fire('Clear cart', 'Do you wish to clear your cart?', 'question', () => {
+        if (ask) fire('Clear cart', 'Do you wish to clear your cart?', 'question', theme, () => {
             setCart([])
             localStorage.clear()
         }, true)
@@ -35,7 +38,7 @@ const CartProvider = ({children}) => {
             cartCopy.find(x => x.id == item.id).quantity++
             setCart(cartCopy)
         }
-        else fire('Not enough stock', `We have ${item.stock} item${item.stock == 1 ? '' : 's'} in stock.`, 'error')
+        else fire('Not enough stock', `We have ${item.stock} item${item.stock == 1 ? '' : 's'} in stock.`, 'error', theme)
     }
 
     const decrease = item => {
@@ -57,7 +60,7 @@ const CartProvider = ({children}) => {
         getDocs(collection(db, 'items'))
             .then(snapshot =>  setCart(snapshot.docs.filter(doc => localStorage.getItem(doc.id))
             .map(doc => ({id: doc.id, quantity: parseInt(localStorage.getItem(doc.id)), ...doc.data()}))))
-            .then(() => setShow(true))
+            .then(() => setLoaded(true))
     }, [])
 
     useEffect(() => {
@@ -65,7 +68,7 @@ const CartProvider = ({children}) => {
     }, [cart])
 
     return (
-        <CartContext.Provider value={{cart, show, add, remove, clear, increase, decrease, totalQuantity, totalPrice}}>
+        <CartContext.Provider value={{cart, loaded, add, remove, clear, increase, decrease, totalQuantity, totalPrice}}>
             {children}
         </CartContext.Provider>
     )

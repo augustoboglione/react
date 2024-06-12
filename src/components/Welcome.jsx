@@ -1,6 +1,7 @@
 import {useContext} from "react"
 import {ThemeContext} from "../context/ThemeContext"
 import Button from "./Button"
+import start from '/assets/start.svg'
 
 const Welcome = ({onClick}) => {
     const {theme} = useContext(ThemeContext)
@@ -8,7 +9,7 @@ const Welcome = ({onClick}) => {
     return (
         <div className={`welcome ${theme}`}>
             <h1>Welcome!</h1>
-            <Button onClick={onClick}>Start</Button>
+            <Button onClick={onClick}>Start <img src={start} alt="" style={{height: '100%'}} /></Button>
         </div>
     )
 }

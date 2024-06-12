@@ -1,8 +1,9 @@
-const Input = ({type, name, id, value, label, defaultChecked, onInput, onClick}) => (
+const Input = ({type, name, id, value, label, placeholder, defaultChecked, onInput, onClick}) => (
     <div className={`${type}-input`}>
         <label htmlFor={id}>{label}</label>
-        <input className={type == 'text' || type == 'search' ? 'shadowed' : ''}
-            type={type} name={name} id={id} value={value} onInput={onInput} onClick={onClick} defaultChecked={defaultChecked}
+        <input className={type == 'text' ? 'shadowed' : ''}
+            type={type} name={name} id={id} value={value} placeholder={placeholder}
+            onInput={onInput} onClick={onClick} defaultChecked={defaultChecked}
         />
     </div>
 )

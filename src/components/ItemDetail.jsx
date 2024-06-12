@@ -1,4 +1,5 @@
 import ItemCount from './ItemCount'
+import AsyncImg from './AsyncImg'
 import handlePrice from '../others/handlePrice'
 
 const ItemDetail = ({product}) => (
@@ -6,9 +7,9 @@ const ItemDetail = ({product}) => (
         <h1>{product.name}</h1>
         <div className='detail'>
             <div>
-                <img className='detail-img' src={product.img} alt={product.name}/>
+                <AsyncImg className='detail-img' src={product.img} alt={product.name}/>
             </div>
-            <div className='shadowed'>
+            <div className='square shadowed'>
                 <p className='detail-description'>{product.description}</p>
                 <p className='detail-price'>${handlePrice(product.price)}</p>
                 <ItemCount product={product}/>

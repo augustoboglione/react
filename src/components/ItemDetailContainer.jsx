@@ -24,7 +24,7 @@ const ItemDetailContainer = () => {
     }, [product])
 
     return (
-        <div className={`detail-container ${theme}`}>
+        <div className={`detail-container ${theme} ${product ? '' : 'loading'}`}>
             {product ? <ItemDetail product={product}/> : <Loading/>}
         </div>
     )

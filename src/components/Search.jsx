@@ -1,5 +1,10 @@
-import Input from "./Input"
+import Slide from './Slide.jsx'
+import Input from './Input.jsx'
 
-const Search = ({onInput}) => <Input type='search' onInput={onInput}/>
+const Search = ({handleSearch}) => (
+    <Slide className='search'>
+        <Input type='search' placeholder='Search' onInput={handleSearch}/>
+    </Slide>
+)
 
 export default Search

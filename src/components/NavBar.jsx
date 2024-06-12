@@ -3,12 +3,12 @@ import {ThemeContext} from '../context/ThemeContext.jsx'
 import {Link, NavLink} from 'react-router-dom'
 import Menu from './Menu.jsx'
 import CartWidget from './CartWidget.jsx'
-import logo from '../assets/apple.svg'
-import menu from '../assets/menu.svg'
-import x from '../assets/x.svg'
+import logo from '/assets/apple.svg'
+import menu from '/assets/menu.svg'
+import x from '/assets/x.svg'
 
 const NavBar = ({onClick}) => {
-    const [hidden, setHidden] = useState(true)
+    const [hidden, setHidden] = useState(null)
     const ref = useRef()
     ref.current = hidden
 

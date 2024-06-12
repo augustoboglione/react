@@ -1,7 +1,7 @@
 import Button from './Button.jsx'
-import minus from '../assets/minus.svg'
-import plus from '../assets/plus.svg'
-import bin from '../assets/bin.svg'
+import minus from '/assets/minus.svg'
+import plus from '/assets/plus.svg'
+import bin from '/assets/bin.svg'
 
 const Counter = ({count, decrease, increase, remove = null}) => (
     <div className='counter'>
