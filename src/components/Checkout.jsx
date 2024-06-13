@@ -24,7 +24,7 @@ const Checkout = () => {
         if (orderId) fire('Thank you!', `Thank you for your order! Your order id is ${orderId}.`, 'success', theme, () => {
             clear(false)
             navigate('/')
-        })
+        }, false, 'Accept', true)
     }, [orderId])
 
     const placeOrder = buyer => {

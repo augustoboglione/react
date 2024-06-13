@@ -26,10 +26,10 @@ const App = () => {
         <BrowserRouter>
             <ThemeProvider>
                 <CartProvider>
-                    <NavBar onClick={start}/>
+                    <NavBar start={start}/>
                     <Routes>
                         {welcome 
-                            ? <Route path='/' element={<Welcome onClick={start}/>}/>
+                            ? <Route path='/' element={<Welcome start={start}/>}/>
                             : <Route path='/' element={<ItemListContainer/>}/>
                         }
                         <Route path='/category/:id' element={<ItemListContainer/>}/>

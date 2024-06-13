@@ -7,7 +7,7 @@ import logo from '/assets/apple.svg'
 import menu from '/assets/menu.svg'
 import x from '/assets/x.svg'
 
-const NavBar = ({onClick}) => {
+const NavBar = ({start}) => {
     const [hidden, setHidden] = useState(null)
     const ref = useRef()
     ref.current = hidden
@@ -37,12 +37,12 @@ const NavBar = ({onClick}) => {
 
     return (
         <>
-            <nav className={theme} onClick={onClick}>
-                <Link className='logo' to='/' onClick={hide}>
+            <nav className={theme}>
+                <Link className='logo' to='/' onClick={() => {hide(); start()}}>
                     <img src={logo} alt='Apple'/>
                 </Link>
-                {hidden ?? <Menu/>}
-                <Link className='cart-widget' to='/cart' onClick={hide}>
+                {hidden ?? <Menu onClick={start}/>}
+                <Link className='cart-widget' to='/cart' onClick={() => {hide(); start()}}>
                     <CartWidget/>
                 </Link>
                 {hidden == null || <img 
@@ -52,7 +52,7 @@ const NavBar = ({onClick}) => {
             </nav>
             {hidden == null
                 || <nav className={`dropdown ${theme} ${hidden ? 'hidden' : ''}`}>
-                    <Menu onClick={hide}/>
+                    <Menu onClick={() => {hide(); start()}}/>
                 </nav>
             }
         </>

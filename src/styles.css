@@ -55,10 +55,9 @@ a {
 
 /*button*/
 
-button, .shadowed button.text-button {
-    color: white;
-    background-color: #202020;
-    padding: 2px 10px;
+button {
+    background-color: white;
+    padding: 0 10px;
     border: none;
     outline: none;
     border-radius: 30px;
@@ -68,27 +67,23 @@ button, .shadowed button.text-button {
     transition: all 0.3s;
 }
 
-.text-button, .shadowed button.text-button {
+.text-button {
     font-size: 13.3px;
     height: 33.3px;
 }
 
 @media only screen and (min-width: 350px) {
-    .text-button, .shadowed button.text-button {
+    .text-button {
         font-size: 16.7px;
         height: 41.7px;
     }
 }
 
 @media only screen and (min-width: 450px) {
-    .text-button, .shadowed button.text-button {
+    .text-button {
         font-size: 20px;
         height: 50px;
     }
-}
-
-button img {
-    filter: invert(100%);
 }
 
 .img-button {
@@ -162,8 +157,6 @@ button img {
 /*shadowed box*/
 
 .shadowed {
-    padding: 20px;
-    border-radius: 50px;
     box-shadow: 0 0 10px grey;
 }
 
@@ -244,21 +237,11 @@ nav, .footer {
     width: 100%;
     height: 100px;
     padding: 0 5%;
+    border: none;
     display: flex;
     justify-content: space-between;
     align-items: center;
     transition: background-color 0.3s;
-}
-
-.footer {
-    position: relative;
-    flex-direction: column;
-    justify-content: end;
-    align-items: center;
-}
-
-.footer p {
-    margin-top: 0;
 }
 
 nav img {
@@ -341,7 +324,8 @@ p.overlong {
     width: 100%;
     height: 332px;
     padding-right: 5%;
-    border-top: 4px solid white;
+    border: solid #202020;
+    border-width: 1px 0;
     position: absolute;
     top: 100px;
     justify-content: flex-end;
@@ -365,6 +349,57 @@ p.overlong {
 .dropdown ul li {
     display: flex;
     align-items: center;
+}
+
+.footer {
+    position: relative;
+    flex-direction: column;
+    justify-content: end;
+}
+
+.footer p {
+    margin-top: 0;
+}
+
+.toggle {
+    background-color: white;
+    box-sizing: border-box;
+    width: 60px;
+    height: 30px;
+    border-radius: 15px;
+    position: relative;
+    align-self: start;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 0 10px grey;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.toggle div {
+    background-color: white;
+    box-sizing: border-box;
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    position: relative;
+    left: 3px;
+    box-shadow: 0 0 10px grey inset;
+    transition: left 0.3s;
+}
+
+.toggle img {
+    width: 30%;
+    position: absolute;
+}
+
+.sun {
+    left: 5px;
+    opacity: 0;
+}
+
+.moon {
+    left: 37px;
 }
 
 /*body*/
@@ -443,8 +478,54 @@ p.overlong {
 
 /*welcome*/
 
+@keyframes gradient {
+    0% {
+        background-position-x: 0%;
+    }
+
+    50% {
+        background-position-x: 100%;
+    }
+}
+
 .welcome h1 {
-    font-size: 100px;
+    font-size: 70px;
+    background-image: linear-gradient(159deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
+    background-image: linear-gradient(159deg, rgba(50,38,216,1) 0%, rgba(131,58,180,1) 14%, rgba(253,29,29,1) 50%, rgba(252,180,69,1) 79%, rgba(130,252,69,1) 100%);
+    background-image: linear-gradient(90deg, rgba(50,38,216,1) 0%, rgba(124,0,207,1) 11%, rgba(234,0,0,1) 32%, rgba(255,132,0,1) 47%, rgba(239,229,0,1) 57%, rgba(85,255,0,1) 68%, rgba(0,255,229,1) 82%, rgba(50,38,216,1) 100%);
+    background-size: 1000%;
+    background-repeat: repeat-x;
+    background-clip: text;
+    color: transparent;
+    animation: 30s infinite forwards gradient;
+}
+
+.welcome div {
+    height: 80px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.welcome h2 {
+    font-size: 50px;
+}
+
+.welcome img {
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 75px;
+    opacity: 0;
+    transition: all 1s;
+}
+
+@media only screen and (min-width: 900px) {
+    .welcome h1 {
+        font-size: 100px;
+    }
 }
 
 /*list and detail container*/
@@ -461,6 +542,7 @@ p.overlong {
     height: 200px;
     padding: 20px;
     margin: 20px 0;
+    border-radius: 50px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -649,6 +731,7 @@ p.overlong {
     width: 100%;
     padding: 20px 10%;
     margin-bottom: 20px;
+    border-radius: 50px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -735,6 +818,8 @@ p.overlong {
 .checkout form {
     box-sizing: border-box;
     width: 60%;
+    padding: 20px;
+    border-radius: 50px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -805,6 +890,11 @@ nav ul li:hover a, nav ul a.active {
     rotate: -90deg;
 }
 
+.welcome div:hover img {
+    left: 100px;
+    opacity: 100%;
+}
+
 .item:hover {
     width: 240px;
     height: 240px;
@@ -839,22 +929,30 @@ nav ul li:hover a, nav ul a.active {
     }
 }
 
-.text-button:hover, .shadowed button.text-button:hover, .cart-item .cart-name:hover, .cart-item a:hover + div .cart-name {
+.cart-item .cart-name:hover, .cart-item a:hover + div .cart-name {
     font-size: 25px;
 }
 
-.shadowed button.text-button:focus {
-    outline: none;
+.text-button:hover {
+    font-size: 16px;
+}
+
+@media only screen and (min-width: 350px) {
+    .text-button:hover {
+        font-size: 20px;
+    }
+}
+
+@media only screen and (min-width: 450px) {
+    .text-button:hover {
+        font-size: 24px;
+    }
 }
 
 .img-button:hover {
     width: 40px;
     height: 40px;
     margin: -2.5px;
-}
-
-.checkout input:focus, .checkout input:hover {
-    width: 100%;
 }
 
 @media only screen and (min-width: 600px) {
@@ -865,57 +963,11 @@ nav ul li:hover a, nav ul a.active {
     }
 }
 
+.checkout input:focus, .checkout input:hover {
+    width: 100%;
+}
+
 /*dark*/
-
-.toggle {
-    background-color: white;
-    box-sizing: border-box;
-    width: 60px;
-    height: 30px;
-    border-radius: 15px;
-    position: absolute;
-    left: 20px;
-    top: 20px;
-    display: flex;
-    align-items: center;
-    box-shadow: 0 0 10px grey;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-@media only screen and (min-width: 900px) {
-    .toggle {
-        position: absolute;
-        left: 50px;
-        top: 36px;
-    }
-}
-
-.toggle div {
-    background-color: white;
-    box-sizing: border-box;
-    height: 25px;
-    width: 25px;
-    border-radius: 50%;
-    position: relative;
-    left: 3px;
-    box-shadow: 0 0 10px grey inset;
-    transition: left 0.3s;
-}
-
-.toggle img {
-    width: 30%;
-    position: absolute;
-}
-
-.sun {
-    left: 5px;
-    opacity: 0;
-}
-
-.moon {
-    left: 37px;
-}
 
 .toggle.dark {
     background-color: black;
@@ -942,17 +994,34 @@ nav.dark, .footer.dark {
     background-color: black;
 }
 
-.welcome.dark, .list-container.dark, .detail-container.dark, .cart.dark, .checkout.dark, .not-found.dark {
-    color: white;
-    background-color: #202020;
+nav:not(.dropdown).dark {
+    background-image: linear-gradient(180deg, #202020 0%, black 100%);
 }
 
-.dark button, .dark .shadowed button, .dark.shadowed button.text-button, button.dark {
+.footer.dark {
+    background-image: linear-gradient(0deg, #202020 0%, black 100%);
+}
+
+.welcome.dark, .list-container.dark, .detail-container.dark, .cart.dark, .checkout.dark, .not-found.dark {
+    color: white;
     background-color: black;
+}
+
+.dark button, button.dark {
+    color: white;
+    background-color: black;
+}
+
+.dark img {
+    filter: invert(100%);
 }
 
 .list-container.dark .item, .dark .search input, .cart.dark a {
     color: white;
+}
+
+.dark .square {
+    background-image: radial-gradient(#202020 0, black 100%);
 }
 
 .dark .shadowed, .dark.shadowed {
@@ -961,7 +1030,7 @@ nav.dark, .footer.dark {
 
 .dark .slide, .dark .text-input input {
     color: white;
-    background-color: #202020;
+    background-color: black;
 }
 
 .dark .radio-input input {
@@ -970,8 +1039,4 @@ nav.dark, .footer.dark {
 
 .dark .radio-input input:checked {
     background-color: white;
-}
-
-.dark .loader, .dark .slide img {
-    filter: invert(100%);
 }
