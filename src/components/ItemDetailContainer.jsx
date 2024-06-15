@@ -15,6 +15,8 @@ const ItemDetailContainer = () => {
 
     const navigate = useNavigate()
 
+    useEffect(() => scroll(0, 0), [])
+
     useEffect(() => {
         getDoc(doc(db, 'items', id)).then(snapshot => setProduct({id: snapshot.id, ...snapshot.data()}))
     }, [id])
@@ -24,7 +26,7 @@ const ItemDetailContainer = () => {
     }, [product])
 
     return (
-        <div className={`detail-container ${theme} ${product ? '' : 'loading'}`}>
+        <div className={`body detail-container ${theme} ${product ? '' : 'loading'}`}>
             {product ? <ItemDetail product={product}/> : <Loading/>}
         </div>
     )

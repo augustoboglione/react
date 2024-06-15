@@ -24,6 +24,8 @@ const ItemListContainer = () => {
     const handleInStock = e => setInStock(e.target.checked)
     const handleSort = e => setSort(e.target.value)
 
+    useEffect (() => scroll(0, 0), [])
+
     useEffect(() => {
         const filtered = category
             ? query(collection(db, 'items'), where('category', '==', category))
@@ -37,7 +39,7 @@ const ItemListContainer = () => {
     }, [products])
 
     return (
-        <div className={`list-container ${theme} ${products ? '' : 'loading'}`}>
+        <div className={`body list-container ${theme} ${products ? '' : 'loading'}`}>
             {products
                 ? <ItemList products={products} search={search} inStock={inStock} sort={sort}/>
                 : <Loading/>

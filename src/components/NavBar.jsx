@@ -7,8 +7,10 @@ import logo from '/assets/apple.svg'
 import menu from '/assets/menu.svg'
 import x from '/assets/x.svg'
 
-const NavBar = ({start}) => {
+const NavBar = ({start, welcome}) => {
     const [hidden, setHidden] = useState(null)
+    const [loaded, setLoaded] = useState(false)
+
     const ref = useRef()
     ref.current = hidden
 
@@ -17,6 +19,7 @@ const NavBar = ({start}) => {
     const handleResize = () => {
         if (document.documentElement.clientWidth > 1200) setHidden(null)
         else setHidden(true)
+        setLoaded(true)
     }
 
     const handleClick = e => {
@@ -37,18 +40,22 @@ const NavBar = ({start}) => {
 
     return (
         <>
-            <nav className={theme}>
-                <Link className='logo' to='/' onClick={() => {hide(); start()}}>
-                    <img src={logo} alt='Apple'/>
-                </Link>
-                {hidden ?? <Menu onClick={start}/>}
-                <Link className='cart-widget' to='/cart' onClick={() => {hide(); start()}}>
-                    <CartWidget/>
-                </Link>
-                {hidden == null || <img 
-                    className={(hidden ? '' : 'counterclockwise ') + 'menu'}
-                    src={hidden ? menu : x} onClick={toggle} alt='Menu'
-                />}
+            <nav className={`${welcome ? 'white' : ''} ${theme}`}>
+                {loaded
+                    && <>
+                        <Link className='logo' to='/' onClick={() => {hide(); start()}}>
+                            <img src={logo} alt='Apple'/>
+                        </Link>
+                        {hidden ?? <Menu onClick={start}/>}
+                        <Link className='cart-widget' to='/cart' onClick={() => {hide(); start()}}>
+                            <CartWidget/>
+                        </Link>
+                        {hidden == null || <img 
+                            className={(hidden ? '' : 'counterclockwise ') + 'menu'}
+                            src={hidden ? menu : x} onClick={toggle} alt='Menu'
+                        />}
+                    </>
+                }
             </nav>
             {hidden == null
                 || <nav className={`dropdown ${theme} ${hidden ? 'hidden' : ''}`}>

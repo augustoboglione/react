@@ -34,14 +34,14 @@ const ItemCount = ({product}) => {
             }
             <div className='buttons'>
                 {!product.stock
-                    ? <div><Button to='/'>Back to Store</Button></div>
+                    ? <Button to='/'>Back to Store</Button>
                     :
                 cart.some(item => item.id == product.id)
                     ? <>
-                        <div><Button to='/'>Back to Store</Button></div>
-                        <div><Button to='/cart'>Go to Cart</Button></div>
+                        <Button to='/'>Back to Store</Button>
+                        <Button to='/cart'>Go to Cart</Button>
                     </>
-                    : <div><Button onClick={addToCart}>Add to Cart</Button></div>
+                    : <Button onClick={addToCart}>Add to Cart</Button>
                 }
             </div>
         </>

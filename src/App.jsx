@@ -26,7 +26,7 @@ const App = () => {
         <BrowserRouter>
             <ThemeProvider>
                 <CartProvider>
-                    <NavBar start={start}/>
+                    <NavBar start={start} welcome={welcome}/>
                     <Routes>
                         {welcome 
                             ? <Route path='/' element={<Welcome start={start}/>}/>
@@ -39,7 +39,7 @@ const App = () => {
                         <Route path='/notfound' element={<PageNotFound/>}/>
                         <Route path='*' element={<PageNotFound/>}/>
                     </Routes>
-                    <Footer/>
+                    <Footer welcome={welcome}/>
                 </CartProvider>
             </ThemeProvider>
         </BrowserRouter>

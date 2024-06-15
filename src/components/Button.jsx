@@ -2,13 +2,17 @@ import {Link} from 'react-router-dom'
 
 const Button = ({to, type, className, onClick, children}) => {
     if (to) return (
-        <Link to={to}>
-            <button className={`shadowed ${className ?? 'text-button'}`} type={type ?? 'button'}>{children}</button>
-        </Link>
+        <div>
+            <Link to={to}>
+                <button className={`shadowed ${className ?? 'text-button'}`} type={type ?? 'button'}>{children}</button>
+            </Link>
+        </div>
     )
 
     return (
-        <button className={`shadowed ${className ?? 'text-button'}`} type={type ?? 'button'} onClick={onClick}>{children}</button>
+        <div>
+            <button className={`shadowed ${className ?? 'text-button'}`} type={type ?? 'button'} onClick={onClick}>{children}</button>
+        </div>
     )
 }
 

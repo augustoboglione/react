@@ -17,7 +17,6 @@ const CartItem = ({product}) => {
                 <Link className='cart-name' to={`/item/${product.id}`}>
                     {product.name}
                 </Link>
-                <p className='cart-price'>${handlePrice(product.price)}</p>
                 <Counter count={product.quantity}
                     decrease={() => decrease(product)}
                     increase={() => increase(product)}
