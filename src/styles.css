@@ -54,7 +54,7 @@ a {
 }
 
 .loaded {
-    opacity: 100% !important;
+    opacity: 1 !important;
 }
 
 /*button*/
@@ -404,13 +404,35 @@ p.overlong {
 }
 
 .footer {
+    padding-bottom: 20px;
     position: relative;
-    flex-direction: column;
-    justify-content: end;
+    justify-content: space-between;
+    align-items: end;
 }
 
 .footer p {
-    margin-top: 0;
+    font-size: 13.3px;
+    margin: 0;
+}
+
+@media only screen and (min-width: 350px) {
+    .footer p {
+        font-size: 16.7px;
+    }
+}
+
+@media only screen and (min-width: 450px) {
+    .footer p {
+        font-size: 20px;
+    }
+}
+
+.footer > div, .footer::after {
+    flex: 1 1 0;
+}
+
+.footer::after {
+    content: '';
 }
 
 .toggle {
@@ -420,7 +442,6 @@ p.overlong {
     height: 30px;
     border-radius: 15px;
     position: relative;
-    align-self: start;
     display: flex;
     align-items: center;
     box-shadow: 0 0 10px grey;
@@ -816,6 +837,11 @@ p.overlong {
     align-items: center;
 }
 
+.title::before {
+    content: '';
+    flex: 1 1 0;
+}
+
 .title > div {
     flex: 1 1 0;
     display: flex;
@@ -1038,7 +1064,7 @@ nav ul li:hover a, nav ul li:focus a, nav ul a.active {
 
 .welcome div:hover img {
     left: 85px;
-    opacity: 100%;
+    opacity: 1;
 }
 
 .item:hover, .item:focus {
@@ -1137,7 +1163,7 @@ nav.dark img {
 }
 
 .toggle.dark .sun {
-    opacity: 100%;
+    opacity: 1;
     transition: opacity 1s;
 }
 
@@ -1154,7 +1180,7 @@ nav.dark img {
     background-color: black;
 }
 
-.dark .square, .dark .cart-item {
+.dark .square {
     background-image: radial-gradient(circle, #333333 0, transparent 100%);
 }
 

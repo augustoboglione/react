@@ -1,13 +1,13 @@
 import {useState, useEffect, useRef, useContext} from 'react'
 import {ThemeContext} from '../context/ThemeContext.jsx'
-import {Link, NavLink} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import Menu from './Menu.jsx'
 import CartWidget from './CartWidget.jsx'
 import logo from '/assets/apple.svg'
 import menu from '/assets/menu.svg'
 import x from '/assets/x.svg'
 
-const NavBar = ({start, welcome}) => {
+const NavBar = ({start}) => {
     const [hidden, setHidden] = useState(null)
     const [loaded, setLoaded] = useState(false)
 
@@ -40,7 +40,7 @@ const NavBar = ({start, welcome}) => {
 
     return (
         <>
-            <nav className={`${welcome ? 'white' : ''} ${theme}`}>
+            <nav className={theme}>
                 {loaded
                     && <>
                         <Link className='logo' to='/' onClick={() => {hide(); start()}}>

@@ -20,7 +20,6 @@ const Cart = () => {
                 ? <>
                     {cart.length 
                         ? <div className='title'>
-                            <div/>
                             <h1>Cart</h1>
                             <div>
                                 <Button className='img-button red' onClick={clear}><img src={bin}/></Button>
