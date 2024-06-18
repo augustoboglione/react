@@ -1,5 +1,5 @@
 import {useState} from 'react'
-import handleSlide from '../others/slide'
+import handleSlide from '../others/handleSlide'
 import x from '/assets/x.svg'
 
 const Slide = ({className, children}) => {

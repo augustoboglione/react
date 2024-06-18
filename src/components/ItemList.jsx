@@ -1,9 +1,10 @@
 import Item from './Item.jsx'
 
-const ItemList = ({products, search, inStock, sort}) => (
+const ItemList = ({products, search, inStock, bounds, sort}) => (
     <div className='list'>
         {products
             .filter(product => !inStock || product.stock)
+            .filter(product => product.price >= bounds[0] && product.price <= bounds[1])
             .filter(product => {
                 const name = product.name.toLowerCase().split(' ')
 

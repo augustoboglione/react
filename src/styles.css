@@ -53,11 +53,14 @@ a {
     text-decoration: none;
 }
 
+.loaded {
+    opacity: 100% !important;
+}
+
 /*button*/
 
 button {
-    background-color: white;
-    padding: 0 10px;
+    background-color: transparent;
     border: none;
     outline: none;
     border-radius: 30px;
@@ -70,11 +73,14 @@ button {
 .text-button {
     font-size: 13.3px;
     height: 33.3px;
+    padding: 0 10px;
+
 }
 
 .img-button {
     width: 24px;
     height: 24px;
+    padding: 25%;
 }
 
 @media only screen and (min-width: 350px) {
@@ -198,6 +204,7 @@ button {
 /*input*/
 
 .text-input input, .search-input input {
+    background-color: transparent;
     font-size: 20px;
     box-sizing: border-box;
     height: 50px;
@@ -221,15 +228,13 @@ button {
     cursor: pointer;
 }
 
-.radio-input input {
-    box-sizing: border-box;
+.radio-input input, .checkbox-input input {
     width: 14px;
     height: 14px;
     padding: 0;
     margin: 0 10px 0 0;
-    border: solid 1px;
-    outline: none;
     border-radius: 50%;
+    outline: none;
     flex-shrink: 0;
     flex-grow: 0;
     order: -1;
@@ -237,12 +242,12 @@ button {
     transition: background-color 0.3s;
 }
 
-.radio-input input:checked {
-    background-color: black;
+.checkbox-input input {
+    border-radius: 3px;
 }
 
-.checkbox-input input {
-    order: -1;
+.radio-input input:checked, .checkbox-input input:checked {
+    background-color: black;
 }
 
 .range-input label {
@@ -250,7 +255,20 @@ button {
 }
 
 .range-input input {
-    background-color: red;
+    background-color: transparent;
+    height: 7px;
+    border-radius: 3.5px;
+    outline: none;
+    appearance: none;
+}
+
+::-webkit-slider-thumb {
+    background-color: white;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    box-shadow: 0 0 10px grey;
+    appearance: none;
 }
 
 /*img*/
@@ -264,68 +282,23 @@ button {
     transition: opacity 0.3s;
 }
 
-.loaded {
-    opacity: 100%;
-}
-
 /*navbar and footer*/
 
 nav, .footer {
-    color: white;
-    background-color: #202020;
     box-sizing: border-box;
     width: 100%;
     height: 100px;
     padding: 0 5%;
     border: none;
-    /* position: fixed; */
     display: flex;
     justify-content: space-between;
     align-items: center;
+    backdrop-filter: blur(15px);
     transition: background-color 0.3s;
 }
 
-/* nav.white, .footer.white {
-    color: black;
-    background-color: transparent;
-    backdrop-filter: blur(20px);
-}
-
-nav.dark.white {
-    background-image: none !important;
-    background-color: transparent;
-}
-
-.body {
-    padding-top: 150px !important;
-}
-
-nav.white a {
-    color: black;
-}
-
-nav.white .cart-widget p {
-    color: black;
-}
-
-nav.white img {
-    filter: invert(0);
-}
-
-nav.white.dark a, .footer.white.dark {
-    color: white;
-}
-
-nav.white.dark img {
-    filter: invert(100%);
-}
-
-nav.white.dark .cart-widget p {
-    color: white;
-}
- */
-nav img {
-    filter: invert(100%);
+nav {
+    position: fixed;
 }
 
 .logo {
@@ -354,7 +327,6 @@ nav ul li {
 
 nav ul a {
     font-size: 20px;
-    color: white;
     display: block;
     width: 100%;
     transition: all 0.3s;
@@ -372,17 +344,18 @@ nav ul a {
 
 .cart-widget img {
     width: 100%;
+    transition: filter 0.3s;
 }
 
 .cart-widget p {
     font-size: 25px;
     text-align: center;
-    color: white;
     width: 100%;
     margin: 0;
     padding-bottom: 15px;
     position: absolute;
     z-index: 1;
+    transition: color 0.3s;
 }
 
 p.long {
@@ -404,9 +377,8 @@ p.overlong {
     width: 100%;
     height: 332px;
     padding-right: 5%;
-    border: solid white;
+    border: solid black;
     border-width: 1px 0;
-    position: absolute;
     top: 100px;
     justify-content: flex-end;
     z-index: 1;
@@ -485,9 +457,10 @@ p.overlong {
 /*body*/
 
 .body {
+    background-color: white;
     box-sizing: border-box;
-    min-height: calc(100% - 200px);
-    padding: 50px 5%;
+    min-height: calc(100% - 100px);
+    padding: 150px 5% 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -618,7 +591,8 @@ p.overlong {
 }
 
 .square {
-    width: 200px;
+    box-sizing: content-box;
+    width: 200px !important;
     height: 200px;
     padding: 20px;
     margin: 20px 0;
@@ -628,6 +602,10 @@ p.overlong {
     justify-content: space-between;
     align-items: center;
     transition: all 0.3s;
+}
+
+.item {
+    opacity: 0;
 }
 
 .item h2, .item p {
@@ -706,7 +684,7 @@ p.overlong {
 
 @media only screen and (min-width: 350px) {
     .square {
-        width: 250px;
+        width: 250px !important;
         height: 250px;
     }
 
@@ -725,7 +703,7 @@ p.overlong {
 
 @media only screen and (min-width: 450px) {
     .square {
-        width: 300px;
+        width: 300px !important;
         height: 300px;
         margin: 20px;
     }
@@ -744,8 +722,8 @@ p.overlong {
 }
 
 @media only screen and (min-width: 600px) {
-    .detail .square {
-        width: 350px;
+    .detail .square, .popup {
+        width: 350px !important;
         height: 350px;
     }
 }
@@ -763,11 +741,11 @@ p.overlong {
 /*slide*/
 
 .slide {
-    background-color: white;
+    background-color: inherit;
     box-sizing: border-box;
     border-radius: 25px;
     position: fixed;
-    left: 10px;
+    left: 2%;
     display: flex;
     overflow: hidden;
     transition: width 0.3s, height 0.3s;
@@ -794,7 +772,6 @@ p.overlong {
 }
 
 .search input {
-    background-color: transparent;
     width: 300px;
     margin-left: 10px;
 }
@@ -811,6 +788,26 @@ p.overlong {
     text-wrap: nowrap;
 }
 
+.filter .range-input div {
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#low-bound, #high-bound {
+    width: 80%;
+    position: absolute;
+}
+
+#low-bound {
+    background-color: black;
+}
+
+#high-bound {
+    z-index: 1;
+}
+
 /*cart*/
 
 .title {
@@ -819,7 +816,7 @@ p.overlong {
     align-items: center;
 }
 
-.title div {
+.title > div {
     flex: 1 1 0;
     display: flex;
     justify-content: start;
@@ -1007,19 +1004,23 @@ p.overlong {
 
 /*hover, click, active and focus*/
 
-.logo img:hover {
+.dark .logo img:hover {
     filter: invert(0%) drop-shadow(0 0 10px white) drop-shadow(0 0 10px white);
 }
 
-nav ul li:hover a, .cart-widget:hover {
+nav ul li:hover a, nav ul li:focus a, .cart-widget:hover {
     filter: drop-shadow(0 0 10px white) drop-shadow(0 0 10px white);
 }
 
 .menu:hover {
+    filter: drop-shadow(0 0 10px white) drop-shadow(0 0 10px white);
+}
+
+.dark .menu:hover {
     filter: invert(100%) drop-shadow(0 0 10px white) drop-shadow(0 0 10px white);
 }
 
-nav ul li:hover a, nav ul a.active {
+nav ul li:hover a, nav ul li:focus a, nav ul a.active {
     font-size: 30px;
 }
 
@@ -1040,36 +1041,36 @@ nav ul li:hover a, nav ul a.active {
     opacity: 100%;
 }
 
-.item:hover {
-    width: 240px;
+.item:hover, .item:focus {
+    width: 240px !important;
     height: 240px;
     margin: 0;
 }
 
-.item:hover h2, .item:hover p {
+.item:hover h2, .item:focus h2, .item:hover p, .item:focus p {
     font-size: 20px;
 }
 
 @media only screen and (min-width: 350px) {
-    .item:hover {
-        width: 300px;
+    .item:hover, .item:focus {
+        width: 300px !important;
         height: 300px;
         margin: -5px 0;
     }
     
-    .item:hover h2, .item:hover p {
+    .item:hover h2, .item:focus h2, .item:hover p, .item:focus p {
         font-size: 25px;
     }
 }
 
 @media only screen and (min-width: 450px) {
-    .item:hover {
-        width: 360px;
+    .item:hover, .item:focus {
+        width: 360px !important;
         height: 360px;
         margin: -10px;
     }
     
-    .item:hover h2, .item:hover p {
+    .item:hover h2, .item:focus h2, .item:hover p, .item:focus p {
         font-size: 30px;
     }
 }
@@ -1078,41 +1079,54 @@ nav ul li:hover a, nav ul a.active {
     font-size: 25px;
 }
 
-.text-button:hover {
+.text-button:hover, .text-button:focus {
     font-size: 16px;
 }
 
 @media only screen and (min-width: 350px) {
-    .text-button:hover {
+    .text-button:hover, .text-button:focus {
         font-size: 20px;
     }
 }
 
 @media only screen and (min-width: 450px) {
-    .text-button:hover {
+    .text-button:hover, .text-button:focus {
         font-size: 24px;
     }
 }
 
-.img-button:hover {
+.img-button:hover, .img-button:focus {
     width: 40px;
     height: 40px;
     margin: -2.5px;
 }
 
 @media only screen and (min-width: 600px) {
-    .img-button:hover {
+    .img-button:hover, .img-button:focus {
         width: 50px;
         height: 50px;
         margin: -5px;
     }
 }
 
-/* .checkout input:focus, .checkout input:hover {
-    width: 120%;
-} */
-
 /*dark*/
+
+nav.dark a {
+    color: white;
+}
+
+nav.dark img {
+    filter: invert(100%);
+}
+
+.dropdown.dark {
+    border-color: white;
+}
+
+.footer.dark {
+    color: white;
+    background-color: black;
+}
 
 .toggle.dark {
     background-color: black;
@@ -1135,30 +1149,17 @@ nav ul li:hover a, nav ul a.active {
     transition: opacity 1s;
 }
 
-nav.dark, .footer.dark {
-    background-color: black;
-}
-
-nav:not(.dropdown).dark {
-    background-image: linear-gradient(180deg, #202020 0%, black 100%);
-}
-
-.footer.dark {
-    background-image: linear-gradient(0deg, #202020 0%, black 100%);
-}
-
-.dark .square, .dark .cart-item, .dark .slide {
-    background-image: radial-gradient(circle, #333333 0, black 100%);
-}
-
-.welcome.dark, .list-container.dark, .detail-container.dark, .cart.dark, .checkout.dark, .not-found.dark {
+.body.dark {
     color: white;
     background-color: black;
+}
+
+.dark .square, .dark .cart-item {
+    background-image: radial-gradient(circle, #333333 0, transparent 100%);
 }
 
 .dark button, button.dark {
     color: white;
-    background-color: black;
 }
 
 .welcome.dark img, .dark button:not(.red) img, .dark .slide img, .dark .loader img {
@@ -1175,13 +1176,17 @@ nav:not(.dropdown).dark {
 
 .dark .slide, .dark .text-input input {
     color: white;
+}
+
+.dark .radio-input input:checked, .dark .checkbox-input input:checked {
+    background-color: white;
+}
+
+.dark ::-webkit-slider-thumb {
     background-color: black;
+    box-shadow: 0 0 5px white inset;
 }
 
-.dark .radio-input input {
-    border-color: white;
-}
-
-.dark .radio-input input:checked {
+.dark #low-bound {
     background-color: white;
 }

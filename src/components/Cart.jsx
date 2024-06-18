@@ -22,7 +22,9 @@ const Cart = () => {
                         ? <div className='title'>
                             <div/>
                             <h1>Cart</h1>
-                            <Button className='img-button red' onClick={clear}><img src={bin}/></Button>
+                            <div>
+                                <Button className='img-button red' onClick={clear}><img src={bin}/></Button>
+                            </div>
                         </div>
                         : <h1>Your cart is empty</h1>
                     }

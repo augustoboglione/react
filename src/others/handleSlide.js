@@ -1,4 +1,6 @@
 const handleSlide = (e, elementClassName, hidden, setHidden) => {
+    if (e.target.type == 'range') return
+
     e.preventDefault()
 
     let click = true

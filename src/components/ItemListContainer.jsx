@@ -7,12 +7,15 @@ import Filter from './Filter.jsx'
 import Loading from './Loading.jsx'
 import db from '../others/firebase.js'
 import {collection, getDocs, query, where} from 'firebase/firestore'
+import {handleBounds} from '../others/handleRange.js'
 
 const ItemListContainer = () => {
     const [products, setProducts] = useState()
     const [search, setSearch] = useState([])
     const [inStock, setInStock] = useState(false)
     const [sort, setSort] = useState('name')
+    const [maxPrice, setMaxPrice] = useState(0)
+    const [bounds, setBounds] = useState([0, 0])
 
     const category = useParams().id
 
@@ -35,17 +38,25 @@ const ItemListContainer = () => {
     }, [category])
 
     useEffect(() => {
-        if (products && !products.length) navigate('/notfound')
+        if (products) {
+            if (!products.length) navigate('/notfound')
+
+            const max = Math.max(...products.map(product => product.price))
+            setMaxPrice(max)
+            setBounds([0, max])
+        }
     }, [products])
 
     return (
         <div className={`body list-container ${theme} ${products ? '' : 'loading'}`}>
             {products
-                ? <ItemList products={products} search={search} inStock={inStock} sort={sort}/>
+                ? <ItemList products={products} search={search} inStock={inStock} bounds={bounds} sort={sort}/>
                 : <Loading/>
             }
             <Search handleSearch={handleSearch}/>
-            <Filter handleInStock={handleInStock} handleSort={handleSort}/>       
+            <Filter max={maxPrice} bounds={bounds} handleInStock={handleInStock} 
+                handleBounds={e => handleBounds(e, maxPrice, bounds, setBounds)} handleSort={handleSort}
+            />       
         </div>
     )
 }

@@ -7,7 +7,6 @@ const fire = (titleText, text, icon, theme, callback = null, showCancelButton = 
     icon,
     showCancelButton,
     confirmButtonText,
-    width: '340px',
     padding: '20px',
     color: theme ? '#FFFFFF' : '#000000',
     background: theme ? '#000000' : '#FFFFFF',
@@ -16,7 +15,7 @@ const fire = (titleText, text, icon, theme, callback = null, showCancelButton = 
     buttonsStyling: false,
     heightAuto: false,
     customClass: {
-        popup: `square shadowed ${theme}`,
+        popup: `popup square shadowed ${theme}`,
         confirmButton: 'text-button shadowed',
         cancelButton: 'text-button shadowed'
     }
