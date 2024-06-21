@@ -6,18 +6,19 @@ import Input from './Input.jsx'
 import Button from './Button.jsx'
 import db from '../others/firebase.js'
 import {doc, collection, addDoc, updateDoc, Timestamp} from 'firebase/firestore'
+import {handleInput, setPosition} from '../others/formValidation.js'
 import fire from '../others/sweetalert.js'
 
 const CheckoutForm = () => {
-    const [firstName, setFirstName] = useState()
-    const [lastName, setLastName] = useState()
-    const [email, setEmail] = useState()
-    const [phone, setPhone] = useState()
-    const [street, setStreet] = useState()
-    const [number, setNumber] = useState()
-    const [city, setCity] = useState()
-    const [country, setCountry] = useState()
-    const [orderId, setOrderId] = useState()
+    const [firstName, setFirstName] = useState(null)
+    const [lastName, setLastName] = useState(null)
+    const [email, setEmail] = useState(null)
+    const [phone, setPhone] = useState(null)
+    const [street, setStreet] = useState(null)
+    const [number, setNumber] = useState(null)
+    const [city, setCity] = useState(null)
+    const [country, setCountry] = useState(null)
+    const [orderId, setOrderId] = useState(null)
 
     const {cart, clear, totalPrice} = useContext(CartContext)
 
@@ -25,20 +26,19 @@ const CheckoutForm = () => {
 
     const navigate = useNavigate()
 
-    const handleFirstName = e => setFirstName(e.target.value)
-    const handleLastName = e => setLastName(e.target.value)
-    const handleEmail = e => setEmail(e.target.value)
-    const handlePhone = e => setPhone(e.target.value)
-    const handleStreet = e => setStreet(e.target.value)
-    const handleNumber  = e => setNumber(e.target.value)
-    const handleCity = e => setCity(e.target.value)
-    const handleCountry = e => setCountry(e.target.value)
-
+    const handleFirstName = e => handleInput(e, setFirstName)
+    const handleLastName = e => handleInput(e, setLastName)
+    const handleEmail = e => handleInput(e, setEmail)
+    const handlePhone = e => handleInput(e, setPhone)
+    const handleStreet = e => handleInput(e, setStreet)
+    const handleNumber  = e => handleInput(e, setNumber)
+    const handleCity = e => handleInput(e, setCity)
+    // const handleCountry = e => (e, setCountry)
 
     const placeOrder = (e, buyer) => {
         e.preventDefault()
 
-        const {firstName, lastName, email, phone} = buyer
+        const {firstName, lastName, email, phone, street, number, city, country} = buyer
 
         if (!firstName || !lastName || !email || !phone)
             fire('Missing fields', 'You must fill in all fields.', 'warning', theme)
@@ -60,6 +60,15 @@ const CheckoutForm = () => {
     }
 
     useEffect(() => {
+        window.addEventListener('scroll', () => {
+            Array.from(document.querySelectorAll('.checkout input')).forEach(element => setPosition(element.id))
+        })
+        window.addEventListener('resize', () => {
+            Array.from(document.querySelectorAll('.checkout input')).forEach(element => setPosition(element.id))
+        })
+    }, [])
+
+    useEffect(() => {
         if (orderId) fire('Thank you!', `Thank you for your order! Your order id is ${orderId}.`, 'success', theme, () => {
             clear(false)
             navigate('/')
@@ -67,26 +76,26 @@ const CheckoutForm = () => {
     }, [orderId])
 
     return (
-        <form onSubmit={e => placeOrder(e, {firstName, lastName, email, phone})}>
+        <form onSubmit={e => placeOrder(e, {firstName, lastName, email, phone, street, number, city, country})}>
             <h2>Name</h2>
-            <div className='section'>
-                <Input type='text' id='first-name' label='First name' placeholder='John' onInput={handleFirstName}/>
-                <Input type='text' id='last-name' label='Last name' placeholder='Appleseed' onInput={handleLastName}/>
-            </div>
+            <section>
+                <Input type='text' id='first-name' label='First name' placeholder='John' required onInput={handleFirstName}/>
+                <Input type='text' id='last-name' label='Last name' placeholder='Appleseed' required onInput={handleLastName}/>
+            </section>
             <h2>Contact</h2>
-            <div className='section'>
-                <Input type='text' id='email' label='Email' placeholder='johnappleseed@icloud.com' onInput={handleEmail}/>
+            <section>
+                <Input type='email' id='email' label='Email' placeholder='johnappleseed@icloud.com' required onInput={handleEmail}/>
                 <Input type='text' id='phone' label='Phone number' onInput={handlePhone}/>
-            </div>
+            </section>
             <h2>Address</h2>
-            <div className='section'>
+            <section>
                 <Input type='text' id='street' label='Street' placeholder='Apple Park Way' onInput={handleStreet}/>
                 <Input type='text' id='number' label='Number' placeholder='1' onInput={handleNumber}/>
-            </div>
-            <div className='section'>
+            </section>
+            <section>
                 <Input type='text' id='city' label='City' placeholder='Cupertino' onInput={handleCity}/>
-                <Input type='text' id='country' label='Country' onInput={handleCountry}/>
-            </div>
+                <Input type='text' id='country' label='Country'/>
+            </section>
             <div className='buttons edge stacked'>
                 <Button to='/cart'>Back to Cart</Button>
                 <Button className='text-button' type='submit'>Place order</Button>

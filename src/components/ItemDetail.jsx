@@ -1,6 +1,6 @@
 import ItemCount from './ItemCount'
 import AsyncImg from './AsyncImg'
-import handlePrice from '../others/handlePrice'
+import handlePrice from '../others/price.js'
 
 const ItemDetail = ({product}) => (
     <>

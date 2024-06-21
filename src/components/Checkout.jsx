@@ -3,6 +3,7 @@ import {useNavigate} from 'react-router-dom'
 import {CartContext} from '../context/CartContext.jsx'
 import {ThemeContext} from '../context/ThemeContext.jsx'
 import CheckoutForm from './CheckoutForm.jsx'
+import Recap from './Recap.jsx'
 
 const Checkout = () => {
     const {cart} = useContext(CartContext)
@@ -20,6 +21,7 @@ const Checkout = () => {
         <div className={`body checkout ${theme}`}>
             <h1>Checkout</h1>
             <CheckoutForm/>
+            <Recap/>
         </div>
     )
 }

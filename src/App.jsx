@@ -11,6 +11,7 @@ import Checkout from './components/Checkout.jsx'
 import PageNotFound from './components/PageNotFound.jsx'
 import Footer from './components/Footer.jsx'
 import {setStock} from './others/firebase.js'
+import {handleScroll} from './others/slide.js'
 import './styles.css'
 
 const App = () => {
@@ -18,9 +19,10 @@ const App = () => {
 
     const start = () => setWelcome(false)
 
-    // useEffect(() => {
-    //     setStock(15)
-    // }, [])
+    useEffect(() => {
+        // setStock(15)
+        window.addEventListener('scroll', handleScroll)
+    }, [])
 
     return (
         <BrowserRouter>

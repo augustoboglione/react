@@ -7,7 +7,7 @@ import Filter from './Filter.jsx'
 import Loading from './Loading.jsx'
 import db from '../others/firebase.js'
 import {collection, getDocs, query, where} from 'firebase/firestore'
-import {handleBounds} from '../others/handleRange.js'
+import {handleBounds} from '../others/range.js'
 
 const ItemListContainer = () => {
     const [products, setProducts] = useState()
@@ -27,7 +27,9 @@ const ItemListContainer = () => {
     const handleInStock = e => setInStock(e.target.checked)
     const handleSort = e => setSort(e.target.value)
 
-    useEffect (() => scroll(0, 0), [])
+    useEffect (() => {
+        scroll(0, 0)
+    }, [])
 
     useEffect(() => {
         const filtered = category

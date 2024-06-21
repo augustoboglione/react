@@ -1,5 +1,5 @@
-import {useEffect, useContext} from "react"
-import {ThemeContext} from "../context/ThemeContext"
+import {useEffect, useContext} from 'react'
+import {ThemeContext} from '../context/ThemeContext.jsx'
 import arrow from '/assets/arrow.svg'
 
 const Welcome = ({start}) => {

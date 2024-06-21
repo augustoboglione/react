@@ -4,7 +4,7 @@ import {ThemeContext} from '../context/ThemeContext.jsx'
 import Button from './Button.jsx'
 import CartItem from './CartItem.jsx'
 import Loading from './Loading.jsx'
-import handlePrice from '../others/handlePrice.js'
+import handlePrice from '../others/price.js'
 import bin from '/assets/bin.svg'
 
 const Cart = () => {
@@ -31,7 +31,7 @@ const Cart = () => {
                         if (x.name.toLowerCase() < y.name.toLowerCase()) return -1
                         else return 1
                     }).map(item => <CartItem key={item.id} product={item}/>)}
-                    {!cart.length || <p className='total'>Total: <span>${handlePrice(totalPrice())}</span></p>}
+                    {!cart.length || <p className='cart-total'>Total: <span>${handlePrice(totalPrice())}</span></p>}
                     <div className={`buttons stacked edge`}>
                         <Button to='/'>Back to Store</Button>
                         {!cart.length || <Button to='/checkout'>Go to Checkout</Button>}

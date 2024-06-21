@@ -34,8 +34,8 @@ const NavBar = ({start}) => {
 
     useEffect(() => {
         handleResize()
-        window.onresize = handleResize
-        window.onclick = handleClick
+        window.addEventListener('resize', handleResize)
+        window.addEventListener('click', handleClick)
     }, [])
 
     return (

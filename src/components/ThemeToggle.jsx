@@ -1,5 +1,5 @@
 import {useContext} from 'react'
-import {ThemeContext} from '../context/ThemeContext'
+import {ThemeContext} from '../context/ThemeContext.jsx'
 import sun from '/assets/sun.svg'
 import moon from '/assets/moon.svg'
 
