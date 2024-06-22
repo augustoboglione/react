@@ -9,8 +9,6 @@ const Slide = ({className, children}) => {
 
     useEffect(() => {
         document.querySelector(`.slide.${className}`).addEventListener('touchstart', handleMouseDown, {passive: false})
-
-        return () => document.querySelector(`.slide.${className}`).removeEventListener('touchstart', handleMouseDown)
     }, [])
 
     return (
