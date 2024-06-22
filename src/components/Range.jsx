@@ -1,5 +1,5 @@
 import {useEffect} from 'react'
-import {resetBounds} from '../others/range.js'
+import {resetBounds} from '../modules/range.js'
 
 const Range = ({label, max, onInput}) => {
     useEffect(() => resetBounds(max), [max])

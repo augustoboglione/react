@@ -16,6 +16,9 @@ const fire = (titleText, text, icon, theme, callback = null, showCancelButton = 
     heightAuto: false,
     customClass: {
         popup: `popup square shadowed ${theme}`,
+        icon: 'popup-icon',
+        title: 'popup-title',
+        actions: 'popup-buttons',
         confirmButton: 'text-button shadowed',
         cancelButton: 'text-button shadowed'
     }

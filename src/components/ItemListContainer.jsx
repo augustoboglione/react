@@ -5,9 +5,9 @@ import ItemList from './ItemList'
 import Search from './Search.jsx'
 import Filter from './Filter.jsx'
 import Loading from './Loading.jsx'
-import db from '../others/firebase.js'
+import db from '../modules/firebase.js'
 import {collection, getDocs, query, where} from 'firebase/firestore'
-import {handleBounds} from '../others/range.js'
+import {handleBounds} from '../modules/range.js'
 
 const ItemListContainer = () => {
     const [products, setProducts] = useState()

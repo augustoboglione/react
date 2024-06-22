@@ -1,10 +1,10 @@
 import {useState, useEffect, useContext, createContext} from 'react'
 import {ThemeContext} from './ThemeContext.jsx'
-import db from '../others/firebase.js'
+import db from '../modules/firebase.js'
 import {collection, getDocs} from 'firebase/firestore'
-import fire from '../others/sweetalert.js'
+import fire from '../modules/sweetalert.js'
 
-const CartContext = createContext([])
+const CartContext = createContext()
 
 const CartProvider = ({children}) => {
     const [cart, setCart] = useState([])

@@ -2,7 +2,7 @@ import {useContext} from 'react'
 import {CartContext} from '../context/CartContext.jsx'
 import Slide from './Slide.jsx'
 import RecapItem from './RecapItem.jsx'
-import handlePrice from '../others/price.js'
+import handlePrice from '../modules/price.js'
 
 const Recap = () => {
     const {cart, totalPrice} = useContext(CartContext)

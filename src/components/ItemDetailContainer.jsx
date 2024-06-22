@@ -3,7 +3,7 @@ import {useParams, useNavigate} from 'react-router-dom'
 import {ThemeContext} from '../context/ThemeContext.jsx'
 import ItemDetail from './ItemDetail.jsx'
 import Loading from './Loading.jsx'
-import db from '../others/firebase.js'
+import db from '../modules/firebase.js'
 import {doc, getDoc} from 'firebase/firestore'
 
 const ItemDetailContainer = () => {

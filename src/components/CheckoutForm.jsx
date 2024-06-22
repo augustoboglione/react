@@ -2,12 +2,13 @@ import {useState, useEffect, useContext} from 'react'
 import {useNavigate} from 'react-router-dom'
 import {CartContext} from '../context/CartContext.jsx'
 import {ThemeContext} from '../context/ThemeContext.jsx'
+import {AlertContext} from '../context/AlertContext.jsx'
 import Input from './Input.jsx'
 import Button from './Button.jsx'
-import db from '../others/firebase.js'
+import db from '../modules/firebase.js'
 import {doc, collection, addDoc, updateDoc, Timestamp} from 'firebase/firestore'
-import {handleInput, setPosition} from '../others/formValidation.js'
-import fire from '../others/sweetalert.js'
+import {handleInput, setPosition} from '../modules/formValidation.js'
+import fire from '../modules/sweetalert.js'
 
 const CheckoutForm = () => {
     const [firstName, setFirstName] = useState(null)
@@ -21,8 +22,8 @@ const CheckoutForm = () => {
     const [orderId, setOrderId] = useState(null)
 
     const {cart, clear, totalPrice} = useContext(CartContext)
-
     const {theme} = useContext(ThemeContext)
+    const {fire} = useContext(AlertContext)
 
     const navigate = useNavigate()
 
@@ -34,6 +35,10 @@ const CheckoutForm = () => {
     const handleNumber  = e => handleInput(e, setNumber)
     const handleCity = e => handleInput(e, setCity)
     // const handleCountry = e => (e, setCountry)
+
+    const handleWindowChange = () => {
+        Array.from(document.querySelectorAll('.checkout input')).forEach(element => setPosition(element.id))
+    }
 
     const placeOrder = (e, buyer) => {
         e.preventDefault()
@@ -60,19 +65,20 @@ const CheckoutForm = () => {
     }
 
     useEffect(() => {
-        window.addEventListener('scroll', () => {
-            Array.from(document.querySelectorAll('.checkout input')).forEach(element => setPosition(element.id))
-        })
-        window.addEventListener('resize', () => {
-            Array.from(document.querySelectorAll('.checkout input')).forEach(element => setPosition(element.id))
-        })
+        window.addEventListener('scroll', handleWindowChange)
+        window.addEventListener('resize', handleWindowChange)
+
+        return () => {
+            window.removeEventListener('scroll', handleWindowChange)
+            window.removeEventListener('resize', handleWindowChange)
+        }
     }, [])
 
     useEffect(() => {
-        if (orderId) fire('Thank you!', `Thank you for your order! Your order id is ${orderId}.`, 'success', theme, () => {
+        if (orderId) fire('Thank you!', `Thank you for your order! Your order id is ${orderId}.`, null, 'Accept', null, () => {
             clear(false)
             navigate('/')
-        }, false, 'Accept', true)
+        })
     }, [orderId])
 
     return (

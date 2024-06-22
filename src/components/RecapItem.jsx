@@ -1,4 +1,4 @@
-import handlePrice from '../others/price.js'
+import handlePrice from '../modules/price.js'
 
 const RecapItem = ({item}) => (
     <div className='recap-item'>

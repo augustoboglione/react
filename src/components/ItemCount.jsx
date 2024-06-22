@@ -1,16 +1,14 @@
 import {useState, useContext} from 'react'
 import {CartContext} from '../context/CartContext'
-import {ThemeContext} from '../context/ThemeContext.jsx'
+import {AlertContext} from '../context/AlertContext.jsx'
 import Counter from './Counter.jsx'
 import Button from './Button'
-import fire from '../others/sweetalert.js'
 
 const ItemCount = ({product}) => {
     const [count, setCount] = useState(1)
 
     const {cart, add} = useContext(CartContext)
-
-    const {theme} = useContext(ThemeContext)
+    const {fire} = useContext(AlertContext)
 
     const addToCart = () => add(product, count)
 
@@ -20,7 +18,7 @@ const ItemCount = ({product}) => {
 
     const increase = () => {
         if (count < product.stock) setCount(count + 1)
-        else fire('Not enough stock', `We have ${product.stock} item${product.stock == 1 ? '' : 's'} in stock.`, 'error', theme)
+        else fire('Not enough stock', `We have ${product.stock} item${product.stock == 1 ? '' : 's'} in stock.`, null)
     }
 
     return (

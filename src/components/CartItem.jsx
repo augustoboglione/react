@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 import {CartContext} from '../context/CartContext.jsx'
 import Counter from './Counter.jsx'
 import AsyncImg from './AsyncImg.jsx'
-import handlePrice from '../others/price.js'
+import handlePrice from '../modules/price.js'
 
 const CartItem = ({product}) => {
     const {remove, decrease, increase} = useContext(CartContext)

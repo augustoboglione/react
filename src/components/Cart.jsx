@@ -4,7 +4,7 @@ import {ThemeContext} from '../context/ThemeContext.jsx'
 import Button from './Button.jsx'
 import CartItem from './CartItem.jsx'
 import Loading from './Loading.jsx'
-import handlePrice from '../others/price.js'
+import handlePrice from '../modules/price.js'
 import bin from '/assets/bin.svg'
 
 const Cart = () => {

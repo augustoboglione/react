@@ -1,7 +1,7 @@
 import Slide from './Slide.jsx'
 import Input from './Input.jsx'
 import Range from './Range.jsx'
-import handlePrice from '../others/price.js'
+import handlePrice from '../modules/price.js'
 
 const Filter = ({max, bounds, handleInStock, handleBounds, handleSort}) => (
     <Slide className='filter'>
