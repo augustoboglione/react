@@ -9,7 +9,7 @@ import x from '/assets/x.svg'
 
 const NavBar = ({start}) => {
     const [hidden, setHidden] = useState(null)
-    const [loaded, setLoaded] = useState(false)
+    const [mount, setMount] = useState(false)
 
     const ref = useRef()
     ref.current = hidden
@@ -17,9 +17,9 @@ const NavBar = ({start}) => {
     const {theme} = useContext(ThemeContext)
 
     const handleResize = () => {
-        if (document.documentElement.clientWidth > 1200) setHidden(null)
+        if (window.innerWidth > 1200) setHidden(null)
         else setHidden(true)
-        setLoaded(true)
+        setMount(true)
     }
 
     const handleClick = e => {
@@ -41,7 +41,7 @@ const NavBar = ({start}) => {
     return (
         <>
             <nav className={theme}>
-                {loaded
+                {mount
                     && <>
                         <Link className='logo' to='/' onClick={() => {hide(); start()}}>
                             <img src={logo} alt='Apple'/>
@@ -50,10 +50,11 @@ const NavBar = ({start}) => {
                         <Link className='cart-widget' to='/cart' onClick={() => {hide(); start()}}>
                             <CartWidget/>
                         </Link>
-                        {hidden == null || <img 
-                            className={(hidden ? '' : 'counterclockwise ') + 'menu'}
-                            src={hidden ? menu : x} onClick={toggle} alt='Menu'
-                        />}
+                        {hidden == null
+                            || <img className={`menu ${hidden ? '' : 'counterclockwise'}`}
+                                src={hidden ? menu : x} onClick={toggle} alt='Menu'
+                            />
+                        }
                     </>
                 }
             </nav>

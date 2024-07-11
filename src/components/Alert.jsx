@@ -5,11 +5,10 @@ import Button from './Button.jsx'
 
 const Alert = () => {
     const {theme} = useContext(ThemeContext)
-
-    const {unmount, title, text, icon, confirm, cancel, callback, clear} = useContext(AlertContext)
+    const {unmount, title, text, icon, callback, cancel, confirm, clear} = useContext(AlertContext)
 
     const handleConfirm = () => {
-        callback?.()
+        if (callback) callback()
         clear()
     }
 
@@ -22,7 +21,7 @@ const Alert = () => {
         <div className={`backdrop ${unmount ? 'unmount' : ''} ${theme}`} onClick={handleCancel}>
             <div className='alert square shadowed' onClick={e => e.stopPropagation()}>
                 <div className='icon'>
-                    <img src={`/assets/x.svg`} alt='Icon' />
+                    <img src={`/assets/${icon}.svg`} alt='Icon' />
                 </div>
                 <h2>{title}</h2>
                 <p>{text}</p>

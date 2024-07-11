@@ -1,8 +1,7 @@
 import {useState, useEffect, useContext, createContext} from 'react'
-import {ThemeContext} from './ThemeContext.jsx'
+import {AlertContext} from './AlertContext.jsx'
 import db from '../modules/firebase.js'
 import {collection, getDocs} from 'firebase/firestore'
-import fire from '../modules/sweetalert.js'
 
 const CartContext = createContext()
 
@@ -10,27 +9,33 @@ const CartProvider = ({children}) => {
     const [cart, setCart] = useState([])
     const [loaded, setLoaded] = useState(false)
 
-    const {theme} = useContext(ThemeContext)
+    const {fire} = useContext(AlertContext)
 
     const add = (item, quantity) => setCart(current => [...current, {...item, quantity}])
 
-    const remove = item => fire('Remove', `Do you wish to remove ${item.name} from your cart?`, 'question', theme, () => {
-        setCart(cart.filter(x => x.id != item.id))
-        localStorage.removeItem(item.id)
-    }, true)
+    const remove = (e, item) => {
+        e?.preventDefault()
+
+        fire('Remove', `Do you wish to remove ${item.name} from your cart?`, 'x', () => {
+            setCart(cart.filter(x => x.id != item.id))
+            localStorage.removeItem(item.id)
+        }, 'Cancel')
+    }
 
     const clear = (ask = true) => {
-        if (ask) fire('Clear cart', 'Do you wish to clear your cart?', 'question', theme, () => {
+        if (ask) fire('Clear cart', 'Do you wish to clear your cart?', 'x', () => {
             setCart([])
             localStorage.clear()
-        }, true)
+        }, 'Cancel')
         else {
             setCart([])
             localStorage.clear()
         }
     }
 
-    const increase = item => {
+    const increase = (e, item) => {
+        e.preventDefault()
+
         const quantity = cart.find(x => x.id == item.id).quantity
 
         if (quantity < item.stock) {
@@ -38,10 +43,12 @@ const CartProvider = ({children}) => {
             cartCopy.find(x => x.id == item.id).quantity++
             setCart(cartCopy)
         }
-        else fire('Not enough stock', `We have ${item.stock} item${item.stock == 1 ? '' : 's'} in stock.`, 'error', theme)
+        else fire('Not enough stock', `We have ${item.stock} item${item.stock == 1 ? '' : 's'} in stock.`, null)
     }
 
-    const decrease = item => {
+    const decrease = (e, item) => {
+        e.preventDefault()
+
         const quantity = cart.find(x => x.id == item.id).quantity
 
         if (quantity > 1) {
@@ -49,7 +56,7 @@ const CartProvider = ({children}) => {
             cartCopy.find(x => x.id == item.id).quantity--
             setCart(cartCopy)
         }
-        else remove(item)
+        else remove(null, item)
     }
 
     const totalQuantity = () => cart.reduce((x, y) => x + y.quantity, 0)

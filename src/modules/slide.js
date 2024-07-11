@@ -8,7 +8,7 @@ const setSize = (element, hidden) => {
 
         if (element.classList.contains('search')) {
             element.style.height = Math.max(...children.map(child => child.clientHeight)) + 'px'
-            element.style.width = children.reduce((x, y) => x + y.clientWidth, 0) + 'px'
+            element.style.width = children.reduce((x, y) => x + y.clientWidth, 0) + 10 + 'px'
         } else {
             element.style.height = children.reduce((x, y) => x + y.clientHeight, 0) + 'px'
             element.style.width = Math.max(...children.map(child => child.clientWidth)) + 'px'
@@ -39,6 +39,8 @@ const handleMouseMove = e => {
     click = false
 
     const element = document.querySelector(`.${className}`)
+
+    if (e.type == 'touchmove') e = e.touches[0]
 
     const mainX = e.pageX - mouseX
     const mainY = e.pageY - mouseY
@@ -96,7 +98,7 @@ const handleMouseUp = e => {
 const handleSlide = (e, classNameArg, hiddenArg, setHiddenArg) => {
     if (e.target.type == 'range') return
 
-    e.preventDefault()
+    if (e.type == 'mousedown') e.preventDefault()
 
     click = true
     className = classNameArg

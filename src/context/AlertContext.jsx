@@ -1,4 +1,4 @@
-import {useState, useEffect, createContext} from 'react'
+import {useState, createContext} from 'react'
 
 const AlertContext = createContext()
 
@@ -12,21 +12,20 @@ const AlertProvider = ({children}) => {
     const [confirm, setConfirm] = useState(null)
     const [cancel, setCancel] = useState(null)
     const [callback, setCallback] = useState(null)
-    const [callbackSpread, setCallbackSpread] = useState(null)
 
-    const fire = (title, text, icon, confirm = 'Accept', cancel = null, callback = null) => {
+    const fire = (title, text, icon, callback = null, cancel = null, confirm = 'Accept') => {
         setAlert(true)
         setTitle(title)
         setText(text)
         setIcon(icon)
         setConfirm(confirm)
         setCancel(cancel)
-        setCallback(callback)
-        setCallbackSpread(callbackSpread)
+        setCallback(() => callback)
     }
 
     const clear = () => {
         setUnmount(true)
+
         setTimeout(() => {
             setAlert(false)
             setUnmount(false)
@@ -34,7 +33,7 @@ const AlertProvider = ({children}) => {
     }
 
     return (
-        <AlertContext.Provider value={{alert, unmount, title, text, icon, confirm, cancel, callback, fire, clear}}>
+        <AlertContext.Provider value={{alert, unmount, title, text, icon, callback, cancel, confirm, fire, clear}}>
             {children}
         </AlertContext.Provider>
     )

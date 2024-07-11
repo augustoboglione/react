@@ -11,21 +11,23 @@ const testPattern = (id, input) => {
     else return true
 }
 
-const setPosition = id => {
-    const inputElement = document.getElementById(id)
-    const nextElement = inputElement.nextElementSibling
-
-    const inputRect = inputElement.getBoundingClientRect()
-
-    if (nextElement) {
-        if (nextElement.tagName == 'IMG') {
-            nextElement.style.top = inputRect.top + 'px'
-            nextElement.style.left = inputRect.left + inputRect.width + 20 + 'px'
-        } else {
-            nextElement.style.top = inputRect.top + inputRect.height + 'px'
-            nextElement.style.left = inputRect.left + 'px'
+const handleWindowChange = () => {
+    Array.from(document.querySelectorAll('.checkout input')).forEach(element => {
+        const inputElement = document.getElementById(element.id)
+        const nextElement = inputElement.nextElementSibling
+    
+        const inputRect = inputElement.getBoundingClientRect()
+    
+        if (nextElement) {
+            if (nextElement.tagName == 'IMG') {
+                nextElement.style.top = inputRect.top + 'px'
+                nextElement.style.left = inputRect.left + inputRect.width + 20 + 'px'
+            } else {
+                nextElement.style.top = inputRect.top + inputRect.height + 'px'
+                nextElement.style.left = inputRect.left + 'px'
+            }
         }
-    }
+    })
 }
 
 const handleBlur = e => {
@@ -102,4 +104,4 @@ const handleInput = (e, setInput) => {
     }
 }
 
-export {handleInput, setPosition}
+export {handleInput, handleWindowChange}

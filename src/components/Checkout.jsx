@@ -7,7 +7,6 @@ import Recap from './Recap.jsx'
 
 const Checkout = () => {
     const {cart} = useContext(CartContext)
-
     const {theme} = useContext(ThemeContext)
 
     const navigate = useNavigate()

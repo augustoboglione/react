@@ -5,10 +5,11 @@ import {ThemeContext} from '../context/ThemeContext.jsx'
 import {AlertContext} from '../context/AlertContext.jsx'
 import Input from './Input.jsx'
 import Button from './Button.jsx'
+import AsyncImg from './AsyncImg.jsx'
 import db from '../modules/firebase.js'
 import {doc, collection, addDoc, updateDoc, Timestamp} from 'firebase/firestore'
-import {handleInput, setPosition} from '../modules/formValidation.js'
-import fire from '../modules/sweetalert.js'
+import {handleInput, handleWindowChange} from '../modules/formValidation.js'
+import {countries, flag} from '../modules/countries.js'
 
 const CheckoutForm = () => {
     const [firstName, setFirstName] = useState(null)
@@ -34,27 +35,20 @@ const CheckoutForm = () => {
     const handleStreet = e => handleInput(e, setStreet)
     const handleNumber  = e => handleInput(e, setNumber)
     const handleCity = e => handleInput(e, setCity)
-    // const handleCountry = e => (e, setCountry)
-
-    const handleWindowChange = () => {
-        Array.from(document.querySelectorAll('.checkout input')).forEach(element => setPosition(element.id))
+    const handleCountry = e => {
+        document.getElementById('country').innerText = countries[e.currentTarget.id]
+        setCountry(e.currentTarget.id)
     }
 
     const placeOrder = (e, buyer) => {
         e.preventDefault()
 
-        const {firstName, lastName, email, phone, street, number, city, country} = buyer
+        console.log(Object.values(buyer))
 
-        if (!firstName || !lastName || !email || !phone)
+        if (document.querySelector('.incorrect'))
+            scroll({top: window.scrollY + document.querySelector('.incorrect').getBoundingClientRect().top - 140, behavior: 'smooth'})
+        else if (Object.values(buyer).find(field => field === null) === null)
             fire('Missing fields', 'You must fill in all fields.', 'warning', theme)
-        else if (/[^A-Za-zÁÉÍÓÚÑáéíóúñ\s]/.test(firstName))
-            fire('Invalid first name', 'Your first name cannot contain special characters.', 'warning', theme)
-        else if (/[^A-Za-zÁÉÍÓÚÑáéíóúñ\s]/.test(lastName))
-            fire('Invalid last name', 'Your last name cannot contain special characters.', 'warning', theme)
-        else if (!/^[^\s]+@[^\s]+\.[A-Za-z]{2,3}$/.test(email))
-            fire('Invalid email', 'The email you input is not valid.', 'warning', theme)
-        else if (!/^\+?\d+$/.test(phone))
-            fire('Invalid phone number', 'Your phone number cannot contain non-numerical characters.', 'warning', theme)
         else {
             cart.forEach(item => updateDoc(doc(db, 'items', item.id), {stock: item.stock - item.quantity}))
 
@@ -75,7 +69,7 @@ const CheckoutForm = () => {
     }, [])
 
     useEffect(() => {
-        if (orderId) fire('Thank you!', `Thank you for your order! Your order id is ${orderId}.`, null, 'Accept', null, () => {
+        if (orderId) fire('Thank you!', `Thank you for your order! Your order id is ${orderId}.`, 'tick', () => {
             clear(false)
             navigate('/')
         })
@@ -85,13 +79,8 @@ const CheckoutForm = () => {
         <form onSubmit={e => placeOrder(e, {firstName, lastName, email, phone, street, number, city, country})}>
             <h2>Name</h2>
             <section>
-                <Input type='text' id='first-name' label='First name' placeholder='John' required onInput={handleFirstName}/>
-                <Input type='text' id='last-name' label='Last name' placeholder='Appleseed' required onInput={handleLastName}/>
-            </section>
-            <h2>Contact</h2>
-            <section>
-                <Input type='email' id='email' label='Email' placeholder='johnappleseed@icloud.com' required onInput={handleEmail}/>
-                <Input type='text' id='phone' label='Phone number' onInput={handlePhone}/>
+                <Input type='text' id='first-name' label='First name' placeholder='John' onInput={handleFirstName}/>
+                <Input type='text' id='last-name' label='Last name' placeholder='Appleseed' onInput={handleLastName}/>
             </section>
             <h2>Address</h2>
             <section>
@@ -100,7 +89,19 @@ const CheckoutForm = () => {
             </section>
             <section>
                 <Input type='text' id='city' label='City' placeholder='Cupertino' onInput={handleCity}/>
-                <Input type='text' id='country' label='Country'/>
+                <Input type='select' id='country' label='Country'>
+                    {Object.keys(countries).map(code => (
+                        <li key={code} id={code} onClick={handleCountry}>
+                            <AsyncImg className='flag' src={flag(code)} alt={countries[code]}/>
+                            <p>{countries[code]}</p>
+                        </li>
+                    ))}
+                </Input>
+            </section>
+            <h2>Contact</h2>
+            <section>
+                <Input type='text' id='email' label='Email' placeholder='johnappleseed@icloud.com' onInput={handleEmail}/>
+                <Input type='text' id='phone' label='Phone number' onInput={handlePhone}/>
             </section>
             <div className='buttons edge stacked'>
                 <Button to='/cart'>Back to Cart</Button>

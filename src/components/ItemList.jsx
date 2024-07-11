@@ -15,10 +15,7 @@ const ItemList = ({products, search, inStock, bounds, sort}) => {
             : 
         sort == 'decreasing'
             ? (x, y) => y.price - x.price
-            : (x, y) => {
-                if (x.name.toLowerCase() < y.name.toLowerCase()) return -1
-                else return 1
-            }
+            : (x, y) => x.name.toLowerCase() < y.name.toLowerCase() ? -1 : 1
         ).map(product => <Item key={product.id} product={product}></Item>)
 
     return (

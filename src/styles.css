@@ -34,7 +34,7 @@ p, a {
     font-size: 20px;
 }
 
-@media only screen and (min-width: 500px) {
+@media only screen and (min-width: 600px) {
     h1 {
         font-size: 50px;
     }
@@ -57,6 +57,10 @@ a {
     opacity: 1 !important;
 }
 
+ul {
+    list-style: none;
+}
+
 /*button*/
 
 button {
@@ -71,7 +75,7 @@ button {
 }
 
 .text-button {
-    font-size: 13.3px;
+    font-size: 12px;
     height: 33.3px;
     padding: 0 10px;
 
@@ -85,7 +89,7 @@ button {
 
 @media only screen and (min-width: 350px) {
     .text-button {
-        font-size: 16.7px;
+        font-size: 15px;
         height: 41.7px;
     }
 
@@ -97,7 +101,7 @@ button {
 
 @media only screen and (min-width: 450px) {
     .text-button {
-        font-size: 20px;
+        font-size: 18px;
         height: 50px;
     }
 
@@ -108,9 +112,9 @@ button {
 }
 
 @media only screen and (min-width: 600px) {
-    .img-button {
-        width: 40px;
-        height: 40px;
+    .img-button, .title .img-button {
+        width: 40px !important;
+        height: 40px !important;
     }
 }
 
@@ -178,9 +182,10 @@ button {
 .count {
     text-align: center;
     font-size: 16.7px;
-    width: 5%;
+    width: 0;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 @media only screen and (min-width: 350px) {
@@ -203,10 +208,11 @@ button {
 
 /*input*/
 
-.text-input input, .email-input input, .search-input input {
+.text-input input, .search-input input, .select div {
     background-color: transparent;
     font-size: 20px;
     box-sizing: border-box;
+    width: 100%;
     height: 50px;
     padding: 0 20px;
     border-radius: 25px;
@@ -214,8 +220,32 @@ button {
     outline: none;
 }
 
-.text-input input::placeholder, .email-input input::placeholder, .search-input input::placeholder {
+.text-input input::placeholder, .search-input input::placeholder {
     transition: color 0.2s;
+}
+
+.select {
+    width: 100%;
+    position: relative;
+}
+
+.select ul {
+    background-color: white;
+    box-sizing: border-box;
+    width: 100%;
+    height: 300px;
+    padding: 0;
+    margin: 10px 0 0;
+    border-radius: 25px;
+    position: absolute;
+    overflow: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    transition: background-color 0.3s;
+}
+
+.select li {
+    padding: 0 20px;
 }
 
 .radio-input, .checkbox-input {
@@ -270,15 +300,295 @@ button {
     appearance: none;
 }
 
+::-moz-range-thumb {
+    background-color: white;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    box-shadow: 0 0 10px grey;
+    appearance: none;
+}
+
 /*img*/
 
-/* img {
-    -webkit-user-drag: none;
-} */
-
-.item-img, .detail-img, .cart-img {
+.item-img, .detail-img, .cart-img, .flag {
     opacity: 0;
     transition: opacity 0.3s;
+}
+
+/*square*/
+
+.square {
+    box-sizing: content-box;
+    width: 200px;
+    height: 200px;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s;
+}
+
+.square p, .square h2 {
+    text-align: center;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.item {
+    opacity: 0;
+}
+
+.item h2, .item p, .cart-item h2 {
+    font-size: 16.7px;
+    height: 25%;
+    transition: all 0.3s;
+}
+
+.item h2 {
+    line-height: 100%;
+}
+
+.item-img {
+    height: 45%;
+}
+
+.detail-description {
+    font-size: 13.3px;
+    width: 90%;
+    height: 30%;
+}
+
+.detail-price {
+    font-size: 20px;
+    height: 20%;
+}
+
+.detail-container .counter {
+    width: 60%;
+    height: 20%;
+}
+
+.counter-text {
+    font-size: 13.3px;
+    height: 20%;
+}
+
+.detail-container .buttons {
+    height: 16.7%;
+}
+
+.center {
+    width: 100%;
+    height: 45%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.square .cart-img {
+    height: 100%;
+}
+
+.cart-price {
+    font-size: 16.7px;
+    width: 45%;
+}
+
+.cart-item.square .counter {
+    width: 80%;
+    height: 25%;
+}
+
+.alert {
+    background-color: white;
+    margin: 0 !important;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    animation: grow 0.3s;
+}
+
+.unmount .alert {
+    animation: shrink 0.3s;
+}
+
+.icon {
+    width: 30%;
+    height: 30%;
+    margin-top: 5%;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 10px red;
+}
+
+.icon img {
+    width: 60%;
+    height: 60%;
+    animation: rotate 0.7s;
+}
+
+.alert h2 {
+    font-size: 16.7px;
+}
+
+.alert p {
+    font-size: 13.3px;
+}
+
+.alert .buttons {
+    height: 16.7%;
+}
+
+@media only screen and (min-width: 350px) {
+    .square {
+        width: 250px;
+        height: 250px;
+    }
+
+    .item h2, .item p, .cart-item h2, .cart-price, .alert h2 {
+        font-size: 20.8px;
+    }
+
+    .detail-description, .counter-text, .alert p {
+        font-size: 16.7px;
+    }
+
+    .detail-price {
+        font-size: 25px;
+    }
+}
+
+@media only screen and (min-width: 450px) {
+    .square {
+        width: 300px;
+        height: 300px;
+        margin: 20px;
+    }
+
+    .item h2, .item p, .cart-item h2, .cart-price, .alert h2 {
+        font-size: 25px;
+    }
+
+    .detail-description, .counter-text, .alert p {
+        font-size: 20px;
+    }
+
+    .detail-price {
+        font-size: 30px;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .detail .square, .alert {
+        width: 350px;
+        height: 350px;
+    }
+}
+
+/*slide*/
+
+.slide {
+    background-color: inherit;
+    box-sizing: content-box !important;
+    width: 30px;
+    height: 30px;
+    padding: 10px;
+    border-radius: 25px;
+    position: fixed;
+    left: 2%;
+    z-index: 2;
+    display: flex;
+    overflow: hidden;
+    cursor: pointer;
+    transition: width 0.3s, height 0.3s, padding 0.3s;
+}
+
+.slide img {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: rotate 0.3s;
+}
+
+.search {
+    top: 110px;
+    padding: 0 10px;
+    align-items: center;
+}
+
+.search.hidden {
+    padding: 10px;
+}
+
+.search .search-input {
+    width: 300px;
+    margin-left: 10px;
+    flex-shrink: 0;
+}
+
+.filter {
+    top: 170px;
+    flex-direction: column;
+}
+
+.filter > div {
+    width: 200px;
+}
+
+.filter h2, .filter label {
+    text-wrap: nowrap;
+}
+
+.filter .range-input div {
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#low-bound, #high-bound {
+    width: 80%;
+    position: absolute;
+}
+
+#low-bound {
+    background-color: black;
+}
+
+#high-bound {
+    z-index: 1;
+}
+
+.recap {
+    top: 110px;
+    flex-direction: column;
+}
+
+.recap-item {
+    width: 300px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.recap-total {
+    width: 300px;
+    text-align: end;
+    border-top: 1px solid black;
+    transition: border-color 0.3s;
+}
+
+.recap p {
+    margin-bottom: 0;
 }
 
 /*navbar and footer*/
@@ -312,23 +622,7 @@ nav {
     transition: filter 0.3s;
 }
 
-:not(.dark) > .logo::after {
-    content: '';
-    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.7) 0, transparent 100%);
-    width: 30px;
-    height: 70px;
-    position: absolute;
-    top: -10%;
-    left: 110%;
-    rotate: 20deg;
-    display: block;
-    opacity: 0;
-    pointer-events: none;
-    transition: all 0.5s;
-}
-
 nav ul {
-    list-style: none;
     width: 70%;
     padding: 0;
     display: flex;
@@ -396,7 +690,7 @@ p.overlong {
     border: solid black;
     border-width: 1px 0;
     top: 100px;
-    z-index: 1;
+    z-index: 3;
     justify-content: flex-end;
     overflow: hidden;
     transition: all 0.3s;
@@ -626,51 +920,17 @@ p.overlong {
     }
 }
 
-/*list and detail container*/
+/*list container*/
 
 .list {
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: flex-start;
 }
 
-.square {
-    box-sizing: content-box;
-    width: 200px !important;
-    height: 200px;
-    padding: 20px;
-    margin: 20px 0;
-    border-radius: 50px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    transition: all 0.3s;
-}
-
-.item {
-    opacity: 0;
-}
-
-.item h2, .item p {
-    font-size: 16.7px;
-    text-align: center;
-    height: 25%;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: all 0.3s;
-}
-
-.item h2 {
-    line-height: 100%;
-}
-
-.item-img {
-    height: 45%;
-}
+/*detail container*/
 
 .detail {
     width: 100%;
@@ -694,85 +954,6 @@ p.overlong {
     margin-bottom: 30px;
 }
 
-.detail .square > p {
-    text-align: center;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.detail-description {
-    font-size: 13.3px;
-    width: 90%;
-    height: 30%;
-}
-
-.detail-price {
-    font-size: 20px;
-    height: 20%;
-}
-
-.detail-container .counter {
-    width: 60%;
-    height: 20%;
-}
-
-.counter-text {
-    font-size: 13.3px;
-    height: 20%;
-}
-
-.detail-container .buttons {
-    height: 16.7%;
-}
-
-@media only screen and (min-width: 350px) {
-    .square {
-        width: 250px !important;
-        height: 250px;
-    }
-
-    .item h2, .item p {
-        font-size: 20.8px;
-    }
-
-    .detail-description, .counter-text {
-        font-size: 16.7px;
-    }
-
-    .detail-price {
-        font-size: 25px;
-    }
-}
-
-@media only screen and (min-width: 450px) {
-    .square {
-        width: 300px !important;
-        height: 300px;
-        margin: 20px;
-    }
-
-    .item h2, .item p {
-        font-size: 25px;
-    }
-
-    .detail-description, .counter-text {
-        font-size: 20px;
-    }
-
-    .detail-price {
-        font-size: 30px;
-    }
-}
-
-@media only screen and (min-width: 600px) {
-    .detail .square, .alert, .popup {
-        width: 350px !important;
-        height: 350px;
-    }
-}
-
 @media only screen and (min-width: 900px) {
     .detail {
         flex-direction: row;
@@ -781,101 +962,6 @@ p.overlong {
     .detail-img {
         margin: 0;
     }
-}
-
-/*slide*/
-
-.slide {
-    background-color: inherit;
-    box-sizing: content-box !important;
-    width: 30px;
-    height: 30px;
-    padding: 10px;
-    border-radius: 25px;
-    position: fixed;
-    left: 2%;
-    z-index: 2;
-    display: flex;
-    overflow: hidden;
-    cursor: pointer;
-    transition: width 0.3s, height 0.3s, padding 0.3s;
-}
-
-.slide img {
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-    transition: rotate 0.3s;
-}
-
-.search {
-    top: 110px;
-    padding: 0 10px;
-    align-items: center;
-}
-
-.search.hidden {
-    padding: 10px;
-}
-
-.search input {
-    width: 300px;
-    margin-left: 10px;
-}
-
-.filter {
-    top: 170px;
-    flex-direction: column;
-}
-
-.filter > div {
-    width: 200px;
-}
-
-.filter h2, .filter label {
-    text-wrap: nowrap;
-}
-
-.filter .range-input div {
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-#low-bound, #high-bound {
-    width: 80%;
-    position: absolute;
-}
-
-#low-bound {
-    background-color: black;
-}
-
-#high-bound {
-    z-index: 1;
-}
-
-.recap {
-    top: 110px;
-    flex-direction: column;
-}
-
-.recap-item {
-    width: 300px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.recap-total {
-    width: 300px;
-    text-align: end;
-    border-top: 1px solid black;
-    transition: border-color 0.3s;
-}
-
-.recap p {
-    margin-bottom: 0;
 }
 
 /*cart*/
@@ -902,53 +988,65 @@ p.overlong {
     flex: 0 1 0;
 }
 
-.cart-item {
+.title .img-button {
+    width: 36px;
+    height: 36px;
+}
+
+.cart-list {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.cart-item.long {
     box-sizing: border-box;
     width: 100%;
+    height: 160px;
     padding: 20px 5%;
-    margin-bottom: 20px;
+    margin: 20px 0;
     border-radius: 50px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.cart-item > a {
-    width: 20%;
+.long > a {
+    width: 120px;
 }
 
-.cart-img {
+.long .cart-img {
     width: 100%;
 }
 
-.cart-item > div {
-    width: 60%;
+.long > div {
+    flex: 1 1 0;
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
     align-items: center;
 }
 
-.cart-name {
-    font-size: 13.3px;
+.long .cart-name {
     text-align: center;
-    width: 100%;
-    height: 80px;
+    font-size: 20px;
+    width: 30%;
+    padding-left: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
     transition: all 0.3s;
 }
 
-.cart-item .counter {
-    width: 70%;
+.long .counter {
+    width: 240px;
     height: 50px;
 }
 
-.cart-price {
-    font-size: 16.7px;
+.long .cart-price {
     text-align: end;
-    width: 20%;
+    width: 120px;
 }
 
 .cart-total {
@@ -956,7 +1054,6 @@ p.overlong {
     text-align: end;
     box-sizing: border-box;
     width: 100%;
-    padding-right: 5%;
 }
 
 .cart-total span {
@@ -964,54 +1061,24 @@ p.overlong {
 }
 
 @media only screen and (min-width: 350px) {
-    .cart-name {
-        font-size: 16.7px;
-    }
-
-    .cart-price {
-        font-size: 20.8px;
-    }
-
     .cart-total {
         font-size: 25px;
     }
 }
 
 @media only screen and (min-width: 450px) {
-    .cart-name {
-        font-size: 20px;
-    }
-
-    .cart-price {
-        font-size: 25px;
-    }
-
     .cart-total {
         font-size: 30px;
     }
 }
 
 @media only screen and (min-width: 900px) {
-    .cart-item > a {
-        width: 10%;
+    .cart-list {
+        flex-direction: column;
     }
 
-    .cart-item > div {
-        width: 80%;
-        flex-direction: row;
-    }
-
-    .cart-name {
-        width: 40%;
-        height: auto;
-    }
-
-    .cart-item .counter {
-        width: 40%;
-    }    
-
-    .cart-price {
-        width: 10%;
+    .cart-total {
+        padding-right: 5%;
     }
 }
 
@@ -1034,7 +1101,7 @@ p.overlong {
     align-items: center;
 }
 
-.checkout section div {
+.checkout section > div {
     width: 90%;
     display: flex;
     flex-direction: column;
@@ -1048,10 +1115,9 @@ p.overlong {
     padding-bottom: 10px;
 }
 
-.checkout input {
+.checkout input, .checkout .select {
     text-align: center;
-    width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
     transition: all 0.3s;
 }
 
@@ -1060,7 +1126,9 @@ p.overlong {
 }
 
 .checkout input + p {
+    font-size: 15px;
     color: red;
+    margin: 10px 0 0;
     position: fixed;
 }
 
@@ -1071,12 +1139,18 @@ p.overlong {
     bottom: 45px;
     right: 20px;
     translate: 0 50%;
-    opacity: 0;
+    opacity: 1;
     transition: opacity 0.3s;
 }
 
-.checkout input:valid + img {
-    opacity: 1;
+.checkout .select li {
+    display: flex;
+    justify-content: space-between;
+}
+
+.flag, .checkout .select li::after {
+    content: '';
+    width: 40px;
 }
 
 .checkout .buttons {
@@ -1092,8 +1166,8 @@ p.overlong {
         flex-direction: row;
     }
 
-    .checkout section div {
-        width: 37.5%;
+    .checkout section > div {
+        width: 40%;
     }
 
     .checkout label {
@@ -1128,10 +1202,6 @@ p.overlong {
         transform: scale(0.5)
     }
 
-    30% {
-        transform: scale(1.05)
-    }
-
     100% {
         transform: scale(1)
     }
@@ -1162,7 +1232,7 @@ p.overlong {
     height: 100%;
     position: fixed;
     top: 0;
-    z-index: 3;
+    z-index: 4;
     backdrop-filter: blur(5px);
     animation: fade-in 0.3s;
 }
@@ -1171,52 +1241,21 @@ p.overlong {
     animation: fade-out 0.3s;
 }
 
-.alert {
-    background-color: white;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    translate: -50% -50%;
-    animation: grow 0.3s;
-}
-
-.unmount .alert {
-    animation: shrink 0.3s;
-}
-
-.icon {
-    width: 30%;
-    height: 30%;
-    margin-top: 5%;
-    border: 6px solid black;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.icon img {
-    width: 60%;
-    height: 60%;
-    animation: rotate 0.7s;
-}
-
 /*hover, click, active and focus*/
 
-:not(.dark) > .logo:hover::after {
-    left: 45%;
-    opacity: 1;
+.logo img:hover {
+    filter: invert(100%) 
+    drop-shadow(5px 5px 7px rgb(220, 180, 0))
+    drop-shadow(5px -5px 7px rgb(255, 88, 28))
+    drop-shadow(-5px -5px 7px rgb(149, 74, 255))
+    drop-shadow(-5px 5px 7px rgb(52, 212, 52))
 }
 
 .dark .logo img:hover {
     filter: invert(0%) drop-shadow(0 0 10px white) drop-shadow(0 0 10px white);
 }
 
-nav ul li:hover a, nav ul li:focus a, .cart-widget:hover {
-    filter: drop-shadow(0 0 10px white) drop-shadow(0 0 10px white);
-}
-
-.menu:hover {
+nav.dark ul li:hover a, .dark .cart-widget:hover {
     filter: drop-shadow(0 0 10px white) drop-shadow(0 0 10px white);
 }
 
@@ -1224,7 +1263,7 @@ nav ul li:hover a, nav ul li:focus a, .cart-widget:hover {
     filter: invert(100%) drop-shadow(0 0 10px white) drop-shadow(0 0 10px white);
 }
 
-nav ul li:hover a, nav ul li:focus a, nav ul a.active {
+nav ul li:hover a, nav ul a.active {
     font-size: 30px;
 }
 
@@ -1245,72 +1284,94 @@ nav ul li:hover a, nav ul li:focus a, nav ul a.active {
     opacity: 1;
 }
 
-.item:hover {
-    width: 240px !important;
+.item:hover, .cart-item.square:hover {
+    width: 240px;
     height: 240px;
     margin: 0;
 }
 
-.item:hover h2, .item:hover p {
+.item:hover h2, .item:hover p, .cart-item:hover h2, .cart-item.square:hover .cart-price {
     font-size: 20px;
 }
 
 @media only screen and (min-width: 350px) {
-    .item:hover {
-        width: 300px !important;
+    .item:hover, .cart-item.square:hover {
+        width: 300px;
         height: 300px;
         margin: -5px 0;
     }
     
-    .item:hover h2, .item:hover p {
+    .item:hover h2, .item:hover p, .cart-item:hover h2, .cart-item.square:hover .cart-price {
         font-size: 25px;
     }
 }
 
 @media only screen and (min-width: 450px) {
-    .item:hover {
-        width: 360px !important;
+    .item:hover, .cart-item.square:hover {
+        width: 360px;
         height: 360px;
         margin: -10px;
     }
     
-    .item:hover h2, .item:hover p {
+    .item:hover h2, .item:hover p, .cart-item:hover h2, .cart-item.square:hover .cart-price {
         font-size: 30px;
     }
 }
 
-.cart-item .cart-name:hover, .cart-item a:hover + div .cart-name {
-    font-size: 25px;
+.long .cart-name:hover, .long a:hover + div .cart-name {
+    font-size: 24px;
 }
 
 .text-button:hover {
-    font-size: 16px;
+    font-size: 14.4px;
+}
+
+.img-button:hover {
+    width: 28.8px;
+    height: 28.8px;
+    margin: -2.4px;
 }
 
 @media only screen and (min-width: 350px) {
     .text-button:hover {
-        font-size: 20px;
+        font-size: 18px;
+    }
+
+    .img-button:hover {
+        width: 36px;
+        height: 36px;
+        margin: -3px;
     }
 }
 
 @media only screen and (min-width: 450px) {
     .text-button:hover {
-        font-size: 24px;
+        font-size: 21.6px;
     }
-}
 
-.img-button:hover {
-    width: 40px;
-    height: 40px;
-    margin: -2.5px;
+    .img-button:hover {
+        width: 43.2px;
+        height: 43.2px;
+        margin: -3.6px;
+    }
 }
 
 @media only screen and (min-width: 600px) {
     .img-button:hover {
-        width: 50px;
-        height: 50px;
-        margin: -5px;
+        width: 48px !important;
+        height: 48px !important;
+        margin: -4px;
     }
+}
+
+.title .img-button:hover {
+    width: 43.2px;
+    height: 43.2px;
+    margin: -3.6px;
+}
+
+.select li:hover {
+    background-color: #DDDDDD;
 }
 
 /*dark*/
@@ -1378,7 +1439,7 @@ nav.dark img {
     box-shadow: 0 0 7px white inset;
 }
 
-.dark .slide, .dark .text-input input {
+.dark .slide, .dark .text-input input, .dark .select div {
     color: white;
 }
 
@@ -1403,6 +1464,6 @@ nav.dark img {
     color: white;
 }
 
-.dark .alert {
+.dark .alert, .dark .select ul {
     background-color: black;
 }

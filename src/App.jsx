@@ -6,11 +6,11 @@ import './styles.css'
 
 const App = () => (
     <ThemeProvider>
-        <CartProvider>
-            <AlertProvider>
+        <AlertProvider>
+            <CartProvider>
                 <Body/>
-            </AlertProvider>
-        </CartProvider>
+            </CartProvider>
+        </AlertProvider>
     </ThemeProvider>
 )
 

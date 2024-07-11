@@ -1,5 +1,3 @@
-import Swal from 'sweetalert2'
-
 const fire = (titleText, text, icon, theme, callback = null, showCancelButton = false,
     confirmButtonText = 'Accept', cancelCallback = false) => Swal.fire({
     titleText,
