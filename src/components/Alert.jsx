@@ -20,9 +20,9 @@ const Alert = () => {
     return(
         <div className={`backdrop ${unmount ? 'unmount' : ''} ${theme}`} onClick={handleCancel}>
             <div className='alert square shadowed' onClick={e => e.stopPropagation()}>
-                <div className='icon'>
+                {/* <div className='icon'>
                     <img src={`/assets/${icon}.svg`} alt='Icon' />
-                </div>
+                </div> */}
                 <h2>{title}</h2>
                 <p>{text}</p>
                 <div className='buttons'>

@@ -11,7 +11,7 @@ const Recap = () => {
         <Slide className='recap'>
             {cart.map(item => <RecapItem key={item.id} item={item}/>)}
             <div>
-            <p className='recap-total'>Total: ${handlePrice(totalPrice())}</p>
+                <p className='recap-total'>Total: ${handlePrice(totalPrice())}</p>
             </div>
         </Slide>
     )

@@ -27,10 +27,6 @@ const ItemListContainer = () => {
     const handleInStock = e => setInStock(e.target.checked)
     const handleSort = e => setSort(e.target.value)
 
-    useEffect (() => {
-        scroll(0, 0)
-    }, [])
-
     useEffect(() => {
         const filtered = category
             ? query(collection(db, 'items'), where('category', '==', category))
@@ -40,6 +36,8 @@ const ItemListContainer = () => {
     }, [category])
 
     useEffect(() => {
+        scroll(0, 0)
+
         if (products) {
             if (!products.length) navigate('/notfound')
 

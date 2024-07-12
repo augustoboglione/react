@@ -1,7 +1,8 @@
-import {CartProvider} from './context/CartContext.jsx'
 import {ThemeProvider} from './context/ThemeContext.jsx'
+import {CartProvider} from './context/CartContext.jsx'
 import {AlertProvider} from './context/AlertContext.jsx'
 import Body from './components/Body.jsx'
+import Overscroll from './components/Overscroll.jsx'
 import './styles.css'
 
 const App = () => (
@@ -11,6 +12,7 @@ const App = () => (
                 <Body/>
             </CartProvider>
         </AlertProvider>
+        <Overscroll/>
     </ThemeProvider>
 )
 

@@ -35,10 +35,7 @@ const CheckoutForm = () => {
     const handleStreet = e => handleInput(e, setStreet)
     const handleNumber  = e => handleInput(e, setNumber)
     const handleCity = e => handleInput(e, setCity)
-    const handleCountry = e => {
-        document.getElementById('country').innerText = countries[e.currentTarget.id]
-        setCountry(e.currentTarget.id)
-    }
+    const handleCountry = e => setCountry(e.currentTarget.id)
 
     const placeOrder = (e, buyer) => {
         e.preventDefault()
@@ -89,7 +86,7 @@ const CheckoutForm = () => {
             </section>
             <section>
                 <Input type='text' id='city' label='City' placeholder='Cupertino' onInput={handleCity}/>
-                <Input type='select' id='country' label='Country'>
+                <Input type='select' id='country' label='Country' selected={country}>
                     {Object.keys(countries).map(code => (
                         <li key={code} id={code} onClick={handleCountry}>
                             <AsyncImg className='flag' src={flag(code)} alt={countries[code]}/>

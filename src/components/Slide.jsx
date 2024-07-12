@@ -12,7 +12,9 @@ const Slide = ({className, children}) => {
         <div className={`slide ${className} shadowed ${hidden ? 'hidden' : ''}`}
             onMouseDown={handleMouseDown} onTouchStart={handleMouseDown}
         >
+            <div>
             <img className={hidden ? '' : 'clockwise'} src={hidden ? `/assets/${className}.svg` : x} alt='Filter'/>
+            </div>
             {children}
         </div>
     )

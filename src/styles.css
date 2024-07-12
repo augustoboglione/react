@@ -3,6 +3,7 @@
 * {
     font-family: 'Jost', sans-serif;
     user-select: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 html {
@@ -16,6 +17,17 @@ body {
 
 #root {
     height: 100%;
+}
+
+.overscroll {
+    background-color: white;
+    position: fixed;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transition: background-color 0.3s;
 }
 
 /*text*/
@@ -208,7 +220,7 @@ button {
 
 /*input*/
 
-.text-input input, .search-input input, .select div {
+.text-input input, .search-input input, .select > div {
     background-color: transparent;
     font-size: 20px;
     box-sizing: border-box;
@@ -229,6 +241,12 @@ button {
     position: relative;
 }
 
+.select > div {
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+}
+
 .select ul {
     background-color: white;
     box-sizing: border-box;
@@ -245,7 +263,14 @@ button {
 }
 
 .select li {
-    padding: 0 20px;
+    height: 50px;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+}
+
+.select p {
+    margin: 0;
 }
 
 .radio-input, .checkbox-input {
@@ -513,6 +538,11 @@ button {
     transition: width 0.3s, height 0.3s, padding 0.3s;
 }
 
+.slide div:first-child {
+    width: 30px !important;
+    height: 30px;
+}
+
 .slide img {
     width: 30px;
     height: 30px;
@@ -604,7 +634,6 @@ nav, .footer {
     justify-content: space-between;
     align-items: center;
     backdrop-filter: blur(15px);
-    transition: background-color 0.3s;
 }
 
 nav {
@@ -713,10 +742,12 @@ p.overlong {
 }
 
 .footer {
+    background-color: white;
     padding-bottom: 20px;
     position: relative;
     justify-content: space-between;
     align-items: end;
+    transition: background-color 0.3s;
 }
 
 .footer p {
@@ -1143,14 +1174,13 @@ p.overlong {
     transition: opacity 0.3s;
 }
 
-.checkout .select li {
-    display: flex;
+#country, #country + ul li {
     justify-content: space-between;
 }
 
-.flag, .checkout .select li::after {
+.flag, #country::after, #country + ul li::after {
     content: '';
-    width: 40px;
+    width: 30px;
 }
 
 .checkout .buttons {
@@ -1243,7 +1273,7 @@ p.overlong {
 
 /*hover, click, active and focus*/
 
-.logo img:hover {
+.mouse .logo img:hover {
     filter: invert(100%) 
     drop-shadow(5px 5px 7px rgb(220, 180, 0))
     drop-shadow(5px -5px 7px rgb(255, 88, 28))
@@ -1251,19 +1281,19 @@ p.overlong {
     drop-shadow(-5px 5px 7px rgb(52, 212, 52))
 }
 
-.dark .logo img:hover {
+.mouse .dark .logo img:hover {
     filter: invert(0%) drop-shadow(0 0 10px white) drop-shadow(0 0 10px white);
 }
 
-nav.dark ul li:hover a, .dark .cart-widget:hover {
+.mouse nav.dark ul li:hover a, .mouse .dark .cart-widget:hover {
     filter: drop-shadow(0 0 10px white) drop-shadow(0 0 10px white);
 }
 
-.dark .menu:hover {
+.mouse .dark .menu:hover {
     filter: invert(100%) drop-shadow(0 0 10px white) drop-shadow(0 0 10px white);
 }
 
-nav ul li:hover a, nav ul a.active {
+.mouse nav ul li:hover a, nav ul a.active {
     font-size: 30px;
 }
 
@@ -1279,65 +1309,65 @@ nav ul li:hover a, nav ul a.active {
     color: transparent;
 }
 
-.welcome div:hover img {
+.mouse .welcome div:hover img {
     left: 85px;
     opacity: 1;
 }
 
-.item:hover, .cart-item.square:hover {
+.mouse .item:hover, .mouse .cart-item.square:hover {
     width: 240px;
     height: 240px;
     margin: 0;
 }
 
-.item:hover h2, .item:hover p, .cart-item:hover h2, .cart-item.square:hover .cart-price {
+.mouse .item:hover h2, .mouse .item:hover p, .mouse .cart-item:hover h2, .mouse .cart-item.square:hover .cart-price {
     font-size: 20px;
 }
 
 @media only screen and (min-width: 350px) {
-    .item:hover, .cart-item.square:hover {
+    .mouse .item:hover, .mouse .cart-item.square:hover {
         width: 300px;
         height: 300px;
         margin: -5px 0;
     }
     
-    .item:hover h2, .item:hover p, .cart-item:hover h2, .cart-item.square:hover .cart-price {
+    .mouse .item:hover h2, .mouse .item:hover p, .mouse .cart-item:hover h2, .mouse .cart-item.square:hover .cart-price {
         font-size: 25px;
     }
 }
 
 @media only screen and (min-width: 450px) {
-    .item:hover, .cart-item.square:hover {
+    .mouse .item:hover, .mouse .cart-item.square:hover {
         width: 360px;
         height: 360px;
         margin: -10px;
     }
     
-    .item:hover h2, .item:hover p, .cart-item:hover h2, .cart-item.square:hover .cart-price {
+    .mouse .item:hover h2, .mouse .item:hover p, .mouse .cart-item:hover h2, .mouse .cart-item.square:hover .cart-price {
         font-size: 30px;
     }
 }
 
-.long .cart-name:hover, .long a:hover + div .cart-name {
+.mouse .long .cart-name:hover, .mouse .long a:hover + div .cart-name {
     font-size: 24px;
 }
 
-.text-button:hover {
+.mouse .text-button:hover {
     font-size: 14.4px;
 }
 
-.img-button:hover {
+.mouse .img-button:hover {
     width: 28.8px;
     height: 28.8px;
     margin: -2.4px;
 }
 
 @media only screen and (min-width: 350px) {
-    .text-button:hover {
+    .mouse .text-button:hover {
         font-size: 18px;
     }
 
-    .img-button:hover {
+    .mouse .img-button:hover {
         width: 36px;
         height: 36px;
         margin: -3px;
@@ -1345,11 +1375,11 @@ nav ul li:hover a, nav ul a.active {
 }
 
 @media only screen and (min-width: 450px) {
-    .text-button:hover {
+    .mouse .text-button:hover {
         font-size: 21.6px;
     }
 
-    .img-button:hover {
+    .mouse .img-button:hover {
         width: 43.2px;
         height: 43.2px;
         margin: -3.6px;
@@ -1357,24 +1387,32 @@ nav ul li:hover a, nav ul a.active {
 }
 
 @media only screen and (min-width: 600px) {
-    .img-button:hover {
+    .mouse .img-button:hover {
         width: 48px !important;
         height: 48px !important;
         margin: -4px;
     }
 }
 
-.title .img-button:hover {
+.mouse .title .img-button:hover {
     width: 43.2px;
     height: 43.2px;
     margin: -3.6px;
 }
 
-.select li:hover {
+.mouse .select li:hover {
     background-color: #DDDDDD;
 }
 
+.mouse .dark .select li:hover {
+    background-color: #333333;
+}
+
 /*dark*/
+
+.overscroll.dark {
+    background-color: black;
+}
 
 nav.dark a {
     color: white;
