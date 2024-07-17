@@ -14,8 +14,10 @@ const CartItem = ({product, long}) => {
                 <AsyncImg className='cart-img' src={product.img} alt={product.name} />
             </Link>
             <div>
-                <Link className='cart-name gradient-text' to={`/item/${product.id}`}>
-                    {product.name}
+                <Link className='cart-name' to={`/item/${product.id}`}>
+                    <span className='gradient-text'>
+                        {product.name}
+                    </span>
                 </Link>
                 <Counter count={product.quantity}
                     decrease={e => decrease(e, product)}

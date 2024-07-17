@@ -1260,14 +1260,17 @@ p.overlong {
 }
 
 .long .cart-name {
-    text-align: center;
-    font-size: 20px;
     width: 30%;
     height: 100%;
     padding-left: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.long .cart-name span {
+    text-align: center;
+    font-size: 20px;
     transition: all var(--animation-time);
 }
 
@@ -1546,10 +1549,11 @@ nav li .active .gradient-text {
     margin: 0;
 }
 
-.mouse .item:hover .gradient-text,
-.mouse .cart-item.square:hover .gradient-text,
-.mouse .long .gradient-text:hover,
-.mouse .long a:hover + div .gradient-text {
+.mouse :is(.item:hover,
+    .cart-item.square:hover,
+    .long .cart-name:hover,
+    .long a:hover + div
+) .gradient-text {
     color: transparent;
 }
 
@@ -1592,8 +1596,8 @@ nav li .active .gradient-text {
     }
 }
 
-.mouse .long .cart-name:hover,
-.mouse .long a:hover + div .cart-name {
+.mouse .long .cart-name:hover span,
+.mouse .long a:hover + div .cart-name span {
     font-size: 24px;
 }
 
