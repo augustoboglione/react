@@ -1,5 +1,6 @@
 import {useEffect, useContext} from 'react'
-import {ThemeContext} from '../context/ThemeContext'
+import {ThemeContext} from '../context/ThemeContext.jsx'
+import HamburgerSvg from '../svg/HamburgerSvg.jsx'
 
 const PageNotFound = () => {
     const {theme} = useContext(ThemeContext)

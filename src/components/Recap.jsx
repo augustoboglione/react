@@ -2,6 +2,7 @@ import {useContext} from 'react'
 import {CartContext} from '../context/CartContext.jsx'
 import Slide from './Slide.jsx'
 import RecapItem from './RecapItem.jsx'
+import RecapSvg from '../svg/RecapSvg.jsx'
 import handlePrice from '../modules/price.js'
 
 const Recap = () => {
@@ -9,6 +10,7 @@ const Recap = () => {
 
     return(
         <Slide className='recap'>
+            <RecapSvg/>
             {cart.map(item => <RecapItem key={item.id} item={item}/>)}
             <div>
                 <p className='recap-total'>Total: ${handlePrice(totalPrice())}</p>

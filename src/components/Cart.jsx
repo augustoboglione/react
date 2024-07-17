@@ -8,7 +8,6 @@ import handlePrice from '../modules/price.js'
 import bin from '/assets/bin.svg'
 
 const Cart = () => {
-
     const {cart, loaded, clear, totalPrice} = useContext(CartContext)
     const {theme} = useContext(ThemeContext)
 
@@ -20,7 +19,7 @@ const Cart = () => {
                         ? <div className='title'>
                             <h1>Cart</h1>
                             <div>
-                                <Button className='img-button red' onClick={clear}><img src={bin}/></Button>
+                                <Button imgButton className='red' onClick={clear}><img src={bin}/></Button>
                             </div>
                         </div>
                         : <h1>Your cart is empty</h1>

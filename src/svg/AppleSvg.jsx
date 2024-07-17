@@ -1,5 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17 20">
-    <path d="m 15.5752 7
+import Svg from './Svg.jsx'
+
+const AppleSvg = () => (
+    <Svg d='m 15.5752 7
             a 4.2055 4.2055 0 0 0 -2.01 3.5376
             a 4.0931 4.0931 0 0 0 2.4908 3.7542
             a 9.7779 9.7779 0 0 1 -1.2755 2.6351
@@ -21,7 +23,9 @@
             a 1.7815 1.7815 0 0 1 0.0361 0.373
             a 4.1487 4.1487 0 0 1 -0.9867 2.587
             a 3.6039 3.6039 0 0 1 -2.5148 1.3236
-            z"
-        fill="white"
+            z'
+        viewBox='0 0 17 20' fill gradient
     />
-</svg>
+)
+
+export default AppleSvg

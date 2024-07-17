@@ -17,6 +17,8 @@ body {
 
 #root {
     height: 100%;
+    --animation-time: 0.3s;
+    --welcome-animation-time: 0.8s;
 }
 
 .overscroll {
@@ -27,7 +29,7 @@ body {
     bottom: 0;
     left: 0;
     right: 0;
-    transition: background-color 0.3s;
+    transition: background-color var(--animation-time);
 }
 
 /*text*/
@@ -53,11 +55,16 @@ p, a {
 }
 
 h1, h2, p, a {
-    transition: color 0.3s, font-size 0.3s;
+    transition: color var(--animation-time), font-size var(--animation-time);
 }
 
-.red {
+.red-text {
     color: red;
+}
+
+.gradient-text {
+    background-image: linear-gradient(to right, cyan 0, magenta 100%);
+    background-clip: text;
 }
 
 a {
@@ -83,7 +90,7 @@ button {
     display: flex;
     align-items: center;
     cursor: pointer;
-    transition: all 0.3s;
+    transition: all var(--animation-time);
 }
 
 .text-button {
@@ -130,9 +137,15 @@ button {
     }
 }
 
+.img-button svg,
 .img-button img {
     width: 100%;
+    height: 100%;
     display: block;
+}
+
+.img-button svg path {
+    stroke-width: 20px;
 }
 
 .buttons {
@@ -220,7 +233,9 @@ button {
 
 /*input*/
 
-.text-input input, .search-input input, .select > div {
+.text-input input,
+.search-input input,
+.select > div {
     background-color: transparent;
     font-size: 20px;
     box-sizing: border-box;
@@ -232,7 +247,8 @@ button {
     outline: none;
 }
 
-.text-input input::placeholder, .search-input input::placeholder {
+.text-input input::placeholder,
+.search-input input::placeholder {
     transition: color 0.2s;
 }
 
@@ -259,7 +275,7 @@ button {
     overflow: scroll;
     -ms-overflow-style: none;
     scrollbar-width: none;
-    transition: background-color 0.3s;
+    transition: background-color var(--animation-time);
 }
 
 .select li {
@@ -273,16 +289,19 @@ button {
     margin: 0;
 }
 
-.radio-input, .checkbox-input {
+.radio-input,
+.checkbox-input {
     display: flex;
     align-items: center;
 }
 
-.radio-input label, .radio-input input {
+.radio-input label,
+.radio-input input {
     cursor: pointer;
 }
 
-.radio-input input, .checkbox-input input {
+.radio-input input,
+.checkbox-input input {
     width: 14px;
     height: 14px;
     padding: 0;
@@ -293,14 +312,15 @@ button {
     flex-grow: 0;
     order: -1;
     appearance: none;
-    transition: background-color 0.3s;
+    transition: background-color var(--animation-time);
 }
 
 .checkbox-input input {
     border-radius: 3px;
 }
 
-.radio-input input:checked, .checkbox-input input:checked {
+.radio-input input:checked,
+.checkbox-input input:checked {
     background-color: black;
 }
 
@@ -336,9 +356,131 @@ button {
 
 /*img*/
 
-.item-img, .detail-img, .cart-img, .flag {
+.item-img,
+.detail-img,
+.cart-img,
+.flag {
     opacity: 0;
-    transition: opacity 0.3s;
+    transition: opacity var(--animation-time);
+}
+
+/*svg*/
+
+@keyframes flip {
+    50% {
+        transform: rotateX(90deg);
+    }
+}
+
+@keyframes unflip {
+    50% {
+        transform: rotateX(90deg);
+    }
+}
+
+@keyframes show {
+    0% {
+        display: none;
+    }
+
+    50% {
+        display: none;
+    }
+
+    100% {
+        display: block;
+    }
+}
+
+@keyframes hide {
+    0% {
+        display: block;
+    }
+
+    50% {
+        display: none;
+    }
+
+    100% {
+        display: none;
+    }
+}
+
+svg, .toggle-svg {
+    width: 40px;
+    height: 40px;
+}
+
+path {
+    stroke-width: 10px;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+path:not(.fill-path, .gradient-path) {
+    stroke: black;
+    transition: stroke var(--animation-time);
+}
+
+.fill-path:not(.gradient-path) {
+    fill: black;
+    transition: fill var(--animation-time);
+}
+
+path:not(.fill-path) {
+    fill: none;
+}
+
+.fill-path {
+    stroke: none;
+}
+
+svg stop {
+    transition: stop-color var(--animation-time);
+}
+
+.toggle-svg div {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.toggle-svg.flipped div {
+    animation: flip var(--animation-time);
+}
+
+.toggle-svg.unflipped div {
+    animation: unflip var(--animation-time);
+}
+
+.toggle-svg svg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+}
+
+.toggle-svg.flipped svg:first-child {
+    animation: hide linear forwards var(--animation-time);
+}
+
+.toggle-svg.unflipped svg:first-child {
+    animation: show linear forwards var(--animation-time);
+}
+
+.toggle-svg svg:last-child {
+    display: none;
+}
+
+.toggle-svg.flipped svg:last-child {
+    display: block;
+    animation: show linear forwards var(--animation-time);
+}
+
+.toggle-svg.unflipped svg:last-child {
+    animation: hide linear forwards var(--animation-time);
 }
 
 /*square*/
@@ -354,10 +496,11 @@ button {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    transition: all 0.3s;
+    transition: all var(--animation-time);
 }
 
-.square p, .square h2 {
+.square p,
+.square h2 {
     text-align: center;
     margin: 0;
     display: flex;
@@ -369,10 +512,12 @@ button {
     opacity: 0;
 }
 
-.item h2, .item p, .cart-item h2 {
+.item h2,
+.item p,
+.cart-item h2 {
     font-size: 16.7px;
     height: 25%;
-    transition: all 0.3s;
+    transition: all var(--animation-time);
 }
 
 .item h2 {
@@ -438,11 +583,11 @@ button {
     top: 50%;
     left: 50%;
     translate: -50% -50%;
-    animation: grow 0.3s;
+    animation: grow var(--animation-time);
 }
 
 .unmount .alert {
-    animation: shrink 0.3s;
+    animation: shrink var(--animation-time);
 }
 
 .icon {
@@ -480,11 +625,17 @@ button {
         height: 250px;
     }
 
-    .item h2, .item p, .cart-item h2, .cart-price, .alert h2 {
+    .item h2,
+    .item p,
+    .cart-item h2,
+    .cart-price,
+    .alert h2 {
         font-size: 20.8px;
     }
 
-    .detail-description, .counter-text, .alert p {
+    .detail-description,
+    .counter-text,
+    .alert p {
         font-size: 16.7px;
     }
 
@@ -500,11 +651,17 @@ button {
         margin: 20px;
     }
 
-    .item h2, .item p, .cart-item h2, .cart-price, .alert h2 {
+    .item h2,
+    .item p,
+    .cart-item h2,
+    .cart-price,
+    .alert h2 {
         font-size: 25px;
     }
 
-    .detail-description, .counter-text, .alert p {
+    .detail-description,
+    .counter-text,
+    .alert p {
         font-size: 20px;
     }
 
@@ -514,7 +671,8 @@ button {
 }
 
 @media only screen and (min-width: 600px) {
-    .detail .square, .alert {
+    .detail .square,
+    .alert {
         width: 350px;
         height: 350px;
     }
@@ -535,19 +693,21 @@ button {
     display: flex;
     overflow: hidden;
     cursor: pointer;
-    transition: width 0.3s, height 0.3s, padding 0.3s;
+    transition: width var(--animation-time), height var(--animation-time), padding var(--animation-time);
 }
 
-.slide div:first-child {
+.slide * {
+    flex-shrink: 0;
+}
+
+.slide .toggle-svg {
     width: 30px !important;
     height: 30px;
+    cursor: pointer;
 }
 
-.slide img {
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-    transition: rotate 0.3s;
+.slide path {
+    stroke-width: 13px;
 }
 
 .search {
@@ -563,7 +723,6 @@ button {
 .search .search-input {
     width: 300px;
     margin-left: 10px;
-    flex-shrink: 0;
 }
 
 .filter {
@@ -575,7 +734,8 @@ button {
     width: 200px;
 }
 
-.filter h2, .filter label {
+.filter h2,
+.filter label {
     text-wrap: nowrap;
 }
 
@@ -586,7 +746,8 @@ button {
     align-items: center;
 }
 
-#low-bound, #high-bound {
+#low-bound,
+#high-bound {
     width: 80%;
     position: absolute;
 }
@@ -614,7 +775,7 @@ button {
     width: 300px;
     text-align: end;
     border-top: 1px solid black;
-    transition: border-color 0.3s;
+    transition: border-color var(--animation-time);
 }
 
 .recap p {
@@ -642,13 +803,13 @@ nav {
 
 .logo {
     width: 40px;
-    position: relative;
+    margin-bottom: 6px;
 }
 
-.logo img {
-    width: 100%;
+.logo svg {
+    height: auto;
     display: block;
-    transition: filter 0.3s;
+    transition: filter var(--animation-time);
 }
 
 nav ul {
@@ -659,57 +820,77 @@ nav ul {
     align-items: center;
 }
 
-nav ul li {
+nav li {
     text-align: center;
     flex-grow: 1;
 }
 
-nav ul a {
-    font-size: 20px;
+nav li a {
     display: block;
     width: 100%;
-    transition: all 0.3s;
+}
+
+nav li span {
+    font-size: 20px;
+    transition: all var(--animation-time);
 }
 
 .cart-widget {
-    width: 50px;
+    width: 40px;
+    height: 40px;
     position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     cursor: pointer;
-    transition: filter 0.3s;
+    transition: filter var(--animation-time);
 }
 
-.cart-widget img {
-    width: 100%;
-    transition: filter 0.3s;
+.cart-widget > * {
+    position: absolute;
+}
+
+.cart-widget svg {
+    width: 40px;
+    height: 40px;
+}
+
+#arrow {
+    width: 20px;
+    height: 20px;
+    top: 55%;
+    left: 40%;
+    translate: -50% -50%;
+    z-index: -1;
+    opacity: 0;
+    transition: all var(--animation-time);
+}
+
+#arrow path {
+    stroke-width: 20px;
 }
 
 .cart-widget p {
-    font-size: 25px;
+    font-size: 22px;
     text-align: center;
     width: 100%;
     margin: 0;
-    padding-bottom: 15px;
-    position: absolute;
-    z-index: 1;
-    transition: color 0.3s;
+    top: 7px;
+    z-index: -1;
+    transition: all var(--animation-time);
 }
 
 p.long {
-    font-size: 20px;
-    padding-bottom: 15px;
+    font-size: 18px;
+    top: 9px;
 }
 
 p.overlong {
     font-size: 14px;
+    top: 12px;
 }
 
 .menu {
     width: 40px;
+    height: 40px;
     cursor: pointer;
-    transition: all 0.3s;
 }
 
 .dropdown {
@@ -722,7 +903,7 @@ p.overlong {
     z-index: 3;
     justify-content: flex-end;
     overflow: hidden;
-    transition: all 0.3s;
+    transition: all var(--animation-time);
 }
 
 .dropdown.hidden {
@@ -747,7 +928,7 @@ p.overlong {
     position: relative;
     justify-content: space-between;
     align-items: end;
-    transition: background-color 0.3s;
+    transition: background-color var(--animation-time);
 }
 
 .footer p {
@@ -767,7 +948,8 @@ p.overlong {
     }
 }
 
-.footer > div, .footer::after {
+.footer > div,
+.footer::after {
     flex: 1 1 0;
 }
 
@@ -775,7 +957,7 @@ p.overlong {
     content: '';
 }
 
-.toggle {
+.theme-toggle {
     background-color: white;
     box-sizing: border-box;
     width: 60px;
@@ -786,10 +968,10 @@ p.overlong {
     align-items: center;
     box-shadow: 0 0 10px grey;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color var(--animation-time);
 }
 
-.toggle div {
+.theme-toggle div {
     background-color: white;
     box-sizing: border-box;
     height: 25px;
@@ -798,19 +980,19 @@ p.overlong {
     position: relative;
     left: 3px;
     box-shadow: 0 0 10px grey inset;
-    transition: left 0.3s;
+    transition: left var(--animation-time);
 }
 
-/* .toggle.dark {
+/* .theme-toggle.dark {
     box-shadow: 0 0 5px white inset;
 }
 
-.dark.toggle div {
+.dark.theme-toggle div {
     box-shadow: 0 0 5px white inset;
     background-color: black;
 } */
 
-.toggle img {
+.theme-toggle img {
     width: 30%;
     position: absolute;
 }
@@ -834,22 +1016,15 @@ p.overlong {
     display: flex;
     flex-direction: column;
     align-items: center;
-    transition: background-color 0.3s;
+    transition: background-color var(--animation-time);
 }
 
 /*loading*/
 
 @keyframes loading {
-    0% {
-        height: 20px;
-    }
-
     50% {
         height: 100px;
-    }
-
-    100% {
-        height: 20px;
+        width: 100px;
     }
 }
 
@@ -874,28 +1049,35 @@ p.overlong {
     align-items: center;
 }
 
-.loader img {
+.loader svg {
+    width: 20px;
     height: 20px;
-    animation: 0.6s ease-in-out infinite forwards loading;
+    flex-shrink: 0;
+    animation: loading ease-in-out infinite forwards 0.6s;
 }
 
-.loader div:nth-child(2) img, .loader div:nth-child(8) img {
+.loader div:nth-child(2) svg,
+.loader div:nth-child(8) svg {
     animation-delay: -0.5s;
 }
 
-.loader div:nth-child(3) img, .loader div:nth-child(9) img {
+.loader div:nth-child(3) svg,
+.loader div:nth-child(9) svg {
     animation-delay: -0.4s;
 }
 
-.loader div:nth-child(4) img, .loader div:nth-child(10) img {
+.loader div:nth-child(4) svg,
+.loader div:nth-child(10) svg {
     animation-delay: -0.3s;
 }
 
-.loader div:nth-child(5) img, .loader div:nth-child(11) img {
+.loader div:nth-child(5) svg,
+.loader div:nth-child(11) svg {
     animation-delay: -0.2s;
 }
 
-.loader div:nth-child(6) img, .loader div:nth-child(12) img {
+.loader div:nth-child(6) svg,
+.loader div:nth-child(12) svg {
     animation-delay: -0.1s;
 }
 
@@ -913,13 +1095,13 @@ p.overlong {
 
 .welcome h1 {
     font-size: 70px;
-    background-image: linear-gradient(159deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
+    /* background-image: linear-gradient(159deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
     background-image: linear-gradient(159deg, rgba(50,38,216,1) 0%, rgba(131,58,180,1) 14%, rgba(253,29,29,1) 50%, rgba(252,180,69,1) 79%, rgba(130,252,69,1) 100%);
-    background-image: linear-gradient(90deg, rgba(50,38,216,1) 0%, rgba(124,0,207,1) 11%, rgba(234,0,0,1) 32%, rgba(255,132,0,1) 47%, rgba(239,229,0,1) 57%, rgba(85,255,0,1) 68%, rgba(0,255,229,1) 82%, rgba(50,38,216,1) 100%);
+    background-image: linear-gradient(90deg, rgba(50,38,216,1) 0%, rgba(124,0,207,1) 11%, rgba(234,0,0,1) 32%, rgba(255,132,0,1) 47%, rgba(239,229,0,1) 57%, rgba(85,255,0,1) 68%, rgba(0,255,229,1) 82%, rgba(50,38,216,1) 100%); */
     background-size: 1000%;
     background-repeat: repeat-x;
-    background-clip: text;
-    color: transparent;
+    /* background-clip: text;
+    color: transparent; */
     animation: 30s infinite forwards gradient;
 }
 
@@ -936,13 +1118,19 @@ p.overlong {
     font-size: 50px;
 }
 
-.welcome img {
+.welcome svg {
+    width: 60px;
     height: 100%;
     position: absolute;
     top: 0px;
-    left: 75px;
+    right: -40px;
     opacity: 0;
-    transition: all 0.8s;
+    transition: all var(--welcome-animation-time);
+}
+
+.welcome path {
+    stroke-width: 20px;
+    transition: stroke var(--animation-time);
 }
 
 @media only screen and (min-width: 900px) {
@@ -1044,8 +1232,14 @@ p.overlong {
     align-items: center;
 }
 
+.long a,
+.long p {
+    margin: 0;
+}
+
 .long > a {
     width: 120px;
+    height: 120px;
 }
 
 .long .cart-img {
@@ -1053,21 +1247,28 @@ p.overlong {
 }
 
 .long > div {
+    height: 100%;
     flex: 1 1 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
+.long > div::after {
+    content: '';
+    width: 0;
+}
+
 .long .cart-name {
     text-align: center;
     font-size: 20px;
     width: 30%;
+    height: 100%;
     padding-left: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: all 0.3s;
+    transition: all var(--animation-time);
 }
 
 .long .counter {
@@ -1149,7 +1350,7 @@ p.overlong {
 .checkout input, .checkout .select {
     text-align: center;
     margin-bottom: 50px;
-    transition: all 0.3s;
+    transition: all var(--animation-time);
 }
 
 .checkout input.incorrect {
@@ -1171,14 +1372,17 @@ p.overlong {
     right: 20px;
     translate: 0 50%;
     opacity: 1;
-    transition: opacity 0.3s;
+    transition: opacity var(--animation-time);
 }
 
-#country, #country + ul li {
+#country,
+#country + ul li {
     justify-content: space-between;
 }
 
-.flag, #country::after, #country + ul li::after {
+.flag,
+#country::after,
+#country + ul li::after {
     content: '';
     width: 30px;
 }
@@ -1264,95 +1468,136 @@ p.overlong {
     top: 0;
     z-index: 4;
     backdrop-filter: blur(5px);
-    animation: fade-in 0.3s;
+    animation: fade-in var(--animation-time);
 }
 
 .backdrop.unmount {
-    animation: fade-out 0.3s;
+    animation: fade-out var(--animation-time);
 }
 
 /*hover, click, active and focus*/
 
-.mouse .logo img:hover {
-    filter: invert(100%) 
-    drop-shadow(5px 5px 7px rgb(220, 180, 0))
-    drop-shadow(5px -5px 7px rgb(255, 88, 28))
-    drop-shadow(-5px -5px 7px rgb(149, 74, 255))
-    drop-shadow(-5px 5px 7px rgb(52, 212, 52))
+:is(.mouse .toggle-svg:hover,
+    .mouse svg:hover,
+    .logo.active:not(.plain),
+    .cart-widget.active,
+    .img-button:hover,
+    .slide.hidden:hover
+) stop:first-child {
+    stop-color: cyan;
 }
 
-.mouse .dark .logo img:hover {
-    filter: invert(0%) drop-shadow(0 0 10px white) drop-shadow(0 0 10px white);
+:is(.mouse .toggle-svg:hover,
+    .mouse svg:hover,
+    .logo.active:not(.plain),
+    .cart-widget.active,
+    .img-button:hover,
+    .slide.hidden:hover
+) stop:last-child {
+    stop-color: magenta;
 }
 
-.mouse nav.dark ul li:hover a, .mouse .dark .cart-widget:hover {
-    filter: drop-shadow(0 0 10px white) drop-shadow(0 0 10px white);
+.mouse button:hover .red-gradient stop {
+    stop-color: red;
 }
 
-.mouse .dark .menu:hover {
-    filter: invert(100%) drop-shadow(0 0 10px white) drop-shadow(0 0 10px white);
+.mouse button.gradient-text:hover,
+.mouse .welcome div:hover .gradient-text {
+    color: transparent;
 }
 
-.mouse nav ul li:hover a, nav ul a.active {
+.mouse nav li:hover .gradient-text,
+nav li .active .gradient-text {
     font-size: 30px;
+    color: transparent;
 }
 
-.clockwise {
-    rotate: 90deg;
+.mouse .cart-widget:hover .gradient-text {
+    color: transparent;
+    opacity: 0;
 }
 
-.counterclockwise {
-    rotate: -90deg;
+.cart-widget.active .gradient-text {
+    color: transparent;
+}
+
+.mouse .cart-widget:hover #arrow {
+    left: 50%;
+    opacity: 1;
 }
 
 .text-input input:focus::placeholder {
     color: transparent;
 }
 
-.mouse .welcome div:hover img {
-    left: 85px;
+.mouse .welcome div:hover svg {
+    right: -60px;
     opacity: 1;
 }
 
-.mouse .item:hover, .mouse .cart-item.square:hover {
+.mouse .welcome div:hover path {
+    stroke: magenta;
+}
+
+.mouse .item:hover,
+.mouse .cart-item.square:hover {
     width: 240px;
     height: 240px;
     margin: 0;
 }
 
-.mouse .item:hover h2, .mouse .item:hover p, .mouse .cart-item:hover h2, .mouse .cart-item.square:hover .cart-price {
+.mouse .item:hover .gradient-text,
+.mouse .cart-item.square:hover .gradient-text,
+.mouse .long .gradient-text:hover,
+.mouse .long a:hover + div .gradient-text {
+    color: transparent;
+}
+
+.mouse .item:hover h2,
+.mouse .item:hover p,
+.mouse .cart-item:hover h2,
+.mouse .cart-item.square:hover .cart-price {
     font-size: 20px;
 }
 
 @media only screen and (min-width: 350px) {
-    .mouse .item:hover, .mouse .cart-item.square:hover {
+    .mouse .item:hover,
+    .mouse .cart-item.square:hover {
         width: 300px;
         height: 300px;
         margin: -5px 0;
     }
     
-    .mouse .item:hover h2, .mouse .item:hover p, .mouse .cart-item:hover h2, .mouse .cart-item.square:hover .cart-price {
+    .mouse .item:hover h2,
+    .mouse .item:hover p,
+    .mouse .cart-item:hover h2,
+    .mouse .cart-item.square:hover .cart-price {
         font-size: 25px;
     }
 }
 
 @media only screen and (min-width: 450px) {
-    .mouse .item:hover, .mouse .cart-item.square:hover {
+    .mouse .item:hover,
+    .mouse .cart-item.square:hover {
         width: 360px;
         height: 360px;
         margin: -10px;
     }
     
-    .mouse .item:hover h2, .mouse .item:hover p, .mouse .cart-item:hover h2, .mouse .cart-item.square:hover .cart-price {
+    .mouse .item:hover h2,
+    .mouse .item:hover p,
+    .mouse .cart-item:hover h2,
+    .mouse .cart-item.square:hover .cart-price {
         font-size: 30px;
     }
 }
 
-.mouse .long .cart-name:hover, .mouse .long a:hover + div .cart-name {
+.mouse .long .cart-name:hover,
+.mouse .long a:hover + div .cart-name {
     font-size: 24px;
 }
 
-.mouse .text-button:hover {
+/* .mouse .text-button:hover {
     font-size: 14.4px;
 }
 
@@ -1398,7 +1643,7 @@ p.overlong {
     width: 43.2px;
     height: 43.2px;
     margin: -3.6px;
-}
+} */
 
 .mouse .select li:hover {
     background-color: #DDDDDD;
@@ -1410,19 +1655,44 @@ p.overlong {
 
 /*dark*/
 
-.overscroll.dark {
+.overscroll.dark,
+.theme-toggle.dark,
+.dark .alert,
+.dark .select ul {
     background-color: black;
 }
 
-nav.dark a {
+.dark stop {
+    stop-color: white;
+}
+
+.dark path:not(.fill-path, .gradient-path) {
+    stroke: white;
+}
+
+.dark .fill-path:not(.gradient-path) {
+    fill: white;
+}
+
+nav.dark a,
+.dark button,
+button.dark,
+.backdrop.dark,
+.list-container.dark .item,
+.dark .search input,
+.cart.dark a,
+.dark .slide,
+.dark .text-input input,
+.dark .select div {
     color: white;
 }
 
-nav.dark img {
+.dark button:not(.red) img {
     filter: invert(100%);
 }
 
-.dropdown.dark {
+.dropdown.dark,
+.dark .recap-total {
     border-color: white;
 }
 
@@ -1431,25 +1701,21 @@ nav.dark img {
     background-color: black;
 }
 
-.toggle.dark {
-    background-color: black;
-}
-
-.toggle.dark div {
+.theme-toggle.dark div {
     left: 32px;
 }
 
-.toggle.dark .sun {
+.theme-toggle.dark .sun {
     opacity: 1;
-    transition: opacity 1s;
+    transition: opacity calc(3 * var(--animation-time));
 }
 
-.toggle.dark .moon {
+.theme-toggle.dark .moon {
     opacity: 0;
 }
 
-.toggle:not(.dark) .moon {
-    transition: opacity 1s;
+.theme-toggle:not(.dark) .moon {
+    transition: opacity calc(3 * var(--animation-time));
 }
 
 .body.dark {
@@ -1461,47 +1727,18 @@ nav.dark img {
     background-image: radial-gradient(circle, #333333 0, transparent 100%);
 }
 
-.dark button, button.dark {
-    color: white;
-}
-
-.welcome.dark img, .dark button:not(.red) img, .dark .slide img, .dark .loader img {
-    filter: invert(100%);
-}
-
-.list-container.dark .item, .dark .search input, .cart.dark a {
-    color: white;
-}
-
-.dark .shadowed, .dark.shadowed {
+.dark .shadowed,
+.dark.shadowed {
     box-shadow: 0 0 7px white inset;
 }
 
-.dark .slide, .dark .text-input input, .dark .select div {
-    color: white;
-}
-
-.dark .radio-input input:checked, .dark .checkbox-input input:checked {
+.dark .radio-input input:checked,
+.dark .checkbox-input input:checked,
+.dark #low-bound {
     background-color: white;
 }
 
 .dark ::-webkit-slider-thumb {
     background-color: black;
     box-shadow: 0 0 5px white inset;
-}
-
-.dark #low-bound {
-    background-color: white;
-}
-
-.dark .recap-total {
-    border-color: white;
-}
-
-.backdrop.dark {
-    color: white;
-}
-
-.dark .alert, .dark .select ul {
-    background-color: black;
 }

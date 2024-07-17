@@ -1,4 +1,4 @@
-import {useContext, useEffect} from 'react'
+import {useContext} from 'react'
 import {Link} from 'react-router-dom'
 import {CartContext} from '../context/CartContext.jsx'
 import Counter from './Counter.jsx'
@@ -14,7 +14,7 @@ const CartItem = ({product, long}) => {
                 <AsyncImg className='cart-img' src={product.img} alt={product.name} />
             </Link>
             <div>
-                <Link className='cart-name' to={`/item/${product.id}`}>
+                <Link className='cart-name gradient-text' to={`/item/${product.id}`}>
                     {product.name}
                 </Link>
                 <Counter count={product.quantity}
@@ -29,7 +29,7 @@ const CartItem = ({product, long}) => {
 
     return (
         <Link className={`cart-item ${long ? 'long' : 'square'} shadowed`} to={`/item/${product.id}`}>
-            <h2 className='cart-name'>{product.name}</h2>
+            <h2 className='cart-name gradient-text'>{product.name}</h2>
             <div className='center'>
                 <AsyncImg className='cart-img' src={product.img} alt={product.name} />
                 <p className='cart-price'>${handlePrice(product.quantity * product.price)}</p>

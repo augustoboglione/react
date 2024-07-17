@@ -1,21 +1,23 @@
-import {useState, useEffect, useRef} from 'react'
+import {useState, Children} from 'react'
+import ToggleSvg from '../svg/ToggleSvg.jsx'
 import {handleSlide} from '../modules/slide.js'
-import x from '/assets/x.svg'
 
-const Slide = ({className, children}) => {
+const Slide = ({children, className}) => {
     const [hidden, setHidden] = useState(true)
-    const a = useRef(hidden)
 
     const handleMouseDown = e => handleSlide(e, className, hidden, setHidden)
+
+    const content = Children.toArray(children)
+    const svg = content.shift()
 
     return (
         <div className={`slide ${className} shadowed ${hidden ? 'hidden' : ''}`}
             onMouseDown={handleMouseDown} onTouchStart={handleMouseDown}
         >
-            <div>
-            <img className={hidden ? '' : 'clockwise'} src={hidden ? `/assets/${className}.svg` : x} alt='Filter'/>
-            </div>
-            {children}
+            <ToggleSvg hidden={hidden} gradient>
+                {svg}
+            </ToggleSvg>
+            {content}
         </div>
     )
 }

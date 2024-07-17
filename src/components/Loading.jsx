@@ -1,20 +1,20 @@
-import line from '/assets/line.svg'
+import LineSvg from '../svg/LineSvg.jsx'
 
 const Loading  = () => (
     <div className='loader'>
-        <div><img src={line} alt='Loading'/></div>
-        <div><img src={line} alt='Loading'/></div>
-        <div><img src={line} alt='Loading'/></div>
-        <div><img src={line} alt='Loading'/></div>
-        <div><img src={line} alt='Loading'/></div>
-        <div><img src={line} alt='Loading'/></div>
-        <div><img src={line} alt='Loading'/></div>
-        <div><img src={line} alt='Loading'/></div>
-        <div><img src={line} alt='Loading'/></div>
-        <div><img src={line} alt='Loading'/></div>
-        <div><img src={line} alt='Loading'/></div>
-        <div><img src={line} alt='Loading'/></div>
-        <div><img src={line} alt='Loading'/></div>
+        <div><LineSvg/></div>
+        <div><LineSvg/></div>
+        <div><LineSvg/></div>
+        <div><LineSvg/></div>
+        <div><LineSvg/></div>
+        <div><LineSvg/></div>
+        <div><LineSvg/></div>
+        <div><LineSvg/></div>
+        <div><LineSvg/></div>
+        <div><LineSvg/></div>
+        <div><LineSvg/></div>
+        <div><LineSvg/></div>
+        <div><LineSvg/></div>
     </div>
 )
 

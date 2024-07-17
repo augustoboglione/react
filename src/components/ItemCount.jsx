@@ -24,7 +24,7 @@ const ItemCount = ({product}) => {
     return (
         <>
             {!product.stock
-                ? <p className='counter-text red'>Out of stock</p>
+                ? <p className='counter-text red-text'>Out of stock</p>
                 :
             cart.some(item => item.id == product.id)
                 ? <p className='counter-text'>In cart</p>

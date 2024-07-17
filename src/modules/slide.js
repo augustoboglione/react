@@ -71,10 +71,9 @@ const handleMouseUp = e => {
     e.preventDefault()
 
     const element = document.querySelector(`.${className}`)
-    const img = e.target.tagName == 'IMG'
 
     if (click) {
-        if (img) {
+        if (e.target.tagName == 'svg' || e.target.tagName == 'path') {
             setSize(element, !hidden)
             setHidden(!hidden)
         } else {

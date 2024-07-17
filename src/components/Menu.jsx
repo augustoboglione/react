@@ -1,15 +1,15 @@
-import {NavLink} from 'react-router-dom'
+import MenuEntry from './MenuEntry.jsx'
 
 const Menu = ({onClick}) => {
     return (
         <ul>
-            <li onClick={onClick}><NavLink to='/category/mac'>Mac</NavLink></li>
-            <li onClick={onClick}><NavLink to='/category/ipad'>iPad</NavLink></li>
-            <li onClick={onClick}><NavLink to='/category/iphone'>iPhone</NavLink></li>
-            <li onClick={onClick}><NavLink to='/category/watch'>Watch</NavLink></li>
-            <li onClick={onClick}><NavLink to='/category/vision'>Vision</NavLink></li>
-            <li onClick={onClick}><NavLink to='/category/airpods'>Airpods</NavLink></li>
-            <li onClick={onClick}><NavLink to='/category/tvhome'>TV & Home</NavLink></li>
+            <MenuEntry to='/category/mac' onClick={onClick}>Mac</MenuEntry>
+            <MenuEntry to='/category/ipad' onClick={onClick}>iPad</MenuEntry>
+            <MenuEntry to='/category/iphone' onClick={onClick}>iPhone</MenuEntry>
+            <MenuEntry to='/category/watch' onClick={onClick}>Watch</MenuEntry>
+            <MenuEntry to='/category/vision' onClick={onClick}>Vision</MenuEntry>
+            <MenuEntry to='/category/airpods' onClick={onClick}>Airpods</MenuEntry>
+            <MenuEntry to='/category/tvhome' onClick={onClick}>TV & Home</MenuEntry>
         </ul>
     )
 }

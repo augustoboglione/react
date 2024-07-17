@@ -1,15 +1,19 @@
 import {useContext} from 'react'
 import {CartContext} from '../context/CartContext'
-import cart from '/assets/cart.svg'
+import CartSvg from '../svg/CartSvg.jsx'
+import ArrowSvg from '../svg/ArrowSvg.jsx'
 
 const CartWidget = () => {
-    const {loaded, totalQuantity} = useContext(CartContext)
+    const {totalQuantity} = useContext(CartContext)
     const number = totalQuantity()
     
     return (
         <>
-            <img src={cart} alt='Cart'/>
-            <p className={number > 99 ? 'overlong' : number > 9 ? 'long' : ''}>{loaded && number}</p>
+            <CartSvg/>
+            <ArrowSvg/>
+            <p className={`gradient-text ${number > 99 ? 'overlong' : number > 9 ? 'long' : ''}`}>
+                {!!number && number}
+            </p>
         </>
     )
 }

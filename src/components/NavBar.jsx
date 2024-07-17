@@ -1,13 +1,13 @@
 import {useState, useEffect, useRef, useContext} from 'react'
 import {ThemeContext} from '../context/ThemeContext.jsx'
-import {Link} from 'react-router-dom'
+import {Link, NavLink} from 'react-router-dom'
 import Menu from './Menu.jsx'
 import CartWidget from './CartWidget.jsx'
-import logo from '/assets/apple.svg'
-import menu from '/assets/menu.svg'
-import x from '/assets/x.svg'
+import AppleSvg from '../svg/AppleSvg.jsx'
+import ToggleSvg from '../svg/ToggleSvg.jsx'
+import HamburgerSvg from '../svg/HamburgerSvg.jsx'
 
-const NavBar = ({start}) => {
+const NavBar = ({start, welcome}) => {
     const [hidden, setHidden] = useState(null)
     const [mount, setMount] = useState(false)
 
@@ -41,25 +41,25 @@ const NavBar = ({start}) => {
     return (
         <>
             <nav className={theme}>
-                {mount
-                    && <>
-                        <Link className='logo' to='/' onClick={() => {hide(); start()}}>
-                            <img src={logo} alt='Apple'/>
-                        </Link>
+                {mount &&
+                    <>
+                        <NavLink className={`logo ${welcome ? 'plain' : ''}`} to='/' onClick={() => {hide(); start()}}>
+                            <AppleSvg/>
+                        </NavLink>
                         {hidden ?? <Menu onClick={start}/>}
-                        <Link className='cart-widget' to='/cart' onClick={() => {hide(); start()}}>
+                        <NavLink className='cart-widget' to='/cart' onClick={() => {hide(); start()}}>
                             <CartWidget/>
-                        </Link>
-                        {hidden == null
-                            || <img className={`menu ${hidden ? '' : 'counterclockwise'}`}
-                                src={hidden ? menu : x} onClick={toggle} alt='Menu'
-                            />
+                        </NavLink>
+                        {hidden == null ||
+                            <ToggleSvg className='menu' gradient hidden={hidden} onClick={toggle}>
+                                <HamburgerSvg/>
+                            </ToggleSvg>
                         }
                     </>
                 }
             </nav>
-            {hidden == null
-                || <nav className={`dropdown ${theme} ${hidden ? 'hidden' : ''}`}>
+            {hidden == null ||
+                <nav className={`dropdown ${theme} ${hidden ? 'hidden' : ''}`}>
                     <Menu onClick={() => {hide(); start()}}/>
                 </nav>
             }

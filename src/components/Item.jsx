@@ -10,7 +10,7 @@ const Item = ({product}) => {
 
     return (
         <Link className={`item square shadowed ${loaded ? 'loaded' : ''}`} to={`/item/${product.id}`}>
-            <h2>{product.name}</h2>
+            <h2 className='gradient-text'>{product.name}</h2>
             <AsyncImg className='item-img' src={product.img} alt={product.name}/>
             <p>${handlePrice(product.price)}</p>
         </Link>

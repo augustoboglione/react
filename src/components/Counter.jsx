@@ -1,21 +1,22 @@
 import Button from './Button.jsx'
-import minus from '/assets/minus.svg'
-import minusRed from '/assets/minus-red.svg'
-import plus from '/assets/plus.svg'
 import bin from '/assets/bin.svg'
+import MinusSvg from '../svg/MinusSvg.jsx'
+import PlusSvg from '../svg/PlusSvg.jsx'
 
 const Counter = ({count, decrease, increase, remove = null}) => (
     <div className='counter'>
-        <Button className={`img-button ${remove && count == 1 ? 'red' : ''}`} onClick={decrease}>
-            <img src={remove && count == 1 ? minusRed : minus} alt='Decrease'/>
+        <Button imgButton className={`${remove && count == 1 ? 'red' : ''}`} onClick={decrease}>
+            <MinusSvg gradient={count > 1} red={count == 1}/>
         </Button>
         <p className='count'>{count}</p>
-        <Button className='img-button' onClick={increase}>
-            <img src={plus} alt='Increase'/>
+        <Button imgButton onClick={increase}>
+            <PlusSvg/>
         </Button>
-        {remove && <Button className='img-button red' onClick={remove}>
-            <img src={bin} alt='Remove'/>
-        </Button>}
+        {remove &&
+            <Button imgButton className='red' onClick={remove}>
+                <img src={bin} alt='Remove'/>
+            </Button>
+        }
     </div>
 )
 

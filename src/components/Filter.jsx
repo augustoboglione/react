@@ -1,10 +1,12 @@
 import Slide from './Slide.jsx'
 import Input from './Input.jsx'
 import Range from './Range.jsx'
+import FilterSvg from '../svg/FilterSvg.jsx'
 import handlePrice from '../modules/price.js'
 
 const Filter = ({max, bounds, handleInStock, handleBounds, handleSort}) => (
     <Slide className='filter'>
+        <FilterSvg/>
         <div>
             <h2>Sort by</h2>
             <form onInput={handleSort}>

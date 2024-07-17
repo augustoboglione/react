@@ -1,6 +1,6 @@
 import {useEffect, useContext} from 'react'
 import {ThemeContext} from '../context/ThemeContext.jsx'
-import arrow from '/assets/arrow.svg'
+import StartSvg from '../svg/StartSvg.jsx'
 
 const Welcome = ({start}) => {
     const {theme} = useContext(ThemeContext)
@@ -9,10 +9,10 @@ const Welcome = ({start}) => {
 
     return (
         <div className={`body welcome ${theme}`}>
-            <h1>Welcome!</h1>
+            <h1 className='gradient-text'>Welcome!</h1>
             <div onClick={start}>
-                <h2>Start</h2>
-                <img src={arrow} alt='Start'/>
+                <h2 className='gradient-text'>Start</h2>
+                <StartSvg/>
             </div>
         </div>
     )
