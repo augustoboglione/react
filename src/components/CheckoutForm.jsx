@@ -8,7 +8,7 @@ import Button from './Button.jsx'
 import AsyncImg from './AsyncImg.jsx'
 import db from '../modules/firebase.js'
 import {doc, collection, addDoc, updateDoc, Timestamp} from 'firebase/firestore'
-import {handleInput, handleWindowChange} from '../modules/formValidation.js'
+import handleInput from '../modules/formValidation.js'
 import {countries, flag} from '../modules/countries.js'
 
 const CheckoutForm = () => {
@@ -54,16 +54,6 @@ const CheckoutForm = () => {
             }).then(ref => setOrderId(ref.id))
         }
     }
-
-    useEffect(() => {
-        window.addEventListener('scroll', handleWindowChange)
-        window.addEventListener('resize', handleWindowChange)
-
-        return () => {
-            window.removeEventListener('scroll', handleWindowChange)
-            window.removeEventListener('resize', handleWindowChange)
-        }
-    }, [])
 
     useEffect(() => {
         if (orderId) fire('Thank you!', `Thank you for your order! Your order id is ${orderId}.`, 'tick', () => {

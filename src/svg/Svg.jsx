@@ -1,6 +1,6 @@
 import {useId} from 'react'
 
-const Svg = ({id, viewBox, d, gradient, gradientId, gradientLink, red, fill}) => {
+const Svg = ({id, viewBox, d, gradient, gradientId, gradientLink, red, green, fill}) => {
     const newGradient = useId()
 
     return (
@@ -16,7 +16,7 @@ const Svg = ({id, viewBox, d, gradient, gradientId, gradientLink, red, fill}) =>
                 </defs>
             }
             <path className={`${gradient || red || gradientId || gradientLink ? 'gradient-path' : ''} 
-                ${fill ? 'fill-path' : ''}`}
+                ${fill ? 'fill-path' : ''} ${green ? 'green-path' : ''}`}
                 stroke={!fill && (gradient || red || gradientId || gradientLink)
                     ? `url('#gradient-${((gradient || red) && newGradient) || gradientId || gradientLink}')`
                     : null

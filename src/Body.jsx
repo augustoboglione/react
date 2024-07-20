@@ -21,7 +21,7 @@ const Body = () => {
     const start = () => setWelcome(false)
 
     useEffect(() => {
-        // setStock(15)
+        //setStock(15)
         window.addEventListener('scroll', handleScroll)
     }, [])
 

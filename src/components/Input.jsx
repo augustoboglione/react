@@ -1,9 +1,9 @@
-import {useState, useEffect} from 'react'
+import {useState} from 'react'
 import {countries, flag} from '../modules/countries.js'
 import AsyncImg from './AsyncImg.jsx'
-import tick from '/assets/tick.svg'
+import TickSvg from '../svg/TickSvg.jsx'
 
-const Input = ({children, type, name, id, value, label, placeholder, defaultChecked, pattern, selected, onInput, onClick}) => {
+const Input = ({children, type, name, id, value, label, placeholder, defaultChecked, selected, onInput, onClick}) => {
     const [hidden, setHidden] = useState(true)
 
     const toggle = () => setHidden(!hidden)
@@ -13,7 +13,7 @@ const Input = ({children, type, name, id, value, label, placeholder, defaultChec
             <label htmlFor={id}>{label}</label>
             {type == 'select'
                 ? <div className='select' onClick={toggle}>
-                    <div className='shadowed' id={id}>
+                    <div className={`shadowed ${selected ? '' : 'placeholder'} ${hidden ? 'visible' : ''}`} id={id}>
                         {selected
                             ? (id == 'country'
                                 ? <>
@@ -22,17 +22,22 @@ const Input = ({children, type, name, id, value, label, placeholder, defaultChec
                                 </>
                                 : selected
                             )
-                            : 'placeholder' 
+                            : 'United States' 
                         }
                     </div>
                     {hidden || <ul className='shadowed'>{children}</ul>}
                 </div>
-                : <input className={type == 'text' || type == 'email' || type == 'radio' || type == 'checkbox' ? 'shadowed' : ''}
+                : <input className={type == 'text' || type == 'radio' || type == 'checkbox' ? 'shadowed' : ''}
                     type={type} name={name} id={id} value={value} placeholder={placeholder}
-                    defaultChecked={defaultChecked} pattern={pattern} onInput={onInput} onClick={onClick}
+                    defaultChecked={defaultChecked} onInput={onInput} onClick={onClick}
                 />
             }
-            {/* {(type == 'text' || type == 'email') && <img src={tick} alt='Correct'/>} */}
+            {type == 'text' &&
+                <div>
+                    <TickSvg/>
+                    <p/>
+                </div>
+            }
         </div>
     )
 }

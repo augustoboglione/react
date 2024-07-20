@@ -4,18 +4,19 @@ import CartItem from './CartItem.jsx'
 
 const CartList = () => {
     const [long, setLong] = useState(true)
-    const [mount, setMount] = useState(false)
+    const [mounted, setMounted] = useState(false)
 
     const {cart} = useContext(CartContext)
 
     const handleResize = () => {
-        if (window.innerWidth < 900) setLong(false)
+        if (window.innerWidth < 1200) setLong(false)
         else setLong(true)
-        setMount(true)
     }
 
     useEffect(() => {
         scroll(0, 0)
+
+        setMounted(true)
 
         handleResize()
         window.addEventListener('resize', handleResize)
@@ -25,7 +26,7 @@ const CartList = () => {
 
     return (
         <div className='cart-list'>
-            {mount && cart.sort((x, y) => {
+            {mounted && cart.sort((x, y) => {
                 if (x.name.toLowerCase() < y.name.toLowerCase()) return -1
                 else return 1
             }).map(item => <CartItem key={item.id} product={item} long={long}/>)}

@@ -4,8 +4,8 @@ import {ThemeContext} from '../context/ThemeContext.jsx'
 import CartList from './CartList.jsx'
 import Button from './Button.jsx'
 import Loading from './Loading.jsx'
+import BinSvg from '../svg/BinSvg.jsx'
 import handlePrice from '../modules/price.js'
-import bin from '/assets/bin.svg'
 
 const Cart = () => {
     const {cart, loaded, clear, totalPrice} = useContext(CartContext)
@@ -19,7 +19,9 @@ const Cart = () => {
                         ? <div className='title'>
                             <h1>Cart</h1>
                             <div>
-                                <Button imgButton className='red' onClick={clear}><img src={bin}/></Button>
+                                <Button imgButton onClick={clear}>
+                                    <BinSvg/>
+                                </Button>
                             </div>
                         </div>
                         : <h1>Your cart is empty</h1>

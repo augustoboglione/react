@@ -4,7 +4,7 @@ const AlertContext = createContext()
 
 const AlertProvider = ({children}) => {
     const [alert, setAlert] = useState(false)
-    const [unmount, setUnmount] = useState(false)
+    const [willUnmount, setWillUnmount] = useState(false)
 
     const [title, setTitle] = useState(null)
     const [text, setText] = useState(null)
@@ -24,16 +24,16 @@ const AlertProvider = ({children}) => {
     }
 
     const clear = () => {
-        setUnmount(true)
+        setWillUnmount(true)
 
         setTimeout(() => {
             setAlert(false)
-            setUnmount(false)
+            setWillUnmount(false)
         }, 300)
     }
 
     return (
-        <AlertContext.Provider value={{alert, unmount, title, text, icon, callback, cancel, confirm, fire, clear}}>
+        <AlertContext.Provider value={{alert, willUnmount, title, text, icon, callback, cancel, confirm, fire, clear}}>
             {children}
         </AlertContext.Provider>
     )
