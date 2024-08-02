@@ -8,16 +8,14 @@ const AlertProvider = ({children}) => {
 
     const [title, setTitle] = useState(null)
     const [text, setText] = useState(null)
-    const [icon, setIcon] = useState(null)
     const [confirm, setConfirm] = useState(null)
     const [cancel, setCancel] = useState(null)
     const [callback, setCallback] = useState(null)
 
-    const fire = (title, text, icon, callback = null, cancel = null, confirm = 'Accept') => {
+    const fire = (title, text, callback = null, cancel = null, confirm = 'Accept') => {
         setAlert(true)
         setTitle(title)
         setText(text)
-        setIcon(icon)
         setConfirm(confirm)
         setCancel(cancel)
         setCallback(() => callback)
@@ -33,7 +31,7 @@ const AlertProvider = ({children}) => {
     }
 
     return (
-        <AlertContext.Provider value={{alert, willUnmount, title, text, icon, callback, cancel, confirm, fire, clear}}>
+        <AlertContext.Provider value={{alert, willUnmount, title, text, callback, cancel, confirm, fire, clear}}>
             {children}
         </AlertContext.Provider>
     )

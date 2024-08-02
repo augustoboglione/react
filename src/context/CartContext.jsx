@@ -16,14 +16,14 @@ const CartProvider = ({children}) => {
     const remove = (e, item) => {
         e?.preventDefault()
 
-        fire('Remove', `Do you wish to remove ${item.name} from your cart?`, 'x', () => {
+        fire('Remove', `Do you wish to remove ${item.name} from your cart?`, () => {
             setCart(cart.filter(x => x.id != item.id))
             localStorage.removeItem(item.id)
         }, 'Cancel')
     }
 
     const clear = (ask = true) => {
-        if (ask) fire('Clear cart', 'Do you wish to clear your cart?', 'x', () => {
+        if (ask) fire('Clear cart', 'Do you wish to clear your cart?', () => {
             setCart([])
             localStorage.clear()
         }, 'Cancel')
@@ -43,7 +43,7 @@ const CartProvider = ({children}) => {
             cartCopy.find(x => x.id == item.id).quantity++
             setCart(cartCopy)
         }
-        else fire('Not enough stock', `We have ${item.stock} item${item.stock == 1 ? '' : 's'} in stock.`, null)
+        else fire('Not enough stock', `We have ${item.stock} item${item.stock == 1 ? '' : 's'} in stock.`)
     }
 
     const decrease = (e, item) => {

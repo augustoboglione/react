@@ -9,9 +9,9 @@ const Welcome = ({start}) => {
 
     return (
         <div className={`body welcome ${theme}`}>
-            <h1 className='gradient-text'>Welcome!</h1>
+            {/* <h1 className='gradient-text'>Welcome!</h1> */}
             <div onClick={start}>
-                <h2 className='gradient-text'>Start</h2>
+                <h1 className='gradient-text'>Start</h1>
                 <StartSvg/>
             </div>
         </div>

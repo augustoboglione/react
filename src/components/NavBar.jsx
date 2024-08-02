@@ -1,6 +1,6 @@
 import {useState, useEffect, useRef, useContext} from 'react'
 import {ThemeContext} from '../context/ThemeContext.jsx'
-import {Link, NavLink} from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
 import Menu from './Menu.jsx'
 import CartWidget from './CartWidget.jsx'
 import AppleSvg from '../svg/AppleSvg.jsx'

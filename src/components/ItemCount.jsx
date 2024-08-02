@@ -18,7 +18,7 @@ const ItemCount = ({product}) => {
 
     const increase = () => {
         if (count < product.stock) setCount(count + 1)
-        else fire('Not enough stock', `We have ${product.stock} item${product.stock == 1 ? '' : 's'} in stock.`, null)
+        else fire('Not enough stock', `We have ${product.stock} item${product.stock == 1 ? '' : 's'} in stock.`)
     }
 
     return (

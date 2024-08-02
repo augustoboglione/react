@@ -33,6 +33,8 @@ let hidden, setHidden
 let elementX, elementY, mouseX, mouseY
 let translate = {}
 
+let flag = false
+
 const handleMouseMove = e => {
     e.preventDefault()
 
@@ -72,14 +74,19 @@ const handleMouseUp = e => {
 
     const element = document.querySelector(`.${className}`)
 
+    //if (e.type == 'touchend') e = e.touches[0]
+
     if (click) {
         if (e.target.tagName == 'svg' || e.target.tagName == 'path') {
             setSize(element, !hidden)
             setHidden(!hidden)
+            flag = true
+            setTimeout(() => flag = false, 200)
         } else {
             setSize(element, false)
             setHidden(false)
             e.target.focus()
+            if (e.type == 'touchend') e.target.click()
         }
     } else {
         element.style.left = elementX + translate.x + 'px'
@@ -97,7 +104,7 @@ const handleMouseUp = e => {
 const handleSlide = (e, classNameArg, hiddenArg, setHiddenArg) => {
     if (e.target.type == 'range') return
 
-    if (e.type == 'mousedown') e.preventDefault()
+    e.preventDefault()
 
     click = true
     className = classNameArg

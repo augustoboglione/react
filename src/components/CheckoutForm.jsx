@@ -40,23 +40,22 @@ const CheckoutForm = () => {
     const placeOrder = (e, buyer) => {
         e.preventDefault()
 
-        console.log(Object.values(buyer))
-
         if (document.querySelector('.incorrect'))
             scroll({top: window.scrollY + document.querySelector('.incorrect').getBoundingClientRect().top - 140, behavior: 'smooth'})
         else if (Object.values(buyer).find(field => field === null) === null)
-            fire('Missing fields', 'You must fill in all fields.', 'warning', theme)
-        else {
+            fire('Missing fields', 'You must fill in all fields.')
+        else
+            fire('Place order', 'Do you wish to place your order?', () => {
             cart.forEach(item => updateDoc(doc(db, 'items', item.id), {stock: item.stock - item.quantity}))
 
             addDoc(collection(db, 'orders'), {
                 buyer, order: cart, total: totalPrice(), date: Timestamp.fromDate(new Date())
             }).then(ref => setOrderId(ref.id))
-        }
+        }, 'No', 'Yes')
     }
 
     useEffect(() => {
-        if (orderId) fire('Thank you!', `Thank you for your order! Your order id is ${orderId}.`, 'tick', () => {
+        if (orderId) fire('Thank you!', `Thank you for your order! Your order id is ${orderId}.`, () => {
             clear(false)
             navigate('/')
         })

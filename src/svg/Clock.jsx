@@ -23,9 +23,9 @@ const Clock = () => (
         <use href='#line-group' transform='rotate(270)'/>
         <use href='#line-group' transform='rotate(300)'/>
         <use href='#line-group' transform='rotate(330)'/>
-        <path id='hours-hand' d='M 0 10 a 5 5 0 0 0 5 5 a 5 5 0 0 1 -10 0 a 5 5 0 0 0 5 -5 V -30 a 5 5 0 0 0 5 -5 C 5 -40 0 -40 0 -50 C 0 -40 -5 -40 -5 -35 a 5 5 0 0 0 5 5'/>
-        <path id='minutes-hand' d='M 0 20 a 5 5 0 0 0 5 5 a 5 5 0 0 1 -10 0 a 5 5 0 0 0 5 -5 V -40 a 5 5 0 0 1 -5 -5 C -5 -50 0 -50 0 -70 C 0 -50 5 -50 5 -45 a 5 5 0 0 1 -5 5'/>
-        <path id='seconds-hand' d='M 0 15 a 5 5 0 0 0 5 5 a 10 10 0 0 1 -10 0 a 5 5 0 0 0 5 -5 V 5 A 5 5 0 0 0 0 -5 A 5 5 0 0 0 0 5 M 0 -5 V -75'/>
+        <path id='hours-hand' d='M 0 10 V -40'/>
+        <path id='minutes-hand' d='M 0 15 V -60'/>
+        <path id='seconds-hand' d='M 0 15 V 5 A 5 5 0 0 0 0 -5 A 5 5 0 0 0 0 5 M 0 -5 V -75'/>
         <circle r='4.5'/>
     </svg>
 )

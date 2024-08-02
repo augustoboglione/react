@@ -7,7 +7,7 @@ import startClock from '../modules/clock.js'
 const Footer = () => {
     const {theme} = useContext(ThemeContext)
 
-    useEffect(() => startClock(), [])
+    useEffect(startClock, [])
 
     return (
         <div className={`footer ${theme}`}>

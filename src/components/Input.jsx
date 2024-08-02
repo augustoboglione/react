@@ -27,15 +27,15 @@ const Input = ({children, type, name, id, value, label, placeholder, defaultChec
                     </div>
                     {hidden || <ul className='shadowed'>{children}</ul>}
                 </div>
-                : <input className={type == 'text' || type == 'radio' || type == 'checkbox' ? 'shadowed' : ''}
+                : <input className={type == 'text' ? 'shadowed' : ''}
                     type={type} name={name} id={id} value={value} placeholder={placeholder}
                     defaultChecked={defaultChecked} onInput={onInput} onClick={onClick}
                 />
             }
-            {type == 'text' &&
-                <div>
+            {(type == 'text' || type == 'select') &&
+                <div className={selected ? 'correct': ''}>
                     <TickSvg/>
-                    <p/>
+                    {type == 'text' && <p/>}
                 </div>
             }
         </div>

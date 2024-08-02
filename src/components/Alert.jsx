@@ -5,7 +5,7 @@ import Button from './Button.jsx'
 
 const Alert = () => {
     const {theme} = useContext(ThemeContext)
-    const {willUnmount, title, text, icon, callback, cancel, confirm, clear} = useContext(AlertContext)
+    const {willUnmount, title, text, callback, cancel, confirm, clear} = useContext(AlertContext)
 
     const handleConfirm = () => {
         if (callback) callback()

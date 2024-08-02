@@ -1,14 +1,9 @@
 const setTime = () => {
-    const halfDay = 43200000
-    const hour = 3600000
-    const minute = 60000
-    const second = 1000
+    const time = new Date()
 
-    const time = (new Date().getTime() - 3 * hour) % halfDay
-
-    const hours = time / hour
-    const minutes = (time % hour) / minute
-    const seconds = (time % minute) / second
+    const seconds = time.getSeconds() + time.getMilliseconds() / 1000
+    const minutes = time.getMinutes() + seconds / 60
+    const hours = time.getHours() + minutes / 60
 
     const hoursHand = document.getElementById('hours-hand')
     const minutesHand = document.getElementById('minutes-hand')

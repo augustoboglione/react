@@ -4,9 +4,12 @@ import App from './App.jsx'
 
 const root = document.getElementById('root')
 
+if(window.matchMedia('(pointer: coarse)').matches) root.className = 'touch'
+else root.className = 'mouse'
+
 let touchFlag = false
 
-const handleClick = () => {
+const handleMouseMove = () => {
     if (touchFlag) touchFlag = false
     else root.className = 'mouse'
 }
@@ -16,7 +19,7 @@ const handleTouch = () => {
     touchFlag = true
 }
 
-window.addEventListener('mousemove', handleClick)
+window.addEventListener('mousemove', handleMouseMove)
 window.addEventListener('touchstart', handleTouch)
 
 ReactDOM.createRoot(root).render(

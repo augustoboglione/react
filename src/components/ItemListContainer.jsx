@@ -55,7 +55,7 @@ const ItemListContainer = () => {
             }
             <Search handleSearch={handleSearch}/>
             <Filter max={maxPrice} bounds={bounds} handleInStock={handleInStock} 
-                handleBounds={e => handleBounds(e, maxPrice, bounds, setBounds)} handleSort={handleSort}
+                handleBounds={() => handleBounds(maxPrice, bounds, setBounds, theme)} handleSort={handleSort}
             />       
         </div>
     )

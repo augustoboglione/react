@@ -3,9 +3,7 @@ import Svg from './Svg.jsx'
 const RecapSvg = () => (
     <Svg d='M -40 -70
             H 40
-            Q 40 -40 70 -40
-            L 40 -70
-            M 70 -40
+            A 30 30 0 0 1 70 -40
             V 40
             A 30 30 0 0 1 40 70
             H -40
