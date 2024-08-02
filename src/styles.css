@@ -1107,17 +1107,7 @@ p.overlong {
 
 /*welcome*/
 
-@keyframes welcome-h1 {
-    from {
-        color: black;
-    }
-
-    to {
-        color: transparent;
-    }
-}
-
-@keyframes welcome-svg {
+@keyframes welcome {
     from {
         right: -56px;
         opacity: 0;
@@ -1126,16 +1116,6 @@ p.overlong {
     to {
         right: -70px;
         opacity: 1;
-    }
-}
-
-@keyframes welcome-path {
-    from {
-        stroke: black;
-    }
-
-    to {
-        stroke: magenta;
     }
 }
 
@@ -1169,20 +1149,12 @@ p.overlong {
     transition: stroke var(--animation-time);
 }
 
-.touch .welcome h1 {
-    animation: welcome-h1 forwards var(--welcome-animation-time);
-}
-
 .touch .welcome svg {
-    animation: welcome-svg forwards var(--welcome-animation-time);
-}
-
-.touch .welcome path {
-    animation: welcome-path forwards var(--welcome-animation-time);
+    animation: welcome forwards var(--welcome-animation-time);
 }
 
 @media only screen and (min-width: 900px) {
-    @keyframes welcome-svg {
+    @keyframes welcome {
         from {
             right: -80px;
             opacity: 0;
