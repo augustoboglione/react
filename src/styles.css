@@ -328,11 +328,11 @@ button {
     height: 14px;
     padding: 0;
     margin: 0 10px 0 0;
-    border: 1px solid black;
     border-radius: 50%;
     outline: none;
     flex: 0 0 auto;
     order: -1;
+    box-shadow: 0 0 5px grey;
     appearance: none;
     transition: background-color var(--animation-time);
 }
@@ -352,14 +352,14 @@ button {
 
 .range-input input {
     background-color: transparent;
-    height: 7px;
-    border-radius: 3.5px;
+    height: 10px;
+    border-radius: 5px;
     outline: none;
     appearance: none;
 }
 
 #low-bound {
-    border: 1px solid black;
+    box-shadow: 0 0 5px grey;
 }
 
 ::-webkit-slider-thumb {
@@ -367,7 +367,7 @@ button {
     width: 23px;
     height: 23px;
     border-radius: 50%;
-    outline: 1px solid black;
+    box-shadow: 0 0 5px grey;
     appearance: none;
     transition: background-color var(--animation-time);
 }
@@ -377,7 +377,7 @@ button {
     width: 23px;
     height: 23px;
     border-radius: 50%;
-    outline: 1px solid black;
+    box-shadow: 0 0 5px grey;
     appearance: none;
     transition: background-color var(--animation-time);
 }
@@ -970,6 +970,7 @@ p.overlong {
     position: relative;
     display: flex;
     align-items: center;
+    box-shadow: 0 0 5px grey inset;
     cursor: pointer;
     transition: background-color var(--animation-time);
 }
@@ -981,7 +982,7 @@ p.overlong {
     border-radius: 50%;
     position: relative;
     left: 5px;
-    box-shadow: 0 0 10px grey inset;
+    box-shadow: 0 0 5px grey;
     transition: left var(--animation-time);
 }
 
@@ -1773,19 +1774,24 @@ button.dark,
     background-color: black;
 }
 
-.theme-toggle.dark div {
-    left: 35px;
+.dark .theme-toggle {
+    box-shadow: 0 0 5px white inset;
 }
 
-.theme-toggle.dark .sun {
+.dark .theme-toggle div {
+    left: 35px;
+    box-shadow: 0 0 5px white inset;
+}
+
+.dark .theme-toggle .sun {
     opacity: 0;
 }
 
-.theme-toggle:not(.dark) .sun {
+.footer:not(.dark) .theme-toggle .sun {
     transition: opacity calc(3 * var(--animation-time));
 }
 
-.theme-toggle.dark .moon {
+.dark .theme-toggle .moon {
     opacity: 1;
     transition: opacity calc(3 * var(--animation-time));
 }
@@ -1805,9 +1811,12 @@ button.dark,
 }
 
 .dark .radio-input input,
-.dark .checkbox-input input,
+.dark .checkbox-input input {
+    box-shadow: 0 0 5px white inset;
+}
+
 .dark #low-bound {
-    border-color: white;
+    box-shadow: 0 0 5px white inset;
 }
 
 .dark .radio-input input:checked,
@@ -1817,5 +1826,10 @@ button.dark,
 
 .dark ::-webkit-slider-thumb {
     background-color: black;
-    outline-color: white;
+    box-shadow: 0 0 5px white inset;
+}
+
+.dark ::-moz-range-thumb {
+    background-color: black;
+    box-shadow: 0 0 5px white inset;
 }

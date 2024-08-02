@@ -8,7 +8,7 @@ const ThemeToggle = () => {
 
     return (
         <div>
-            <div className={`theme-toggle shadowed ${theme}`} onClick={toggle}>
+            <div className='theme-toggle' onClick={toggle}>
                 <div/>
                 <img className='moon' src={moon} alt='Dark'/>
                 <img className='sun' src={sun} alt='Light'/>
