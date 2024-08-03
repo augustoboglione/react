@@ -4,7 +4,7 @@ import sun from '/assets/sun.svg'
 import moon from '/assets/moon.svg'
 
 const ThemeToggle = () => {
-    const {theme, toggle} = useContext(ThemeContext)
+    const {toggle} = useContext(ThemeContext)
 
     return (
         <div>

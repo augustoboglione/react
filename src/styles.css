@@ -352,7 +352,7 @@ button {
 
 .range-input input {
     background-color: transparent;
-    height: 10px;
+    height: 8px;
     border-radius: 5px;
     outline: none;
     appearance: none;
@@ -1003,31 +1003,42 @@ p.overlong {
 #clock {
     width: 60px;
     height: 60px;
+    transition: all var(--animation-time);
 }
 
 #thick-line {
     stroke-width: 5px;
 }
 
-#thin-line {
+#thin-line, #hinge {
     stroke-width: 2px;
 }
 
-#hours-hand {
-    stroke-width: 5px;
+#hinge {
+    stroke-linecap: butt;
 }
 
-#minutes-hand {
-    stroke-width: 2px;
-}
-
-#seconds-hand {
+#hours-hand path,
+#minutes-hand path {
     stroke-width: 1px;
 }
 
-#clock circle {
+#hours-hand path {
     fill: white;
-    transition: fill var(--animation-time)
+    transition: all var(--animation-time);
+}
+
+#seconds-hand {
+    stroke: rgb(18, 74, 184);
+    stroke-width: 1px;
+}
+
+@media only screen and (min-width: 900px) {
+    #clock {
+        width: 80px;
+        height: 80px;
+        margin: 0 -10px;
+    }
 }
 
 /*body*/
@@ -1719,7 +1730,11 @@ nav li .active .gradient-text {
     fill: white;
 }
 
-.dark #clock circle {
+.dark #seconds-hand {
+    stroke: white;
+}
+
+.dark #hours-hand path {
     fill: black;
 }
 

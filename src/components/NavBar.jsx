@@ -19,7 +19,6 @@ const NavBar = ({start, welcome}) => {
     const handleResize = () => {
         if (window.innerWidth > 1200) setHidden(null)
         else setHidden(true)
-        setMount(true)
     }
 
     const handleClick = e => {
@@ -34,6 +33,7 @@ const NavBar = ({start, welcome}) => {
 
     useEffect(() => {
         handleResize()
+        setMount(true)
         window.addEventListener('resize', handleResize)
         window.addEventListener('click', handleClick)
     }, [])
