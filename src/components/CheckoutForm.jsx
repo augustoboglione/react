@@ -42,7 +42,7 @@ const CheckoutForm = () => {
 
         if (document.querySelector('.incorrect'))
             scroll({top: window.scrollY + document.querySelector('.incorrect').getBoundingClientRect().top - 140, behavior: 'smooth'})
-        else if (Object.values(buyer).find(field => field === null) === null)
+        else if (Object.values(buyer).some(field => field === null))
             fire('Missing fields', 'You must fill in all fields.')
         else
             fire('Place order', 'Do you wish to place your order?', () => {
@@ -51,7 +51,7 @@ const CheckoutForm = () => {
             addDoc(collection(db, 'orders'), {
                 buyer, order: cart, total: totalPrice(), date: Timestamp.fromDate(new Date())
             }).then(ref => setOrderId(ref.id))
-        }, 'No', 'Yes')
+        }, 'Cancel')
     }
 
     useEffect(() => {
