@@ -495,6 +495,7 @@ svg stop {
 }
 
 .toggle-svg.flipped svg:first-child {
+    display: none;
     animation: hide linear forwards var(--animation-time);
 }
 
